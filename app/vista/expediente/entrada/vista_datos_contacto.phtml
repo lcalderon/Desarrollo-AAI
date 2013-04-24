@@ -1,0 +1,130 @@
+<?php
+
+	include_once("../../../modelo/clase_mysqli.inc.php");
+	include_once("../../../vista/login/Auth.class.php");
+	
+	$con= new DB_mysqli();	
+	if($con->Errno){
+		printf("Fallo de conexion: %s\n", $con->Error);
+		exit();
+	}
+	 
+	session_start(); 
+
+	if($_GET["idexpediente"]){
+	
+		$Sql_contacto="SELECT
+				  expediente_persona.IDTIPODOCUMENTO,
+				  expediente_persona.IDDOCUMENTO,
+				  expediente_persona.IDPERSONA,
+				  expediente_persona.NOMBRE,
+				  expediente_persona.APMATERNO,
+				  expediente_persona.APPATERNO,
+				  expediente_persona.DIGITOVERIFICADOR,
+				  expediente.IDCUENTA,
+				  expediente.IDPROGRAMA,
+				  expediente.IDEXPEDIENTE,
+				  expediente.ANI
+				FROM $con->temporal.expediente
+				  INNER JOIN $con->temporal.expediente_persona
+					ON expediente_persona.IDEXPEDIENTE = expediente.IDEXPEDIENTE	
+				WHERE expediente.IDEXPEDIENTE ='".$_GET["idexpediente"]."' AND expediente_persona.ARRTIPOPERSONA='CONTACTO' ";
+	} else{
+
+		$Sql_contacto="SELECT
+						  catalogo_afiliado_beneficiario.IDBENEFICIARIO,
+						  catalogo_afiliado_beneficiario.DIGITOVERIFICADOR,
+						  catalogo_afiliado_beneficiario.IDTIPODOCUMENTO,
+						  catalogo_afiliado_beneficiario.IDDOCUMENTO,
+						  catalogo_afiliado_beneficiario.APPATERNO,
+						  catalogo_afiliado_beneficiario.APMATERNO,
+						  catalogo_afiliado_beneficiario.NOMBRE,
+						  catalogo_afiliado_beneficiario.FECHAMOD,
+						  catalogo_afiliado.CVEAFILIADO
+						FROM $con->catalogo.catalogo_afiliado_beneficiario
+						  INNER JOIN $con->catalogo.catalogo_afiliado
+							ON catalogo_afiliado.IDAFILIADO = catalogo_afiliado_beneficiario.IDAFILIADO
+						WHERE catalogo_afiliado_beneficiario.IDBENEFICIARIO =".$_POST["idcodigo"];			
+	}
+ 
+	if($_POST["idcodigo"] or $_GET["idexpediente"]){ 
+	 
+		$result=$con->query($Sql_contacto);
+		$row_cont = $result->fetch_object();
+	}
+
+	$Sql_telefono_1="SELECT
+					  expediente_persona_telefono.CODIGOAREA,
+					  expediente_persona_telefono.IDTIPOTELEFONO,
+					  expediente_persona_telefono.NUMEROTELEFONO,
+					  expediente_persona_telefono.EXTENSION,
+					  expediente_persona_telefono.IDTSP
+					FROM $con->temporal.expediente_persona_telefono
+					  INNER JOIN $con->temporal.expediente_persona
+						ON expediente_persona.IDPERSONA = expediente_persona_telefono.IDPERSONA
+					WHERE expediente_persona_telefono.IDPERSONA = '".$row_cont->IDPERSONA."'
+					ORDER BY expediente_persona_telefono.PRIORIDAD
+					LIMIT 4 ";
+					
+	$Sql_telefono_2="SELECT
+					  catalogo_afiliado_beneficiario_telefono.CODIGOAREA,
+					  catalogo_afiliado_beneficiario_telefono.IDTIPOTELEFONO,
+					  catalogo_afiliado_beneficiario_telefono.NUMEROTELEFONO,
+					  catalogo_afiliado_beneficiario_telefono.EXTENSION,
+					  catalogo_afiliado_beneficiario_telefono.IDTSP
+					FROM $con->catalogo.catalogo_afiliado_beneficiario_telefono
+					  INNER JOIN $con->catalogo.catalogo_afiliado_beneficiario
+						ON catalogo_afiliado_beneficiario.IDBENEFICIARIO = catalogo_afiliado_beneficiario_telefono.IDBENEFICIARIO
+					WHERE catalogo_afiliado_beneficiario_telefono.IDBENEFICIARIO = '".$row_cont->IDBENEFICIARIO."'
+					ORDER BY catalogo_afiliado_beneficiario_telefono.PRIORIDAD
+					LIMIT 4 ";
+	$Sql_telefono=($_GET["idexpediente"])?$Sql_telefono_1:$Sql_telefono_2;
+ 
+	$resultel=$con->query($Sql_telefono);
+	while($reg = $resultel->fetch_object()){
+		$cont=$cont+1;
+		$telefono[$cont]=$reg->NUMEROTELEFONO;		
+		$tipotelefono[$cont]=$reg->IDTIPOTELEFONO;		
+		$codigoa[$cont]=$reg->CODIGOAREA;		
+		$extension[$cont]=$reg->EXTENSION;		
+		$tsp[$cont]=$reg->IDTSP;		
+	}
+	 
+	$Sql_tipodoc2="SElECT IDTIPODOCUMENTO, DESCRIPCION FROM $con->catalogo.catalogo_tipodocumento WHERE ACTIVO=1 ORDER BY DESCRIPCION";
+?>
+	<input type="hidden" name="idbeneficiarioexis" value="<?=$row_cont->IDBENEFICIARIO;?>" />
+	<input type="hidden" name="contacto" value="<?=$row_cont->IDPERSONA;?>" />
+	<table width="100%" border="0" align="center" >
+		<tr>
+			<td width="11%"><?=_('DOCUMENTO')?></td>
+			<td colspan="2"><input name="txtnumdoccontacto" type="text" class='classtexto' id="txtnumdoccontacto" style="text-transform:uppercase;" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" value="<?=$row_cont->IDDOCUMENTO; ?>" size="22" maxlength="23"/></td>
+			<td width="31%">
+				<?
+					
+					if($_REQUEST["idcodigo"] or $_GET["idexpediente"]){					
+
+						$sql="SElECT  IDTIPODOCUMENTO, DESCRIPCION FROM $con->catalogo.catalogo_tipodocumento WHERE ACTIVO=1 ORDER BY DESCRIPCION";
+						$con->cmbselectopc($sql,"cmbtipodoccontacto",$row_cont->IDTIPODOCUMENTO," onFocus=coloronFocus(this); onBlur=colorOffFocus(this); class='classtexto'","1");
+					
+					} else{
+						$con->cmbselectopc($Sql_tipodoc2,"cmbtipodoccontacto","DNI"," class='classtexto' onFocus='coloronFocus(this);' onBlur='colorOffFocus(this);' ","1");
+					}
+							
+				?>
+			</td>
+			<td><?=_('DIG-VERIFICADOR')?></td>
+			<td><input name="txtdigcontacto" type="text" class='classtexto' id="txtdigcontacto" style="text-transform:uppercase;" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);"  value="<?=$row_cont->DIGITOVERIFICADOR; ?>" size="13" maxlength="12"/></td>
+		</tr>
+		<tr>
+			<td><?=_('AP.PATERNO')?><span class="style2">*</span></td>
+			<td width="17%"><input name="txtpaternocontacto" id="txtpaternocontacto" type="text" size="35" style="text-transform:uppercase;" value="<?=$row_cont->APPATERNO; ?>" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" class='classtexto'/></td>
+			<td width="8%"><?=_('AP.MATERNO')?></td>
+			<td width="31%"><input name="txtmaternocontacto" id="txtmaternocontacto" type="text" size="35" style="text-transform:uppercase;" value="<?=$row_cont->APMATERNO; ?>" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" class='classtexto'/></td>
+			<td width="8%"><?=_('NOMBRES')?><? if(!$row_info->STATUSASISTENCIA and $_POST["opc1"]!="EXP"){?><span class="style2">*</span></td><? } ?></td>
+			<td width="25%"><input name="txtnombrecontacto" id="txtnombrecontacto" type="text" size="25" style="text-transform:uppercase;" value="<?=$row_cont->NOMBRE; ?>" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" class='classtexto'/></td>
+		</tr>
+	<? 
+		$nombreobj="contacto";
+		include("../../catalogos/siac/frm_telefono.php");
+	?>
+	</table> 

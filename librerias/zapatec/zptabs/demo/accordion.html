@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+
+	<meta name="description" content=" This demo shows the accordion example that uses very similar semantics to the ones the tabs do. ">
+	<meta name="keywords" content="dhtml tools,javascript,DHTML Tools,Javascript,ajax,AJAX,Ajax,ajax tools,AJAX Tools,tools controls,simple javascript tools">
+	<title>Zapatec DHTML Tabs Widget - Accordion Example</title>
+
+	<!-- Common JS files -->
+	<script type='text/javascript' src='../../utils/zapatec.js'></script>
+
+	<!-- Custom includes -->	
+	<script type="text/javascript" src="../src/zptabs.js"></script>
+
+	<!-- ALL demos need these css -->
+	<link href="../../website/css/zpcal.css" rel="stylesheet" type="text/css">
+	<link href="../../website/css/template.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+		body {
+			width: 778px;
+		}
+	</style>
+	<link rel="SHORTCUT ICON" href="http://www.zapatec.com/website/main/favicon.ico">
+	
+<script type="text/javascript" src="../src/zptabs-accordion.js"></script>
+
+</head>
+<body>	<div class='zpCalSubHeader' style='text-align:center;'>Accordion Example</div>
+
+		<div class='zpCalDemoText'>
+		<ul>
+		
+		
+	<li>This demo shows the accordion example that uses very similar semantics to the ones the tabs do.</li>
+
+		</ul>
+		</div>
+
+
+
+		<div id="tabs" style="height:200px;width:400px;">
+
+		  <div id="game" style="overflow: auto;">
+			<label accesskey="g" title="Game"><u>G</u>ame</label>
+
+			Game Information
+			<br />
+			<br />
+			Which is your favorite platform?
+			<br />
+			 PS2      <input type="radio" name="platform" value='ps2' />
+			 XBox     <input type="radio" name="platform" value='xbox' />
+			 Nintendo <input type="radio" name="platform" value='nintendo' />
+		  </div>
+
+		  <div id="photo">
+			<label accesskey="h" title="Photo">P<u>h</u>oto</label>
+
+			Photo Tab
+		  </div>
+
+		  <div id="music">
+			<label accesskey="m" title="Music"><u>M</u>usic</label>
+
+			Music Tab
+		  </div>
+
+		  <div id="chat">
+			<label accesskey="c" title="Chat"><u>C</u>hat</label>
+
+			Chat Tab
+		  </div>
+
+		</div>
+
+		<div style="padding: 10px; text-align: right">
+			<button onclick="objTabs.prevTab()" accesskey="p">&laquo; <u>P</u>rev.</button>
+			<button onclick="objTabs.nextTab()" accesskey="n"><u>N</u>ext &raquo;</button>
+		</div>
+
+		<script type="text/javascript">
+
+		var objTabs = new Zapatec.AccordionTabs({
+		  /*
+		  ID to get the LABEL contents to create the tabBar tabs
+		  Also, each DIV in this ID will contain the contents for each tab
+		  */
+		  tabs: 'tabs',
+		  // Theme to use for the tabs
+		  theme: 'default',
+		  themePath: '../themes/'
+		});
+
+		</script>
+
+
+	<noscript>
+		<br/>
+		This page uses an <a href='http://www.zapatec.com/website/main/products/suite/'>
+		AJAX Component</a> - Zapatec DHTML Tabs Widget, but your browser does not support Javascript.
+		<br/>
+		<br/>
+	</noscript>      
+		<br/><br/><br/>
+		<div class="footer" style='width: 778px; text-align:center; margin-top:2em'>
+		&copy; 2004-2007 <strong> <a href='http://www.zapatec.com/'>Zapatec, Inc.</a> </strong>
+		</div>
+</body>
+</html>

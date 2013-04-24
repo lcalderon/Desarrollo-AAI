@@ -1,0 +1,306 @@
+<?php
+
+	session_start();
+
+	include_once('../../../modelo/clase_lang.inc.php');
+	include_once('../../../modelo/clase_mysqli.inc.php');
+	include_once('../../../modelo/functions.php');
+	include_once("../../../vista/login/Auth.class.php");
+	include_once("../../includes/arreglos.php");
+
+	$con= new DB_mysqli();
+	if($con->Errno){
+		printf("Fallo de conexion: %s\n", $con->Error);
+		exit();
+	}
+	
+	$idexpediente=$_REQUEST["idexpediente"];
+	
+	include("vista_encabezado.phtml");
+
+	if($idexpediente){
+
+		$Sql_titular="SELECT
+						  expediente_persona.IDTIPODOCUMENTO,
+						  expediente_persona.IDDOCUMENTO,
+						  expediente_persona.IDPERSONA,
+						  expediente_persona.NOMBRE,
+						  expediente_persona.APMATERNO,
+						  expediente_persona.APPATERNO,
+						  expediente_persona.CVETITULAR,
+						  expediente_persona.DIGITOVERIFICADOR,
+						  expediente.ASIGNARTITULAR,
+						  expediente.ARRSTATUSEXPEDIENTE,
+						  expediente.IDAFILIADO,
+						  expediente.CVEAFILIADO,
+						  expediente.IDCUENTA,
+						  expediente.IDPROGRAMA,
+						  expediente.IDEXPEDIENTE,
+						  expediente.ANI,
+						  asistencia.IDASISTENCIA
+						FROM $con->temporal.expediente
+						  INNER JOIN $con->temporal.expediente_persona
+							ON expediente_persona.IDEXPEDIENTE = expediente.IDEXPEDIENTE	
+						  LEFT JOIN $con->temporal.asistencia
+							ON asistencia.IDEXPEDIENTE = expediente.IDEXPEDIENTE	
+						WHERE expediente.IDEXPEDIENTE ='$idexpediente' AND expediente_persona.ARRTIPOPERSONA='TITULAR' 
+                        GROUP BY  expediente.IDEXPEDIENTE";
+
+	} else{
+
+		$Sql_titular="SELECT
+						  catalogo_afiliado.IDCUENTA,
+						  catalogo_afiliado.IDPROGRAMA,
+						  catalogo_afiliado.IDAFILIADO,
+						  catalogo_afiliado.CVEAFILIADO,
+						  catalogo_afiliado.STATUSASISTENCIA,
+						  catalogo_afiliado_persona.IDTIPODOCUMENTO,
+						  catalogo_afiliado_persona.IDDOCUMENTO,
+						  catalogo_afiliado_persona.NOMBRE,
+						  catalogo_afiliado_persona.APMATERNO,
+						  catalogo_afiliado_persona.APPATERNO,
+						  catalogo_afiliado_persona.DIGITOVERIFICADOR,
+						  expediente.IDEXPEDIENTE,
+						  expediente.ANI
+						FROM $con->catalogo.catalogo_afiliado
+						  INNER JOIN $con->catalogo.catalogo_afiliado_persona
+							ON catalogo_afiliado_persona.IDAFILIADO = catalogo_afiliado.IDAFILIADO
+						  LEFT JOIN $con->temporal.expediente
+							ON expediente.IDAFILIADO = catalogo_afiliado.IDAFILIADO
+						WHERE catalogo_afiliado.IDAFILIADO =".$_REQUEST["idafiliado"]." 
+                        GROUP BY catalogo_afiliado.IDAFILIADO";
+	}
+ 
+	if($_REQUEST["idafiliado"] || $idexpediente){
+
+		$result=$con->query($Sql_titular);
+		$row = $result->fetch_object();
+	}
+
+	//$datocuenta=($_POST["opc2"])?$_POST["opc1"]:$row->IDCUENTA ;
+	$datocuenta=$row->IDCUENTA ;
+	$datoplan=$row->IDPROGRAMA ;
+
+	list($allcuentas,$ver_cuentas,$ids,$validoCta)=accesos_cuentas($_SESSION["user"],$datocuenta);
+	
+	$Sql_telfonotsp="SELECT IDTSP,DESCRIPCION FROM $con->catalogo.catalogo_tsp WHERE ACTIVO=1 ORDER BY DESCRIPCION";
+	$Sql_tipodoc="SElECT IDTIPODOCUMENTO, DESCRIPCION FROM $con->catalogo.catalogo_tipodocumento WHERE ACTIVO=1 ORDER BY DESCRIPCION";
+
+	$cantidad_asis=$con->consultation("select count(IDASISTENCIA) as cantidad from $con->temporal.asistencia where IDEXPEDIENTE=".$idexpediente);
+
+	if($validoCta ==1)	$Sql_programa="SELECT IDPROGRAMA,NOMBRE FROM $con->catalogo.catalogo_programa where IDCUENTA='".$datocuenta."' ORDER BY NOMBRE"; else $Sql_programa="SELECT IDPROGRAMA,NOMBRE FROM $con->catalogo.catalogo_programa where IDCUENTA='' ORDER BY NOMBRE";
+
+	$Sql_telefono1="SELECT
+						  expediente_persona_telefono.CODIGOAREA,
+						  expediente_persona_telefono.IDTIPOTELEFONO,
+						  expediente_persona_telefono.NUMEROTELEFONO,
+						  expediente_persona_telefono.EXTENSION,
+						  expediente_persona_telefono.IDTSP
+						FROM $con->temporal.expediente_persona_telefono
+						  INNER JOIN $con->temporal.expediente_persona
+							ON expediente_persona.IDPERSONA = expediente_persona_telefono.IDPERSONA
+						WHERE expediente_persona_telefono.IDPERSONA = '".$row->IDPERSONA."'
+						ORDER BY expediente_persona_telefono.PRIORIDAD
+						LIMIT 4";
+
+	$Sql_telefono2="SELECT
+						  catalogo_afiliado_persona_telefono.CODIGOAREA,
+						  catalogo_afiliado_persona_telefono.IDTIPOTELEFONO,
+						  catalogo_afiliado_persona_telefono.NUMEROTELEFONO,
+						  catalogo_afiliado_persona_telefono.EXTENSION,
+						  catalogo_afiliado_persona_telefono.IDTSP
+						FROM $con->catalogo.catalogo_afiliado_persona_telefono
+						  INNER JOIN $con->catalogo.catalogo_afiliado
+							ON catalogo_afiliado.IDAFILIADO = catalogo_afiliado_persona_telefono.IDAFILIADO						
+						WHERE catalogo_afiliado.IDAFILIADO = '".$row->IDAFILIADO."'
+						ORDER BY catalogo_afiliado_persona_telefono.PRIORIDAD
+						LIMIT 4";
+
+	$Sql_telefono=($idexpediente)?$Sql_telefono1:$Sql_telefono2;
+
+	$resultel=$con->query($Sql_telefono);
+	while($reg = $resultel->fetch_object()){
+
+		$ii=$ii+1;
+		$telefono[$ii]=$reg->NUMEROTELEFONO;
+		$tipotelefono[$ii]=$reg->IDTIPOTELEFONO;
+		$codigoa[$ii]=$reg->CODIGOAREA;
+		$extension[$ii]=$reg->EXTENSION;
+		$tsp[$ii]=$reg->IDTSP;
+	}
+
+	if($idexpediente || $_REQUEST["idafiliado"])	$readonly="readonly";
+
+//verificando si tiene reclamos no concluidos
+	$Sql_reclamo="SELECT
+					  COUNT(*),
+					  retencion.IDAFILIADO
+					FROM $con->temporal.retencion
+					  INNER JOIN $con->temporal.expediente
+						ON expediente.IDAFILIADO = retencion.IDAFILIADO
+					  WHERE MOTIVOLLAMADA = 'QUEJASRECLAMO'
+						/*AND STATUS_SEGUIMIENTO != 'CON'*/
+						AND expediente.CVEAFILIADO = '".$row->CVEAFILIADO."'
+						AND expediente.IDEXPEDIENTE = '".$row->IDEXPEDIENTE."'
+						AND retencion.IDAFILIADO!=0
+					GROUP BY expediente.IDEXPEDIENTE ";
+ 
+	$valor_recl=$con->consultation($Sql_reclamo);
+	$_GET["id_expediente"]=$idexpediente;
+	$_GET["cve_id"]=$row->CVEAFILIADO;
+
+	include("consultareincidencia.php");
+	
+	if($_GET["telefono"]) $_GET["id"]=$_GET["telefono"];
+	//buscar si el plan esta validado para la activacion del afiliado
+	// $resultadoAct=$con->consultation("SELECT VALIDA_ACTIVACION FROM $con->catalogo.catalogo_programa WHERE IDPROGRAMA='".$_POST["plan"]."'");
+	// $seActiva=$resultadoAct[0][0]; 
+?>
+	 <style type="text/css">
+		<!--
+		#div-info {
+			position:absolute;
+			left:735px;
+			top:50px;
+			width:400px;
+			height:165px;
+			z-index:1;		 
+		}
+		-->
+	</style>
+	<input type="hidden" name="statusafi" id="statusafi" value="<?=$row->STATUSASISTENCIA;?>" />
+	<input type="hidden" name="idafiliado" id="idafiliado" value="<?=$row->IDAFILIADO;?>" />
+	<input type="hidden" name="titular" value="<?=$row->IDPERSONA;?>" />
+	<input type="hidden" name="cvetitular" value="<?=$row->CVEAFILIADO;?>" />
+	<input type="hidden" name="fechasac" id="fechasac" value="<?=date("Y-m-d H:i:s");?>"/> 
+	<input type="hidden" name="idexpediente2" id="idexpediente2" value="<?=$idexpediente;?>"/>
+	
+	<!--Tabla historial--> 
+		<div id="BloqueHistorico" style="display:none"><?  if($idexpediente)	include_once('../../../controlador/expediente/movimientoExpediente.php'); ?></div>
+	
+	<!-- formulario activacion afiliado-->
+	<? 
+		if($_POST["plan"] and $seActiva==1 and $row->STATUSASISTENCIA=="CAN"){
+	?>
+	<div id="div-activacion" style="display:<?=($_POST["plan"])?"block":"none"?>">
+		<table width="100%" border="0" cellpadding="1" cellspacing="0">
+			<tr bgcolor="#333333">
+				<td width="6%" align="right">							
+					<input type="button" name="btnActivarAfi" id="btnActivarAfi" onclick="activar_afiliado(this.id)" value="ACTIVAR AFILIADO" title="<?=_("Cambiar status Afiliado")?>" />
+				</td>
+			</tr>
+		</table>
+	</div>
+	<? } ?>
+
+	<div id="div-info" style="display:none">	
+		<? 
+			$existeDatosAdd=$con->consultation("SELECT IDAFILIADO FROM $con->catalogo.catalogo_afiliado_persona_datosadicionales WHERE IDAFILIADO='".$row->IDAFILIADO."'");
+			if($row->IDAFILIADO and $row->IDAFILIADO!=0 and $existeDatosAdd[0][0])	include_once("tabs/tabs.php"); 			
+		?>
+	</div>
+
+	<!--Tabla titular-->
+		<table width="100%" border="0" cellpadding="1" cellspacing="0" style="border-top:1px solid #002f5d;">
+			<tr>
+				<td width="105" height="20" bgcolor="#002f5e"  style="border-top:1px solid #000000;border-left:1px solid #000000;border-right:1px solid #000000;color:#FFFFFF"><strong><?=_('DATOS TITULAR')?></strong></td>
+				<td width="100" colspan="3"><? if(($idexpediente || $_REQUEST["idafiliado"]) and $totalReinc >0  ){ ?><input type="button" style="color:#000000;background-color:#FBFB00;font-weight:bolder"  name="btnreincidencia" id="btnreincidencia" value="<?=_('REINCIDENCIAS').$numreg;?>" title="<?=_('HISTORIAL DE REINCIDENCIAS')?>" onClick="ventana_expedientehistorico('<?=$_GET["idexpediente"]?>')" /><? } ?>
+				
+				 <? if($valor_recl[0][0] >0 ){ ?>			
+					<input type="button" name="btnreclamo" id="btnreclamo" value="<?=_('RECLAMOS')."(".$valor_recl[0][0].")";?>" title="<?=_('RECLAMOS DE AFILIADOS')?>" style="font-weight:bolder;background-color:#FF0000;color:#F5F5F5" onClick="window.open('../../catalogos/siac/gestionarafiliado.php?idafiliado=<?=$valor_recl[0][1];?>','afiliado','');" />
+				 <? } ?> 
+				 <?  if($row->IDAFILIADO <1 and $row->ASIGNARTITULAR ==0 and $row->ARRSTATUSEXPEDIENTE =="PRO"){ ?>
+						<input type="button"name="btnpostasignacion" id="btnpostasignacion" value="<?=_('CAMBIO POST ASIGNACION')?>" style="font-weight:bolder;background-color:#515e68;color:#FFFFFF" title="Cambio de cveafiliado y plan" onClick="window.open('cambio_afiliado.php?idexpediente=<?=$idexpediente;?>&varexis=<?=$_GET["varexis"]?>','_self')" />
+				<? } ?>
+				</td>
+				
+				<td align="right" width="100"><? if($row->IDAFILIADO and $row->IDAFILIADO!=0 and $existeDatosAdd[0][0]){?><div id="mostrar"><a href="#" onClick="mostrarDivInfo(1)" ><img src="../../../../imagenes/iconos/info.gif" width="15" height="16" title="Mostrar info. adicionales"/></a></div><div id="ocultar" style="display:none"><a href="#" onClick="mostrarDivInfo(0)" >Cerrar Info</a></div><? } ?></td>
+			</tr>
+			<tr>
+				<td style="border:1px solid #002f5e" colspan="5" bgcolor="#F1F4F5">
+				<table width="100%" border="0" cellpadding="1" cellspacing="0">					
+					<tr> 
+						<td width="10%"><label for="txtcodigo"><?=_('CLAVE TITULAR')?></label></td>
+						<td colspan="3"><input name="txtclavetitular" type="text" class="classtexto" id="txtclavetitular" <?=($row->IDASISTENCIA!="" or $_REQUEST["idafiliado"])?$readonly:"";?> onFocus="coloronFocus(this);clear_all(this.id)" onBlur="colorOffFocus(this);clear_all(this.id)"  style="text-transform:uppercase;" value="<?=($_GET["id"] || $_GET["telefono"])?$_GET["id"]:$row->CVEAFILIADO; ?>" size="25" maxlength="25" />					
+							<? if($_GET["telefono"]) { 						?>
+							<button type="button" title="Validaci&oacute;n telefono" onClick="validar_telefono()" name="btnvalidar">
+								<b><?=_('Validar')?></b> <img src="../../../../imagenes/iconos/validar.png" alt="validar">
+							</button>								
+							<?  } ?>
+							
+							<? if(!$idexpediente and !$row->IDAFILIADO) { 						?>
+							<button type="button" title="Buscar Afiliados..." onClick="ventana_sac()" name="btnbuscar">
+								<b><?=_('Afiliado')?></b><img src="../../../../imagenes/iconos/buscars.ico" alt="afiliado">
+							</button>
+ 							<button type="button" title="Buscar Reincidencias..." onClick="ventana_reincidencia()" name="btnbuscarei">
+								<b><?=_('Reincidencia')?></b> <img src="../../../../imagenes/iconos/reincidencia.ico" alt="sd">
+							</button> 
+							<?  } 
+							if($idexpediente and $row->IDAFILIADO and !$_GET["idexpediente"]){?>
+							<input type="button" name="btnrefresh" title="<?=_('Cancelar')?>" id="btnrefresh" value="X" style="font-weight:bold;width:30px;font-size:10px;" onClick="javascript:location.href='expediente_frmexpediente.php?id=<?=$row->CVEAFILIADO; ?>'" />
+							<? } ?>						</td>
+						<td width='10%'><?=_('ANI')?></td>
+						<td width='27%'  colspan="3"><input name="txtani" type="text" id="txtani" size="18" style="text-transform:uppercase;" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" class='classtexto'  value="<?=($_GET["ani"])?$_GET["ani"]:$row->ANI; ?>"></td>				 
+					</tr>			
+					<tr>
+						<td><?=_('CUENTA')?><span class="style2">*</span></td>
+						<td colspan="2"><?
+						if(!$row->IDCUENTA)	$status=" WHERE ACTIVO =1";
+						if($allcuentas==1)	$Sql_cuenta="SELECT IDCUENTA,NOMBRE FROM $con->catalogo.catalogo_cuenta $status ORDER BY NOMBRE"; else $Sql_cuenta=" SELECT catalogo_cuenta.IDCUENTA,catalogo_cuenta.NOMBRE FROM catalogo_cuenta INNER JOIN $con->temporal.seguridad_acceso_cuenta ON seguridad_acceso_cuenta.IDCUENTA=catalogo_cuenta.IDCUENTA WHERE seguridad_acceso_cuenta.IDUSUARIO='".$_SESSION["user"]."'";
+
+						if($idexpediente){
+						
+							$con->cmbselectdata($Sql_cuenta,"cmbcuentatitular",$row->IDCUENTA,"onchange=\"verifica_cuenta();mostrarDiv('div-programa','mostrarprograma.php',this.value,'$row->IDPROGRAMA')\"; onFocus=coloronFocus(this); onBlur=colorOffFocus(this); class='classtexto'",($cantidad_asis[0][0] >0)?"1":"");
+						} else{
+							$con->cmbselectdata($Sql_cuenta,"cmbcuentatitular",$row->IDCUENTA,"onchange=\"verifica_cuenta();mostrarDiv('div-programa','mostrarprograma.php',this.value,'$row->IDPROGRAMA')\"; onFocus=coloronFocus(this); onBlur=colorOffFocus(this); class='classtexto'",($cantidad_asis[0][0] >0)?"1":"");
+						}
+						?></td>
+						<td width="10%">&nbsp;</td>
+						<td><?=_('PLAN')?><span class="style2">*</span></td>
+						<td colspan="3"><div id="div-programa">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width='17%' colspan="3">
+										<? $con->cmbselectdata($Sql_programa,"cmbprogramatitular",$row->IDPROGRAMA," onchange='verifica_cuenta()'; onFocus=coloronFocus(this); onBlur=colorOffFocus(this); class='classtexto'",($cantidad_asis[0][0] >0 || $idexpediente)?"1":""); ?>
+										<? if($row->IDPROGRAMA){?><img src='../../../../imagenes/iconos/pdf.gif' alt='<?=_('VER DETALLE')?>' width='15' style='cursor: pointer;' title='<?=_('VER CONTRATO');?>' onclick="ver_detalle('<?=$row->IDPROGRAMA;?>')"></img><? } ?>
+									</td>
+								</tr>
+							</table>
+						</div></td>
+					</tr>
+					<tr>
+						<td><?=_('AP. PATERNO')?> <span class="style2">*</span></td>
+						<td width="20%"><input name="txtpaternotitular" id="txtpaternotitular" type="text" size="40" value="<?=$row->APPATERNO; ?>" style="text-transform:uppercase;"  onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" class='classtexto'  /></td>
+						<td width="9%"><?=_('AP. MATERNO')?></td>
+						<td><input name="txtmaternotitular" id="txtmaternotitular" type="text" size="35" value="<?=$row->APMATERNO; ?>" style="text-transform:uppercase;" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" class='classtexto' /></td>
+						<td><?=_('NOMBRES')?> <? if(!$row_info->STATUSASISTENCIA and $idexpediente){?><span class="style2">*</span></td><? } ?>
+						<td colspan="3"><input name="txtnombretitular" id="txtnombretitular" type="text" size="30"   value="<?=$row->NOMBRE; ?>" style="text-transform:uppercase;" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" class='classtexto' /></td>
+					</tr>
+					<tr>
+						<td><?=_('DOCUMENTO')?></td>
+						<td colspan="3"><input name="txtnumdoctitular" type="text" id="txtnumdoctitular" size="22" maxlength="23" style="text-transform:uppercase;" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" class='classtexto' value="<?=$row->IDDOCUMENTO; ?>" >
+							<?						
+								if($_REQUEST["idafiliado"] || $idexpediente){
+									$con->cmbselectopc($Sql_tipodoc,"cmbtipodoctitular",$row->IDTIPODOCUMENTO," class='classtexto' onFocus='coloronFocus(this);' onBlur='colorOffFocus(this);' ","1");
+								} else{
+									$con->cmbselectopc($Sql_tipodoc,"cmbtipodoctitular","DNI"," class='classtexto' onFocus='coloronFocus(this);' onBlur='colorOffFocus(this);' ","1");
+								}
+							?>						
+						</td>
+						<td id="cell2"><?=_('DIG-VERIFICADOR')?>:</td>
+						<td id="cell3" colspan="3"><input name="txtdigtitular" type="text" id="txtdigtitular" size="10" maxlength="8" style="text-transform:uppercase;" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" class='classtexto'  value="<?=$row->DIGITOVERIFICADOR; ?>"><img src="../../../../imagenes/iconos/info.png" alt="<?=_("?") ;?>" onMouseOver="TagToTip('T2TExtensions', ABOVE, true, OFFSETX, -17, BALLOON, true)" onMouseOut="UnTip()"><span style="display: none;" id="T2TExtensions"><?=_('Ultimo Codigo de Identificacion de algunos DNI')?>.</span></td>
+					</tr>
+				<? 
+					$nombreobj="titular";
+					include("../../catalogos/siac/frm_telefono.php");
+
+					unset($telefono);
+					unset($tipotelefono);
+					unset($codigoa);
+					unset($extension);
+					unset($tsp);	 
+				?>
+				</table>
+				</td>
+			</tr>
+		</table>

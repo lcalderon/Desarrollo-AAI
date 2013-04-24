@@ -1,0 +1,328 @@
+<?
+// número de niveles de entidad federativa
+$con = new DB_mysqli();
+if (isset($ubigeo)){
+$n_ent= $con->lee_parametro('UBIGEO_NIVELES_ENTIDADES');    // para Perú 3 niveles (DEPARTAMENTO/PROVINCIA/DISTRITO)
+$idpais =$ubigeo->cvepais;
+//$entfed1_default=($ubigeo->cveentidad1==0)?$con->lee_parametro('UBICACION_PRIMARIA_CVEENTIDAD1'):$ubigeo->cveentidad1;
+//$entfed2_default=($ubigeo->cveentidad2==0)?$con->lee_parametro('UBICACION_PRIMARIA_CVEENTIDAD2'):$ubigeo->cveentidad2;
+$entfed1_default=$ubigeo->cveentidad1;
+$entfed2_default=$ubigeo->cveentidad2;
+$entfed3_default=$ubigeo->cveentidad3;
+$entfed4_default=$ubigeo->cveentidad4;
+$entfed5_default=$ubigeo->cveentidad5;
+$entfed6_default=$ubigeo->cveentidad6;
+$entfed7_default=$ubigeo->cveentidad7;
+ 
+}
+else
+{
+$n_ent= $con->lee_parametro('UBIGEO_NIVELES_ENTIDADES');    // para Perú 3 niveles (DEPARTAMENTO/PROVINCIA/DISTRITO)
+$idpais =$con->lee_parametro('IDPAIS');
+$entfed1_default=$con->lee_parametro('UBICACION_PRIMARIA_CVEENTIDAD1');
+$entfed2_default=$con->lee_parametro('UBICACION_PRIMARIA_CVEENTIDAD2');
+$entfed3_default=$con->lee_parametro('UBICACION_PRIMARIA_CVEENTIDAD3');
+$entfed4_default=$con->lee_parametro('UBICACION_PRIMARIA_CVEENTIDAD4');
+$entfed5_default=$con->lee_parametro('UBICACION_PRIMARIA_CVEENTIDAD5');
+$entfed6_default=$con->lee_parametro('UBICACION_PRIMARIA_CVEENTIDAD6');
+$entfed7_default=$con->lee_parametro('UBICACION_PRIMARIA_CVEENTIDAD7');
+ 
+}
+
+?>
+
+<? if ($n_ent>=1) { ?>
+<tr class='modo1' >
+	<td><strong><?=_('ENTIDAD 1')?></strong></td>
+	<td>
+	<?
+	$sql="
+	select 
+	CVEENTIDAD1, DESCRIPCION 
+	FROM catalogo_entidad
+	WHERE 
+	CVEENTIDAD1<> ''
+	AND CVEENTIDAD2='0'
+	AND CVEENTIDAD3='0' 
+	AND CVEENTIDAD4='0'
+	AND CVEENTIDAD5='0'
+	AND CVEENTIDAD6='0'
+	AND CVEENTIDAD7='0'
+	ORDER BY 
+	DESCRIPCION
+	";
+	$con->cmbselect_db("CVEENTIDAD1".$nombreCombo,$sql,$entfed1_default,"id='cveentidad1$nombreCombo' class='classtexto' onfocus='coloronFocus(this)' onBlur='colorOffFocus(this)'",'','TODOS');
+	?>
+	</td>
+</tr>
+	<?}?>
+	
+<? if ($n_ent>=2) { ?>
+<tr class='modo1' >
+	<td><strong><?=_('ENTIDAD 2')?></strong></td>
+	<td>
+	<?
+	$sql="
+	select 
+	CVEENTIDAD2, DESCRIPCION 
+	FROM catalogo_entidad
+	WHERE 
+	CVEENTIDAD1='$entfed1_default'
+	AND CVEENTIDAD2<>'0'
+	AND CVEENTIDAD3='0' 
+	AND CVEENTIDAD4='0'
+	AND CVEENTIDAD5='0'
+	AND CVEENTIDAD6='0'
+	AND CVEENTIDAD7='0'
+	ORDER BY 
+	DESCRIPCION
+	";
+	$con->cmbselect_db("CVEENTIDAD2".$nombreCombo,$sql,$entfed2_default,"id='cveentidad2$nombreCombo' class='classtexto' onfocus='coloronFocus(this)' onBlur='colorOffFocus(this)'",'','TODOS');
+	?>
+	</td>
+</tr>
+	<?}?>
+
+<? if ($n_ent>=3) { ?>
+<tr class='modo1'>
+	<td><strong><?=_('ENTIDAD 3')?></strong></td>
+	<td>
+	<?
+	$sql="
+	select 
+	CVEENTIDAD3, DESCRIPCION 
+	FROM catalogo_entidad
+	WHERE 
+	CVEENTIDAD1='$entfed1_default'
+	AND CVEENTIDAD2='$entfed2_default'
+	AND CVEENTIDAD3<>'0' 
+	AND CVEENTIDAD4='0'
+	AND CVEENTIDAD5='0'
+	AND CVEENTIDAD6='0'
+	AND CVEENTIDAD7='0'
+	ORDER BY 
+	DESCRIPCION
+	";
+	$con->cmbselect_db("CVEENTIDAD3".$nombreCombo,$sql,$entfed3_default,"id='cveentidad3$nombreCombo' class='classtexto' onfocus='coloronFocus(this)' onBlur='colorOffFocus(this)'",'','TODOS');
+	?>
+	</td>
+</tr>
+	<?}?>
+
+<? if ($n_ent>=4) { ?>
+<tr class='modo1'>
+	<td><strong><?=_('ENTIDAD 4')?></strong></td>
+	<td>
+	<?
+	$sql="
+	select 
+	CVEENTIDAD4, DESCRIPCION 
+	FROM catalogo_entidad 
+	WHERE 
+	CVEENTIDAD1='$entfed1_default'
+	AND CVEENTIDAD2='$entfed2_default'
+	AND CVEENTIDAD3='$entfed3_default' 
+	AND CVEENTIDAD4<>'0'
+	AND CVEENTIDAD5='0'
+	AND CVEENTIDAD6='0'
+	AND CVEENTIDAD7='0'
+	ORDER BY 
+	DESCRIPCION
+	";
+	$con->cmbselect_db("CVEENTIDAD4".$nombreCombo,$sql,$entfed4_default,"id='cveentidad4$nombreCombo' class='classtexto' onfocus='coloronFocus(this)' onBlur='colorOffFocus(this)'",'','TODOS');
+	?>
+	</td>
+</tr>
+	<?}?>	
+	
+<? if ($n_ent>=5) { ?>
+<tr class='modo1'>
+	<td><?=_('ENTIDAD 5')?></td>
+	<td>
+	<?
+	$sql="
+	select 
+	CVEENTIDAD5, DESCRIPCION 
+	FROM catalogo_entidad 
+	WHERE 
+	CVEENTIDAD1='$entfed1_default'
+	AND CVEENTIDAD2='$entfed2_default'
+	AND CVEENTIDAD3='$entfed3_default' 
+	AND CVEENTIDAD4='$entfed4_default'
+	AND CVEENTIDAD5<>'0'
+	AND CVEENTIDAD6='0'
+	AND CVEENTIDAD7='0'
+	ORDER BY 
+	DESCRIPCION
+	";
+	$con->cmbselect_db("CVEENTIDAD5".$nombreCombo,$sql,$entfed4_default,"id='cveentidad5$nombreCombo' class='classtexto' onfocus='coloronFocus(this)' onBlur='colorOffFocus(this)'",'','TODOS');
+	?>
+	</td>
+</tr>
+	<?}?>
+
+<? if ($n_ent>=6) { ?>
+<tr class='modo1'>
+	<td><?=_('ENTIDAD 6')?></td>
+	<td>
+	<?
+	$sql="
+	select 
+	CVEENTIDAD6, DESCRIPCION 
+	FROM catalogo_entidad
+	WHERE 
+	CVEENTIDAD1='$entfed1_default'
+	AND CVEENTIDAD2='$entfed2_default'
+	AND CVEENTIDAD3='$entfed3_default' 
+	AND CVEENTIDAD4='$entfed4_default'
+	AND CVEENTIDAD5='$entfed5_default'
+	AND CVEENTIDAD6<>'0'
+	AND CVEENTIDAD7='0'
+	ORDER BY 
+	DESCRIPCION
+	";
+	$con->cmbselect_db("CVEENTIDAD6".$nombreCombo,$sql,$entfed5_default,"id='cveentidad6$nombreCombo' class='classtexto' onfocus='coloronFocus(this)' onBlur='colorOffFocus(this)'",'','TODOS');
+	?>
+	</td>
+</tr>
+	<?}?>
+	
+	<? if ($n_ent>=7) { ?>
+<tr class='modo1'>
+	<td><?=_('ENTIDAD 7')?></td>
+	<td>
+	<?
+	$sql="
+	select 
+	CVEENTIDAD7, DESCRIPCION 
+	FROM catalogo_entidad 
+	WHERE 
+	CVEENTIDAD1='$entfed1_default'
+	AND CVEENTIDAD2='$entfed2_default'
+	AND CVEENTIDAD3='$entfed3_default' 
+	AND CVEENTIDAD4='$entfed4_default'
+	AND CVEENTIDAD5='$entfed5_default'
+	AND CVEENTIDAD6='$entfed6_default'
+	AND CVEENTIDAD7<>'0'
+	ORDER BY 
+	DESCRIPCION
+	";
+	$con->cmbselect_db("CVEENTIDAD7".$nombreCombo,$sql,$entfed6_default,"id='cveentidad7$nombreCombo' class='classtexto' onfocus='coloronFocus(this)' onBlur='colorOffFocus(this)'",'','TODOS');
+	?>
+	</td>
+</tr>
+	<?}?>
+
+	
+<script type="text/javascript">  //  ****************         COMBOS DEPENDIENTES    ***********************//
+ 
+// cambia opciones en el combo ENTIDAD 2
+new Event.observe('cveentidad1<?=$nombreCombo?>','change',function (){
+	new Ajax.Updater('cveentidad2<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed2.php",
+	{	insertion: Insertion.Blank,
+		method: 'post',
+		parameters: { ent1: $F('cveentidad1<?=$nombreCombo?>') } 
+	});
+
+	new Ajax.Updater('cveentidad3<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed3.php",
+	{	insertion: Insertion.Blank}
+	);
+	new Ajax.Updater('cveentidad4<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed4.php",
+	{	insertion: Insertion.Blank}
+	);
+	new Ajax.Updater('cveentidad5<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed5.php",
+	{	insertion: Insertion.Blank}
+	);
+	new Ajax.Updater('cveentidad6<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed6.php",
+	{	insertion: Insertion.Blank}
+	);
+	new Ajax.Updater('cveentidad7<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed7.php",
+	{	insertion: Insertion.Blank}
+	);
+});
+
+// cambia opciones en el combo ENTIDAD 3
+new Event.observe('cveentidad2<?=$nombreCombo?>','change',function (){
+	new Ajax.Updater('cveentidad3<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed3.php",
+	{	insertion: Insertion.Blank,
+	method: 'post',
+	parameters: { ent1 : $F('cveentidad1<?=$nombreCombo?>'), ent2 : $F('cveentidad2<?=$nombreCombo?>') }
+	}
+	);
+
+	new Ajax.Updater('cveentidad4<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed4.php",
+	{	insertion: Insertion.Blank}
+	);
+	new Ajax.Updater('cveentidad5<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed5.php",
+	{	insertion: Insertion.Blank}
+	);
+	new Ajax.Updater('cveentidad6<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed6.php",
+	{	insertion: Insertion.Blank}
+	);
+	new Ajax.Updater('cveentidad7<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed7.php",
+	{	insertion: Insertion.Blank}
+	);
+});
+
+// cambia opciones en el combo ENTIDAD 4
+new Event.observe('cveentidad3<?=$nombreCombo?>','change',function (){
+	new Ajax.Updater('cveentidad4<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed4.php",
+	{	insertion: Insertion.Blank,
+	method: 'post',
+	parameters: { ent1 : $F('cveentidad1<?=$nombreCombo?>'), ent2 : $F('cveentidad2<?=$nombreCombo?>'), ent3 : $F('cveentidad3<?=$nombreCombo?>') }
+	}
+	);
+
+	new Ajax.Updater('cveentidad5<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed5.php",
+	{	insertion: Insertion.Blank}
+	);
+	new Ajax.Updater('cveentidad6<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed6.php",
+	{	insertion: Insertion.Blank}
+	);
+	new Ajax.Updater('cveentidad7<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed7.php",
+	{	insertion: Insertion.Blank}
+	);
+});
+
+// cambia opciones en el combo ENTIDAD 5
+new Event.observe('cveentidad4<?=$nombreCombo?>','change',function (){
+	new Ajax.Updater('cveentidad5<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed5.php",
+	{	insertion: Insertion.Blank,
+	method: 'post',
+	parameters: { ent1 : $F('cveentidad1<?=$nombreCombo?>'), ent2 : $F('cveentidad2<?=$nombreCombo?>'), ent3 : $F('cveentidad3<?=$nombreCombo?>'), ent4 : $F('cveentidad4<?=$nombreCombo?>') }
+	}
+	);
+	new Ajax.Updater('cveentidad6<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed6.php",
+	{	insertion: Insertion.Blank}
+	);
+	new Ajax.Updater('cveentidad7<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed7.php",
+	{	insertion: Insertion.Blank}
+	);
+});
+
+// cambia opciones en el combo ENTIDAD 6
+new Event.observe('cveentidad5<?=$nombreCombo?>','change',function (){
+	new Ajax.Updater('cveentidad6<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed6.php",
+	{	insertion: Insertion.Blank,
+	method: 'post',
+	parameters: { ent1 : $F('cveentidad1<?=$nombreCombo?>'), ent2 : $F('cveentidad2<?=$nombreCombo?>'), ent3 : $F('cveentidad3<?=$nombreCombo?>'), ent4 : $F('cveentidad4<?=$nombreCombo?>'), ent5 : $F('cveentidad5<?=$nombreCombo?>') }
+	}
+	);
+
+	new Ajax.Updater('cveentidad7<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed7.php",
+	{	insertion: Insertion.Blank}
+	);
+});
+
+// cambia opciones en el combo ENTIDAD 7
+new Event.observe('cveentidad6<?=$nombreCombo?>','change',function (){
+	new Ajax.Updater('cveentidad7<?=$nombreCombo?>',"/app/controlador/ajax/ajax_entfed7.php",
+	{	insertion: Insertion.Blank,
+	method: 'post',
+	parameters: { ent1 : $F('cveentidad1<?=$nombreCombo?>'), ent2 : $F('cveentidad2<?=$nombreCombo?>'), ent3 : $F('cveentidad3<?=$nombreCombo?>'), ent4 : $F('cveentidad4<?=$nombreCombo?>'), ent5 : $F('cveentidad5<?=$nombreCombo?>'), ent6 : $F('cveentidad6<?=$nombreCombo?>') }
+	}
+	);
+
+});
+ 
+</script>

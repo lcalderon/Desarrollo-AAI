@@ -1,0 +1,527 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Frameset//EN""http://www.w3.org/TR/REC-html40/frameset.dtd">
+<html>
+<head>
+<title>
+Zapatec Tabs Overview
+</title>
+<link rel ="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+<script>
+function asd() {
+	
+		parent.document.title="zptabs-wizard.js Overview";
+	
+}
+</script>
+</head>
+<body bgcolor="white" onload="asd();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> 	<font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top">
+<em>
+<b>Zapatec Tabs</b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<center>
+	
+	   <h2>zptabs-wizard.js</h2>
+	
+</center>
+
+	
+
+
+<h4>Summary</h4>
+<p>
+	
+		Tabs + Forms Wizard extension. Extends Tabs class (zptabs.js)
+ adding Forms functionality to create wizards.
+
+ <pre>
+ Copyright (c) 2004-2006 by Zapatec, Inc.
+ http://www.zapatec.com
+ 1700 MLK Way, Berkeley, California,
+ 94709, U.S.A.
+ All rights reserved.
+ </pre><BR/><BR/>
+	
+</p>
+
+<hr>
+
+
+    <table border="1" cellpadding="3" cellspacing="0" width="100%">
+    <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+    <td colspan=2><font size="+2">
+    
+        <b>Class Summary</b>
+    
+    </font></td>
+    </tr>
+    
+    <tr bgcolor="white" class="TableRowColor">
+    <td width="15%"><b><a href="Zapatec/TabsWizard.html">Zapatec.TabsWizard</a></b></td>
+    <td>&nbsp;</td>
+    </tr>
+    
+    </table>
+    <hr/> 
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<!-- ========== END METHOD SUMMARY =========== -->
+
+
+        <pre class="sourceview"><span class="comment">// $Id: zptabs-wizard.js 7343 2007-06-04 17:05:28Z vkulov $</span>
+<span class="comment">/**
+ * <span class="attrib">@fileoverview</span> Tabs + Forms Wizard extension. Extends Tabs class (zptabs.js)
+ * adding Forms functionality to create wizards.
+ *
+ * &lt;pre&gt;
+ * Copyright (c) 2004-2006 by Zapatec, Inc.
+ * http://www.zapatec.com
+ * 1700 MLK Way, Berkeley, California,
+ * 94709, U.S.A.
+ * All rights reserved.
+ * &lt;/pre&gt;
+ */</span>
+
+<span class="comment">/**
+ * Tabs + Forms Wizard.
+ *
+ * &lt;pre&gt;
+ * Defines following additional config options:
+ *
+ * &lt;b&gt;action&lt;/b&gt;: [string] "action" attribute value of hidden form.
+ *
+ * &lt;b&gt;submitTabId&lt;/b&gt;: [string] Id of tab which shows sumbit result.
+ *
+ * &lt;b&gt;method&lt;/b&gt;: [string, optional] 'GET' or 'POST'.
+ *
+ * &lt;b&gt;contentType&lt;/b&gt;: [string, optional] Content type when using POST method.
+ *
+ * &lt;b&gt;formThemePath&lt;/b&gt;: [string, optional] Relative or absolute URL to the form
+ * themes directory (see Zapatec.From for details).
+ *
+ * &lt;b&gt;formTheme&lt;/b&gt;: [string, optional] Theme name that will be used to display
+ * the form (see Zapatec.From for details).
+ *
+ * &lt;b&gt;formStatusImgPos&lt;/b&gt;: [string, optional] (see Zapatec.From for details).
+ *
+ * &lt;b&gt;showErrors&lt;/b&gt;: [string, optional] (see Zapatec.From for details).
+ *
+ * &lt;b&gt;onError&lt;/b&gt;: [function, optional] Callback function to call on error.
+ * Receives following object as argument:
+ * {
+ *   tabId: [string] tab id
+ *   serverSide: [boolean] true if this is server response or false if
+ *    validation result,
+ *   generalError: [string] Human readable error description,
+ *   fieldErrors: [
+ *     {
+ *       field: [object] field element object,
+ *       errorMessage: [string] Human readable error description
+ *     },
+ *     ...
+ *   ]
+ * }
+ * See Zapatec.From submitErrorFunc config option for details.
+ *
+ * &lt;b&gt;onValid&lt;/b&gt;: [function, optional] Callback function reference to call
+ * after validation is passed. Receives following object as argument:
+ * {
+ *   tabId: [string] tab id
+ * }
+ * See Zapatec.From submitValidFunc config option for details.
+ *
+ * &lt;b&gt;onSuccess&lt;/b&gt;: [function, optional] Callback function to call after form
+ * was submitted and "success" response received from server. Receives object
+ * passed from server as argument.
+ * See Zapatec.From asyncSubmitFunc config option for details.
+ * &lt;/pre&gt;
+ *
+ * <span class="attrib">@constructor</span>
+ * <span class="attrib">@param</span> {object} objArgs [object] User configuration
+ */</span>
+Zapatec.TabsWizard = <span class="reserved">function</span>(objArgs) {
+	<span class="comment">// Call constructor of superclass</span>
+	Zapatec.TabsWizard.SUPERconstructor.call(<span class="reserved">this</span>, objArgs);
+};
+
+<span class="comment">/**
+ * Unique static id of the widget class. Gives ability for Zapatec#inherit to
+ * determine and store path to this file correctly when it is included using
+ * Zapatec#include. When this file is included using Zapatec#include or path
+ * to this file is gotten using Zapatec#getPath, this value must be specified
+ * as script id.
+ * <span class="attrib">@private</span>
+ */</span>
+Zapatec.TabsWizard.id = <span class="literal">'Zapatec.TabsWizard'</span>;
+
+<span class="comment">// Inherit Tabs</span>
+Zapatec.inherit(Zapatec.TabsWizard, Zapatec.Tabs);
+
+<span class="comment">/**
+ * Initializes object.
+ *
+ * <span class="attrib">@param</span> {object} objArgs User configuration
+ */</span>
+Zapatec.TabsWizard.<span class="reserved">prototype</span>.init = <span class="reserved">function</span>(objArgs) {
+	<span class="comment">// Define config options</span>
+	<span class="reserved">this</span>.config.action = <span class="literal">''</span>;
+	<span class="reserved">this</span>.config.submitTabId = <span class="literal">''</span>;
+	<span class="reserved">this</span>.config.method = <span class="literal">''</span>;
+	<span class="reserved">this</span>.config.contentType = <span class="literal">''</span>;
+	<span class="reserved">this</span>.config.formThemePath = <span class="literal">''</span>;
+	<span class="reserved">this</span>.config.formTheme = <span class="literal">''</span>;
+	<span class="reserved">this</span>.config.formStatusImgPos = <span class="literal">''</span>;
+	<span class="reserved">this</span>.config.showErrors = <span class="literal">''</span>;
+	<span class="reserved">this</span>.config.onError = null;
+	<span class="reserved">this</span>.config.onValid = null;
+	<span class="reserved">this</span>.config.onSuccess = null;
+
+	<span class="comment">// Reference to this</span>
+	var objWizard = <span class="reserved">this</span>;
+
+	<span class="comment">// Patch onInit handler</span>
+	var funcOnInit = objArgs.onInit;
+	objArgs.onInit = <span class="reserved">function</span>() {
+		<span class="comment">// Create hidden form</span>
+		var objHiddenForm = Zapatec.Utils.createElement(<span class="literal">'form'</span>);
+		objHiddenForm.style.display = <span class="literal">'none'</span>;
+		objHiddenForm.setAttribute(<span class="literal">'action'</span>, objWizard.config.action);
+		objHiddenForm.setAttribute(<span class="literal">'method'</span>, objWizard.config.method);
+		objHiddenForm.setAttribute(<span class="literal">'enctype'</span>, objWizard.config.contentType);
+		objWizard.config.tabs.appendChild(objHiddenForm);
+
+		<span class="comment">// Initialize hidden form</span>
+		new Zapatec.Form({
+			form: objHiddenForm,
+			theme: objWizard.config.formTheme,
+		<span class="comment">// Error handler</span>
+			submitErrorFunc: <span class="reserved">function</span>(objArgs) {
+				<span class="reserved">if</span> (typeof objWizard.config.onError != <span class="literal">'function'</span>) {
+					<span class="reserved">return</span>;
+				}
+				<span class="comment">// If field error descriptions passed</span>
+				<span class="reserved">if</span> (objArgs.fieldErrors &amp;&amp; objArgs.fieldErrors.length) {
+					<span class="reserved">for</span> (var iTab = 0; iTab &lt; objWizard.tabsArray.length; iTab++) {
+						<span class="comment">// Get tab</span>
+						var objTab = objWizard.tabsArray[iTab];
+						<span class="reserved">if</span> (!objTab.form) {
+							continue;
+						}
+						<span class="comment">// Extract errors belonging to this tab</span>
+						var arrFieldErrors = [];
+						var objFields = objTab.formSource.elements;
+						<span class="reserved">for</span> (var iField = 0; iField &lt; objFields.length; iField++) {
+							<span class="comment">// Get source field element</span>
+							var objField = objFields[iField];
+							<span class="reserved">if</span> (!Zapatec.Form.Utils.isInputField(objField)) {
+								continue;
+							}
+							<span class="comment">// Get field name</span>
+							var strName = objField.getAttribute(<span class="literal">'name'</span>);
+							<span class="reserved">if</span> (!strName.length) {
+								continue;
+							}
+							<span class="comment">// Find error respective to this field</span>
+							<span class="reserved">for</span> (var iFerr = 0; iFerr &lt; objArgs.fieldErrors.length; iFerr++) {
+								<span class="reserved">if</span> (objArgs.fieldErrors[iFerr].field.name == strName) {
+									arrFieldErrors.push(objArgs.fieldErrors[iFerr]);
+									break;
+								}
+							}
+						}
+						<span class="comment">// Go to this tab if there are errors</span>
+						<span class="reserved">if</span> (arrFieldErrors.length) {
+							objWizard.changeTab(objTab.id);
+							break;
+						}
+					}
+				}
+				<span class="reserved">else</span> {
+					<span class="comment">// Go to first tab by default</span>
+					objWizard.changeTab(objWizard.tabsArray[0].id);
+				}
+				<span class="comment">// Call original function</span>
+				objArgs.tabId = objWizard.tabsArray[objWizard.currentIndex].id;
+				objWizard.config.onError(objArgs);
+			},
+		<span class="comment">// Success handler</span>
+			asyncSubmitFunc: objWizard.config.onSuccess
+		});
+
+		<span class="comment">// Patch onBeforeTabChange handler</span>
+		var funcOnBeforeTabChange = objWizard.config.onBeforeTabChange;
+		objWizard.config.onBeforeTabChange = <span class="reserved">function</span>(objArgs) {
+			<span class="comment">// Get new tab index</span>
+			var iNewTabIndex = -1;
+			<span class="reserved">for</span> (var iTab = 0; iTab &lt; objWizard.tabsArray.length; iTab++) {
+				<span class="reserved">if</span> (objWizard.tabsArray[iTab].id == objArgs.newTabId) {
+					iNewTabIndex = iTab;
+					break;
+				}
+			}
+			<span class="comment">// Validate if trying to go forward</span>
+			<span class="reserved">if</span> (iNewTabIndex &gt; objWizard.currentIndex) {
+				<span class="comment">// Get old tab</span>
+				var objOldTab = objWizard.tabs[objArgs.oldTabId];
+				<span class="comment">// Validate form</span>
+				<span class="reserved">if</span> (objOldTab &amp;&amp; objOldTab.form &amp;&amp; !objOldTab.form.submit()) {
+					<span class="reserved">return</span> false;
+				}
+			}
+			<span class="comment">// If submit tab clicked</span>
+			<span class="reserved">if</span> (objArgs.newTabId == objWizard.config.submitTabId) {
+				<span class="comment">// Validate all forms</span>
+				<span class="reserved">for</span> (var iTab = 0; iTab &lt; objWizard.tabsArray.length; iTab++) {
+					var objTab = objWizard.tabsArray[iTab];
+					<span class="reserved">if</span> (objTab.id == objArgs.newTabId) {
+						<span class="comment">// Skip this tab</span>
+						continue;
+					}
+					<span class="reserved">if</span> (!objTab.parsed) {
+						<span class="comment">// Tab content is not parsed yet</span>
+						objWizard.changeTab(objTab.id);
+						<span class="reserved">return</span> false;
+					}
+					<span class="reserved">if</span> (objTab.formSource) {
+						<span class="comment">// Tab contains form</span>
+						<span class="reserved">if</span> (!objTab.form || !objTab.form.submit()) {
+							<span class="comment">// Form is not initialized yet or not valid</span>
+							objWizard.changeTab(objTab.id);
+							<span class="reserved">return</span> false;
+						}
+					}
+				}
+			}
+			<span class="comment">// Call original function</span>
+			<span class="reserved">if</span> (typeof funcOnBeforeTabChange == <span class="literal">'function'</span>) {
+				<span class="reserved">return</span> funcOnBeforeTabChange(objArgs);
+			}
+			<span class="reserved">return</span> true;
+		};
+
+		<span class="comment">// Patch onTabChange handler</span>
+		var funcOnTabChange = objWizard.config.onTabChange;
+		objWizard.config.onTabChange = <span class="reserved">function</span>(objArgs) {
+			<span class="comment">// Get new tab id</span>
+			var strNewTabId = objArgs.newTabId;
+			<span class="comment">// Get new tab</span>
+			var objNewTab = objWizard.tabs[strNewTabId];
+			<span class="reserved">if</span> (!objNewTab) {
+				<span class="reserved">return</span>;
+			}
+			<span class="comment">// Parse source to get form</span>
+			<span class="reserved">if</span> (!objNewTab.parsed) {
+				var objSource = objNewTab.container.getContentElement();
+				<span class="comment">// Get form</span>
+				var objForm = Zapatec.Utils.getFirstChild(objSource, <span class="literal">'form'</span>);
+				<span class="comment">// Form must have 'zpForm' in class attribute</span>
+				<span class="reserved">if</span> (objForm &amp;&amp; objForm.className.indexOf(<span class="literal">'zpForm'</span>) &lt; 0) {
+					<span class="comment">// Try other forms</span>
+					<span class="reserved">while</span> (objForm = Zapatec.Utils.getNextSibling(objSource, <span class="literal">'form'</span>)) {
+						<span class="reserved">if</span> (objForm.className.indexOf(<span class="literal">'zpForm'</span>) &gt;= 0) {
+							break;
+						}
+					}
+				}
+				<span class="reserved">if</span> (objForm) {
+					<span class="comment">// Extend Tab class with formSource property</span>
+					objNewTab.formSource = objForm;
+				}
+				<span class="comment">// Extend Tab class with parsed property</span>
+				objNewTab.parsed = true;
+			}
+			<span class="comment">// Initialize source form if not initialized yet</span>
+			<span class="reserved">if</span> (!objNewTab.form &amp;&amp; objNewTab.formSource) {
+				<span class="comment">// Extend Tab class with form property</span>
+				objNewTab.form = new Zapatec.Form({
+					form: objNewTab.formSource,
+					themePath: objWizard.config.formThemePath,
+					theme: objWizard.config.formTheme,
+					statusImgPos: objWizard.config.formStatusImgPos,
+					showErrors: objWizard.config.showErrors,
+					submitErrorFunc: <span class="reserved">function</span>(objArgs) {
+						objArgs.tabId = strNewTabId;
+						<span class="reserved">if</span> (typeof objWizard.config.onError == <span class="literal">'function'</span>) {
+							objWizard.config.onError(objArgs);
+							<span class="comment">// Check if there are invalid fields</span>
+							<span class="reserved">if</span> (objArgs.fieldErrors &amp;&amp; objArgs.fieldErrors.length) {
+								<span class="comment">// Focus on first invalid field</span>
+								objNewTab.focusOn = objArgs.fieldErrors[0].field;
+							}
+						}
+					},
+					submitValidFunc: <span class="reserved">function</span>() {
+						<span class="reserved">if</span> (typeof objWizard.config.onValid == <span class="literal">'function'</span>) {
+							objWizard.config.onValid({
+								tabId: strNewTabId
+							});
+						}
+					}
+				});
+			}
+			<span class="comment">// If submit tab clicked</span>
+			<span class="reserved">if</span> (strNewTabId == objWizard.config.submitTabId) {
+				<span class="comment">// Populate hidden form</span>
+				<span class="reserved">for</span> (var iTab = 0; iTab &lt; objWizard.tabsArray.length; iTab++) {
+					<span class="comment">// Get tab</span>
+					var objTab = objWizard.tabsArray[iTab];
+					<span class="reserved">if</span> (!objTab.form) {
+						continue;
+					}
+					<span class="comment">// Get source form</span>
+					var objForm = objTab.formSource;
+					<span class="reserved">if</span> (!objForm) {
+						continue;
+					}
+					<span class="reserved">for</span> (var iField = 0; iField &lt; objForm.elements.length; iField++) {
+						<span class="comment">// Get source field element</span>
+						var objField = objForm.elements[iField];
+						<span class="reserved">if</span> (!Zapatec.Form.Utils.isInputField(objField)) {
+							continue;
+						}
+						<span class="comment">// Get field name</span>
+						var strName = objField.getAttribute(<span class="literal">'name'</span>);
+						<span class="reserved">if</span> (strName &amp;&amp; !strName.length) {
+							continue;
+						}
+						<span class="comment">// Get hidden field element</span>
+						var objHiddenField = objHiddenForm[strName];
+						<span class="reserved">if</span> (!objHiddenField) {
+							<span class="comment">// Create new field element</span>
+							var objHiddenField = Zapatec.Utils.createElement(<span class="literal">'input'</span>);
+							objHiddenField.setAttribute(<span class="literal">'type'</span>, <span class="literal">'hidden'</span>);
+							objHiddenField.setAttribute(<span class="literal">'name'</span>, strName);
+							objHiddenForm.appendChild(objHiddenField);
+						}
+						<span class="comment">// Set value</span>
+						objHiddenField.setAttribute(<span class="literal">'value'</span>, objField.value);
+					}
+				}
+				<span class="comment">// Submit hidden form</span>
+				objHiddenForm.onsubmit();
+			}
+			<span class="comment">// Call original function</span>
+			<span class="reserved">if</span> (typeof funcOnTabChange == <span class="literal">'function'</span>) {
+				funcOnTabChange(objArgs);
+			}
+		};
+
+		<span class="comment">// Call original function</span>
+		<span class="reserved">if</span> (typeof funcOnInit == <span class="literal">'function'</span>) {
+			funcOnInit(objArgs);
+		}
+	};
+
+	<span class="comment">// Call parent init</span>
+	Zapatec.TabsWizard.SUPERclass.init.call(<span class="reserved">this</span>, objArgs);
+};
+</pre>
+	<hr>
+
+
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top"><em>
+<b>Zapatec Tabs</b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<font size="-1">
+
+</font>
+<div class="jsdoc_ctime">Documentation generated by <a href="http://jsdoc.sourceforge.net/" target="_parent">JSDoc</a> on Thu Aug 16 12:19:03 2007</div>
+</body>
+</html>

@@ -1,0 +1,2113 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Frameset//EN""http://www.w3.org/TR/REC-html40/frameset.dtd">
+<html>
+<head>
+<title>
+Zapatec Tabs Overview
+</title>
+<link rel ="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+<script>
+function asd() {
+	
+		parent.document.title="zptabs-core.js Overview";
+	
+}
+</script>
+</head>
+<body bgcolor="white" onload="asd();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> 	<font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top">
+<em>
+<b>Zapatec Tabs</b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<center>
+	
+	   <h2>zptabs-core.js</h2>
+	
+</center>
+
+	
+
+
+<h4>Summary</h4>
+<p>
+	
+		Tabs widget. Extends base Widget class (utils/zpwidget.js).
+
+ <pre>
+ Copyright (c) 2004-2006 by Zapatec, Inc.
+ http://www.zapatec.com
+ 1700 MLK Way, Berkeley, California,
+ 94709, U.S.A.
+ All rights reserved.
+ </pre><BR/><BR/>
+	
+</p>
+
+<hr>
+
+
+    <table border="1" cellpadding="3" cellspacing="0" width="100%">
+    <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+    <td colspan=2><font size="+2">
+    
+        <b>Class Summary</b>
+    
+    </font></td>
+    </tr>
+    
+    <tr bgcolor="white" class="TableRowColor">
+    <td width="15%"><b><a href="Zapatec/Tabs.html">Zapatec.Tabs</a></b></td>
+    <td>&nbsp;</td>
+    </tr>
+    
+    </table>
+    <hr/> 
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<!-- ========== END METHOD SUMMARY =========== -->
+
+
+        <pre class="sourceview"><span class="comment">// $Id: zptabs-core.js 7561 2007-07-16 21:06:11Z vkulov $</span>
+<span class="comment">/**
+ * <span class="attrib">@fileoverview</span> Tabs widget. Extends base Widget class (utils/zpwidget.js).
+ *
+ * &lt;pre&gt;
+ * Copyright (c) 2004-2006 by Zapatec, Inc.
+ * http://www.zapatec.com
+ * 1700 MLK Way, Berkeley, California,
+ * 94709, U.S.A.
+ * All rights reserved.
+ * &lt;/pre&gt;
+ */</span>
+
+<span class="comment">/**
+ * Zapatec.Tab constructor. Creates a new tab object with given
+ * parameters.
+ *
+ * <span class="attrib">@constructor</span>
+ * <span class="attrib">@extends</span> Zapatec.Widget
+ * <span class="attrib">@param</span> {object} objArgs Tab configuration
+ * <span class="attrib">@private</span> Don't use this class directly
+ *
+ * Constructor recognizes the following properties of the config object
+ * \code
+ *	property name			| description
+ *-------------------------------------------------------------------------------------------------
+ *	id			| [string] Id of the tab. Used to identify the tab uniquely.
+ *  index   | [number] Index where tab is to be inserted at
+ *	linkInnerHTML   | [string] The HTML content to be placed inside link part
+ *          | of the tab. That is the one inside the tab bar that you click on
+ *          | to activate the tab (also called tab label).
+ *	accessKey	| [string] Keyboard shortcut that activates the tab when pressed in
+ *          | combination with ALT
+ *	content	| [mixed, optional] Reference to HTMLElement object holding
+ *          | content of the tab or an URL string to tab content
+ *	contentType	| [string, optional] Meaning of content config option. Valid
+ *          | values are "html", "html/text", "html/url". See Zapatec.Pane for
+ *          | more details.
+ *	url	| [string, optional] Url location to fetch tab content from. Deprecated.
+ *          | Use content config param along with contentType="html/url"
+ *	title	| [string, optional] Title html attribute to apply to tab label anchor.
+ *          | Acts as a tooltip of the tab label.
+ *	tabType	| [string] "div" or "iframe" depending on what kind of pane is
+ *          | needed for the tab
+ *	tab2tab	| [boolean] If true, pressing Tab key will open next tab. If false,
+ *          | Tab key will also navigate through anchors and form fields inside
+ *          | tab. Default: false.
+ *	tabParent	| [object] Reference to HTMLElement that this tab is to be added to.
+ *          | Used internally to decouple Tab from Tabs.
+ *  changeUrl | [boolean] Specifies if browser location hash is to be changed
+ *          | on every tab change to reflect the current tab
+ *  overflow | [string] Tab content overflow html attribute. Default: null (use CSS
+ *          | applied overflow style)
+ *  refreshOnTabChange | [boolean] When this option is set to true this tab url
+ *          | is re-fetched before it becomes active. Default is false.
+ *  shouldLoadOnInit | [boolean] When this option is set to true this tab url
+ *          | will be loaded as soon as tab is created. Default is false.
+ *  activeTabId | [string] Specifies the tab that is to become active after Tabs
+ *          | initialization. If not specified the first tab will become active.
+ * \endcode
+ *
+ */</span>
+Zapatec.Tab = <span class="reserved">function</span>(objArgs) {
+	<span class="reserved">if</span> (arguments.length == 0) {
+		objArgs = {};
+	}
+
+	<span class="comment">// Call constructor of superclass</span>
+	Zapatec.Tab.SUPERconstructor.call(<span class="reserved">this</span>, objArgs);
+};
+
+<span class="comment">/**
+ * Unique static id of the widget class. Gives ability for Zapatec#inherit to
+ * determine and store path to this file correctly when it is included using
+ * Zapatec#include. When this file is included using Zapatec#include or path
+ * to this file is gotten using Zapatec#getPath, this value must be specified
+ * as script id.
+ * <span class="attrib">@private</span>
+ */</span>
+Zapatec.Tab.id = <span class="literal">'Zapatec.Tab'</span>;
+
+<span class="comment">// Inherit Widget</span>
+Zapatec.inherit(Zapatec.Tab, Zapatec.Widget);
+
+<span class="comment">/**
+ * Initializes object.
+ *
+ * <span class="attrib">@param</span> {object} objArgs User configuration
+ */</span>
+Zapatec.Tab.<span class="reserved">prototype</span>.init = <span class="reserved">function</span>(objArgs) {
+
+	<span class="comment">// processing Widget functionality</span>
+	Zapatec.Tab.SUPERclass.init.call(<span class="reserved">this</span>, objArgs);
+
+	<span class="reserved">this</span>.createTab();
+};
+
+<span class="comment">/**
+ * Creates elements needed for the new tab
+ */</span>
+Zapatec.Tab.<span class="reserved">prototype</span>.createTab = <span class="reserved">function</span> () {
+	<span class="comment">// Reference to tab link element</span>
+	<span class="reserved">this</span>.createProperty(<span class="reserved">this</span>, <span class="literal">'linkNode'</span>, null);
+	<span class="comment">// Reference to pane containing tab content</span>
+	<span class="reserved">this</span>.createProperty(<span class="reserved">this</span>, <span class="literal">'container'</span>, null);
+	<span class="comment">// Child element which gets focus first (needed for keyboard navigation)</span>
+	<span class="reserved">this</span>.createProperty(<span class="reserved">this</span>, <span class="literal">'focusOn'</span>, null);
+	<span class="reserved">this</span>.createProperty(<span class="reserved">this</span>, <span class="literal">'linkHash'</span>, null);
+	<span class="comment">// If set an onTabChange event is to be called after onContentLoad</span>
+	<span class="reserved">this</span>.createProperty(<span class="reserved">this</span>, <span class="literal">'pendingOnTabChange'</span>, null);
+
+	<span class="comment">// Create content with pane</span>
+	<span class="reserved">this</span>.container = new Zapatec.Pane({
+		containerType : <span class="reserved">this</span>.config.tabType,
+		parent : <span class="reserved">this</span>.config.tabParent,
+		overflow : <span class="reserved">this</span>.config.overflow,
+		id: <span class="reserved">this</span>.config.id
+	});
+	<span class="reserved">this</span>.container.removeBorder();
+
+	<span class="comment">// Add "zpTab" class to to all tab content divs</span>
+	var className = <span class="literal">"zpTab"</span>;
+	<span class="comment">// If a class name is specified for the tab content div</span>
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.className) {
+		className += <span class="literal">" "</span> + <span class="reserved">this</span>.config.className;
+	}
+	<span class="comment">// Set tab container className</span>
+	<span class="reserved">this</span>.container.getContainer().className = className;
+
+	var self = <span class="reserved">this</span>;
+	<span class="comment">// Define pane content loaded handler</span>
+	var onContentLoaded = <span class="reserved">function</span>() {
+		<span class="reserved">if</span> (self.pendingOnTabChange) {
+			self.pendingOnTabChange(self);
+			self.pendingOnTabChange = null;
+		}
+
+		self.fireEvent(<span class="literal">'tabOnLoad'</span>);
+
+		setTimeout(<span class="reserved">function</span>() {
+			<span class="comment">// Re-add pane contentLoaded listener</span>
+			self.container.addEventListener(<span class="literal">'contentLoaded'</span>, self.onContentLoaded);
+		}, 10);
+	}
+	<span class="comment">// Store onLoad event handler</span>
+	<span class="reserved">this</span>.createProperty(<span class="reserved">this</span>, <span class="literal">'onContentLoaded'</span>, onContentLoaded);
+
+	<span class="comment">// Add pane contentLoaded listener</span>
+	<span class="reserved">this</span>.container.addEventListener(<span class="literal">'contentLoaded'</span>, onContentLoaded);
+
+	<span class="comment">// Hide content</span>
+	<span class="reserved">this</span>.container.hide();
+	<span class="reserved">this</span>.container.getContainer().style.width = <span class="literal">'100%'</span>;
+	<span class="reserved">this</span>.container.getContainer().style.height = <span class="literal">'100%'</span>;
+
+	<span class="reserved">if</span> (!<span class="reserved">this</span>.config.url) {
+		<span class="comment">// Update tab content</span>
+		<span class="reserved">this</span>.setPaneContent();
+	}
+	<span class="reserved">else</span> {
+		<span class="reserved">if</span> (<span class="reserved">this</span>.config.shouldLoadOnInit) {
+			<span class="comment">// Update tab content</span>
+			<span class="reserved">this</span>.setPaneContent();
+		}
+	}
+
+	<span class="comment">// Get id</span>
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.id) {
+		<span class="reserved">this</span>.id = <span class="reserved">this</span>.config.id;
+	}
+	<span class="reserved">else</span> {
+		<span class="reserved">this</span>.id = <span class="reserved">this</span>.container.getContainer().getAttribute(<span class="literal">'id'</span>);
+		<span class="reserved">if</span> (typeof <span class="reserved">this</span>.id == <span class="literal">'string'</span>) {
+			<span class="reserved">this</span>.container.getContainer().removeAttribute(<span class="literal">'id'</span>);
+		}
+	}
+	<span class="reserved">if</span> (typeof <span class="reserved">this</span>.id != <span class="literal">'string'</span> || !<span class="reserved">this</span>.id.length) {
+		<span class="comment">// Generate unique id</span>
+		<span class="reserved">this</span>.id = Zapatec.Utils.generateID(<span class="literal">'tab'</span>);
+	}
+	<span class="comment">// Create link node</span>
+	<span class="reserved">this</span>.linkNode = Zapatec.Utils.createElement(<span class="literal">'div'</span>);
+
+	<span class="reserved">this</span>.linkNode.onmouseover = <span class="reserved">function</span>() {
+		var outer = Zapatec.Utils.getFirstChild(self.linkNode, <span class="literal">"div"</span>);
+		Zapatec.Utils.addClass(outer, <span class="literal">"zpTabsHover"</span>);
+	}
+	<span class="reserved">this</span>.linkNode.onmouseout = <span class="reserved">function</span>() {
+		var outer = Zapatec.Utils.getFirstChild(self.linkNode, <span class="literal">"div"</span>);
+		Zapatec.Utils.removeClass(outer, <span class="literal">"zpTabsHover"</span>);
+	}
+	<span class="reserved">this</span>.linkNode.className = <span class="literal">"zpTab"</span>;
+	<span class="reserved">this</span>.linkNode.name = <span class="reserved">this</span>.id;
+	<span class="comment">// Need "&lt;div&gt;&lt;div&gt;" for themes</span>
+	var innerClass = <span class="literal">"zpTabLinkInner"</span>;
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.closable) {
+		innerClass += <span class="literal">" zpTabClosable"</span>;
+	}
+	var innerHtml = <span class="literal">'&lt;div class="zpTabLinkOuter"&gt;&lt;div class="'</span> + innerClass + <span class="literal">'"&gt;'</span> +
+	                <span class="literal">'&lt;div class="zpTabAnchorHolder"&gt;&lt;a '</span>;
+
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.accessKey) {
+		innerHtml += <span class="literal">'accessKey="'</span> + <span class="reserved">this</span>.config.accessKey + <span class="literal">'" '</span>;
+	}
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.title) {
+		innerHtml += <span class="literal">'title="'</span> + <span class="reserved">this</span>.config.title + <span class="literal">'" '</span>;
+	}
+	innerHtml += <span class="literal">'&gt;'</span> + <span class="reserved">this</span>.config.linkInnerHTML + <span class="literal">'&lt;/a&gt;&lt;/div&gt;'</span>;
+
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.closable) {
+		var closeUrl = <span class="reserved">this</span>.config.themePath + <span class="reserved">this</span>.config.theme + <span class="literal">"/close.gif"</span>;
+
+		var closeImgHtml = <span class="literal">'&lt;img class="zpTabClose" border=0 src="'</span> + closeUrl + <span class="literal">'"&gt;'</span>;
+		innerHtml += closeImgHtml;
+	}
+	innerHtml += <span class="literal">'&lt;div class="zpTabsClearer"&gt;&lt;/div&gt;'</span>;
+	innerHtml += <span class="literal">'&lt;/div&gt;&lt;/div&gt;'</span>;
+	<span class="reserved">this</span>.linkNode.innerHTML = innerHtml;
+
+	var self = <span class="reserved">this</span>;
+
+	var closeImages = <span class="reserved">this</span>.linkNode.getElementsByTagName(<span class="literal">'img'</span>);
+	<span class="reserved">if</span> (closeImages &amp;&amp; 0 &lt; closeImages.length) {
+		closeImages[0].onmousedown = <span class="reserved">function</span>(ev) {
+			Zapatec.Tab.CloseTab(self.config.tabsId, self.id);
+
+			Zapatec.Utils.stopEvent(ev);
+
+			<span class="reserved">return</span> false;
+		}
+	}
+
+	<span class="comment">// Mouse navigation support</span>
+	<span class="reserved">this</span>.onActivate = <span class="reserved">function</span>(e) {
+		self.fireEvent(<span class="literal">'activateTab'</span>);
+
+		<span class="reserved">if</span> (self.blur) {
+			self.blur();
+		}
+
+		<span class="comment">// Don't navigate to link (don't refresh the page)</span>
+		var doNavigate = false;
+
+		<span class="comment">// If url is to be changed</span>
+		<span class="reserved">if</span> (self.config.changeUrl) {
+			<span class="reserved">if</span> (Zapatec.is_khtml) {
+				<span class="comment">// Make safari navigate the link.</span>
+				<span class="comment">// Changing location.hash does not work properly on Safari</span>
+				doNavigate = true;
+			}
+			<span class="reserved">else</span> {
+				<span class="comment">// Modify window URL</span>
+				window.location.hash = self.linkHash;
+			}
+		}
+
+		Zapatec.Utils.stopEvent(e);
+
+		<span class="reserved">return</span> doNavigate;
+	};
+	<span class="comment">// If tab are to be changed on mouse over</span>
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.mouseOverChangesTab) {
+		<span class="reserved">this</span>.linkNode.onmouseover = <span class="reserved">this</span>.onActivate;
+	}
+	<span class="reserved">else</span> {
+		<span class="reserved">this</span>.linkNode.onclick = <span class="reserved">this</span>.onActivate;
+	}
+
+	<span class="comment">// Keyboard navigation support</span>
+	<span class="reserved">this</span>.linkNode.tabIndex = Zapatec.Tab.tabIndex;
+	<span class="reserved">if</span> (!<span class="reserved">this</span>.tab2tab) {
+		<span class="comment">// Next tabIndex is reserved for tab content</span>
+		Zapatec.Tab.tabIndex += 2;
+	}
+	<span class="comment">// Activate tab on focus</span>
+	<span class="reserved">this</span>.linkNode.onfocus = <span class="reserved">this</span>.onActivate;
+	<span class="comment">// Setup keys</span>
+	<span class="reserved">this</span>.linkNode.onkeydown = <span class="reserved">function</span>(ev) {
+		ev || (ev = window.event);
+		switch (ev.keyCode) {
+			case 13: <span class="comment">// Enter</span>
+			case 32: <span class="comment">// Space</span>
+				<span class="reserved">if</span> (self.focusOn &amp;&amp; self.focusOn.focus) {
+					self.focusOn.focus();
+				}
+				<span class="comment">// Stop event</span>
+				<span class="reserved">return</span> false;
+		}
+		<span class="comment">// Continue event</span>
+		<span class="reserved">return</span> true;
+	}
+	<span class="comment">// Determine child element which gets focus first</span>
+	<span class="reserved">if</span> (<span class="reserved">this</span>.container.getContainer().hasChildNodes()) {
+		<span class="reserved">this</span>.getFocusOn();
+	}
+}
+
+<span class="comment">/**
+ * Sets tab link href given the hash
+ *
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {string} linkHash Bookmark hash to set to link href
+ */</span>
+Zapatec.Tab.<span class="reserved">prototype</span>.setLinkHash = <span class="reserved">function</span>(linkHash) {
+	<span class="reserved">this</span>.linkHash = linkHash;
+
+	<span class="reserved">this</span>.linkNode.setAttribute(<span class="literal">'href'</span>, <span class="literal">'#'</span> + linkHash);
+}
+
+<span class="comment">/**
+ * Configures the widget. Gets called from init and reconfigure methods of
+ * superclass.
+ *
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {object} objArgs User configuration
+ */</span>
+Zapatec.Tab.<span class="reserved">prototype</span>.configure = <span class="reserved">function</span>(objArgs) {
+	<span class="comment">// Define config options</span>
+	<span class="comment">// Id of the tab</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'id'</span>, null);
+	<span class="comment">// Index of the tab</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'index'</span>, -1);
+	<span class="comment">// Tab link inner html</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'linkInnerHTML'</span>, <span class="literal">''</span>);
+	<span class="comment">// Tab access key</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'accessKey'</span>, <span class="literal">''</span>);
+	<span class="comment">// Tab content</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'content'</span>, null);
+	<span class="comment">// Tab content type</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'contentType'</span>, null);
+	<span class="comment">// URL of the content</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'url'</span>, <span class="literal">''</span>);
+	<span class="comment">//should we show content in IFRAME Pane or just simple div Pane</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'tabType'</span>, <span class="literal">"div"</span>);
+
+	<span class="comment">// Keyboard navigation type</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'tab2tab'</span>, false);
+	<span class="comment">// Tab parent</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'tabParent'</span>, null);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'title'</span>, null);
+
+	<span class="comment">// Specifies if tab can be closed using an x button that is visible</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'closable'</span>, false);
+	<span class="comment">// Specifies what happens then the x button is clicked</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'closeAction'</span>, <span class="literal">'close'</span>);
+
+	<span class="comment">// If browser url needs to be changed on every tab change</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'changeUrl'</span>, true);
+
+	<span class="comment">// Determine tab content overflow style attribute</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'overflow'</span>, null);
+
+	<span class="comment">// Determine if tabs are to be changed on mouse over</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'mouseOverChangesTab'</span>, false);
+
+	<span class="comment">// Determine if tabs are to be re-fetched every time they are activated</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'refreshOnTabChange'</span>, false);
+
+	<span class="comment">// Determine if tab content is to be fetched on tab creation</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'shouldLoadOnInit'</span>, false);
+
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'tabsId'</span>, null);
+
+	<span class="comment">// Determines tab initial visibility</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'visible'</span>, true);
+	<span class="comment">// Determines tab content container class names</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'className'</span>, null);
+
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'langId'</span>, Zapatec.Tabs.id);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'lang'</span>, <span class="literal">"eng"</span>);
+
+	<span class="comment">// Call parent method</span>
+	Zapatec.Tab.SUPERclass.configure.call(<span class="reserved">this</span>, objArgs);
+
+	<span class="comment">// Check if required param "tabParent" is defined</span>
+	<span class="reserved">if</span> (typeof(<span class="reserved">this</span>.config.tabParent) == <span class="literal">"undefined"</span>) {
+		<span class="reserved">this</span>.initLang();
+		Zapatec.Log({description: <span class="reserved">this</span>.getMessage(<span class="literal">"unknownTabParentError"</span>)})
+		<span class="reserved">return</span> false;
+	}
+
+	<span class="comment">// Check keyboard navigation type</span>
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.tab2tab &amp;&amp; false != <span class="reserved">this</span>.config.tab2tab) {
+		<span class="reserved">this</span>.config.tab2tab = true;
+	}
+
+	<span class="comment">// Check tabType</span>
+	<span class="reserved">if</span> (typeof <span class="reserved">this</span>.config.tabType == <span class="literal">"string"</span>) {
+		<span class="reserved">this</span>.config.tabType = <span class="reserved">this</span>.config.tabType.toLowerCase();
+	}
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.tabType != <span class="literal">"div"</span> &amp;&amp; <span class="reserved">this</span>.config.tabType != <span class="literal">"iframe"</span>)
+	{
+		<span class="reserved">this</span>.config.tabType = <span class="literal">"div"</span>;
+	}
+
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.index &lt; 0) {
+		<span class="reserved">this</span>.config.index = -1;
+	}
+};
+
+<span class="comment">/**
+ * Counter that gets increased after Tab is added. Required for keyboard
+ * navigation support.
+ *
+ * Note:
+ * In Opera tabIndex property value must be &gt; 0, otherwise node is ignored.
+ * Mozilla starts travelling from nodes with tabIndex &gt; 0.
+ * IE starts travelling from nodes with tabIndex == 0.
+ * All nodes without tabIndex set explicitly have tabIndex == 0.
+ */</span>
+Zapatec.Tab.tabIndex = 1000;
+
+<span class="comment">/**
+ * Determines child node of the container which gets focus first.
+ * Needed for keyboard navigation.
+ * <span class="attrib">@private</span>
+ */</span>
+Zapatec.Tab.<span class="reserved">prototype</span>.getFocusOn = <span class="reserved">function</span>() {
+	<span class="comment">// Remove old value</span>
+	<span class="reserved">this</span>.focusOn = null;
+	<span class="comment">// Check keyboard navigation type</span>
+	<span class="reserved">if</span> (<span class="reserved">this</span>.tab2tab) {
+		<span class="reserved">return</span>;
+	}
+	<span class="comment">// Put it in separate process to speed up initialization</span>
+	var self = <span class="reserved">this</span>;
+	setTimeout(<span class="reserved">function</span>() {
+		<span class="comment">// Flag to determine lower tabIndex</span>
+		var iTabIndex = 0;
+		<span class="comment">// Gets element with lower tabIndex</span>
+		<span class="reserved">function</span> parse(objNode) {
+			var objChild = objNode.firstChild;
+			<span class="reserved">while</span> (objChild) {
+				<span class="reserved">if</span> (objChild.nodeType == 1) { <span class="comment">// ELEMENT_NODE</span>
+					var strTag = objChild.tagName.toLowerCase();
+					<span class="reserved">if</span> (strTag == <span class="literal">'a'</span> || strTag == <span class="literal">'input'</span> || strTag == <span class="literal">'select'</span> ||
+					    strTag == <span class="literal">'textarea'</span> || strTag == <span class="literal">'button'</span>) {
+						<span class="comment">// Element may obtain focus</span>
+						<span class="reserved">if</span> (!self.focusOn) {
+							self.focusOn = objChild;
+						}
+						<span class="reserved">else</span> <span class="reserved">if</span> (objChild.tabIndex &amp;&amp; objChild.tabIndex &gt; 0 &amp;&amp;
+						         (!iTabIndex || iTabIndex &gt; objChild.tabIndex)) {
+							self.focusOn = objChild;
+							iTabIndex = objChild.tabIndex;
+						}
+						<span class="reserved">if</span> (!objChild.tabIndex) {
+							objChild.tabIndex = self.linkNode.tabIndex + 1;
+						}
+					}
+					parse(objChild);
+				}
+				objChild = objChild.nextSibling;
+			}
+		}
+		;
+		<span class="comment">// Parse tab contenet</span>
+		parse(self.container);
+	}, 0);
+};
+
+<span class="comment">/**
+ * Sets tab content from given HTML fragment.
+ *
+ * <span class="attrib">@param</span> {string} strHtml HTML fragment.
+ * <span class="attrib">@private</span>
+ */</span>
+Zapatec.Tab.<span class="reserved">prototype</span>.setInnerHtml = <span class="reserved">function</span>(strHtml) {
+	<span class="comment">// Set tab content</span>
+	Zapatec.Transport.setInnerHtml({
+		html: strHtml,
+		container: <span class="reserved">this</span>.container.getContainer()
+	});
+	<span class="comment">// Determine child element which gets focus first</span>
+	<span class="reserved">this</span>.getFocusOn();
+}
+
+<span class="comment">/**
+ * Sets tab pane content
+ *
+ * <span class="attrib">@public</span>
+ * <span class="attrib">@param</span> {mixed} content value for the content
+ * <span class="attrib">@param</span> {string} type type of content: "html", "html/text", "html/url"
+ * <span class="attrib">@return</span> {boolean} true if successfull, otherwise false.
+ */</span>
+Zapatec.Tab.<span class="reserved">prototype</span>.setPaneContent = <span class="reserved">function</span>(content, type) {
+	var self = <span class="reserved">this</span>;
+
+	var paneContent = null;
+	var paneContentType = null;
+
+	<span class="reserved">if</span> (content) {
+		paneContent = content;
+		paneContentType = type;
+	}
+	<span class="reserved">else</span> <span class="reserved">if</span> (<span class="reserved">this</span>.config.url &amp;&amp; 0 &lt; <span class="reserved">this</span>.config.url.length) {
+		paneContent = <span class="reserved">this</span>.config.url;
+		paneContentType = <span class="literal">'html/url'</span>;
+	}
+	<span class="reserved">else</span> {
+		paneContent = <span class="reserved">this</span>.config.content;
+		paneContentType = <span class="reserved">this</span>.config.contentType;
+	}
+
+	<span class="reserved">if</span> (paneContent) {
+
+		<span class="reserved">this</span>.config.content = content;
+		<span class="reserved">this</span>.config.contentType = type;
+
+		<span class="comment">// If provided content is an URL</span>
+		<span class="reserved">if</span> (paneContentType == <span class="literal">"html/url"</span>) {
+			<span class="reserved">this</span>.config.url = paneContent;
+			<span class="reserved">this</span>.lastUrlSet = paneContent;
+		}
+
+		<span class="reserved">this</span>.container.setPaneContent(paneContent, paneContentType);
+	}
+}
+
+<span class="comment">/**
+ * Shows/hides a tab
+ *
+ * <span class="attrib">@param</span> {boolean} isVisible HTML fragment.
+ * <span class="attrib">@private</span>
+ */</span>
+Zapatec.Tab.<span class="reserved">prototype</span>.setVisible = <span class="reserved">function</span>(isVisible) {
+	<span class="reserved">this</span>.config.visible = isVisible;
+
+	<span class="reserved">if</span> (isVisible) {
+		<span class="reserved">this</span>.linkNode.style.display = <span class="literal">'block'</span>;
+	}
+	<span class="reserved">else</span> {
+		<span class="reserved">this</span>.linkNode.style.display = <span class="literal">'none'</span>;
+	}
+}
+
+<span class="comment">/**
+ * Removes a specified tab from some tabs object
+ *
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {number} tabsId id of the tabs object 
+ * <span class="attrib">@param</span> {string} id tab id
+ */</span>
+Zapatec.Tab.CloseTab = <span class="reserved">function</span>(tabsId, id) {
+
+	<span class="comment">// Get tabs object by id</span>
+	var objTabs = Zapatec.Widget.getWidgetById(tabsId);
+
+	var objTab = objTabs.getTab(id);
+	<span class="reserved">if</span> (objTab.config.closeAction == <span class="literal">'close'</span>) {
+		<span class="comment">// Remove tab</span>
+		objTabs.removeTab(id);
+	}
+	<span class="reserved">else</span> <span class="reserved">if</span> (objTab.config.closeAction == <span class="literal">'hide'</span>) {
+		<span class="comment">// Determine if we are removing the currently active tab</span>
+		var isRemovingCurrent = objTab.index == objTabs.currentIndex;
+
+		<span class="comment">// if we are removing the currently active tab</span>
+		<span class="reserved">if</span> (isRemovingCurrent) {
+			<span class="comment">// Get previous visible tab</span>
+			var previousTab = objTabs.getPreviousTab(true, objTabs.currentIndex);
+			<span class="reserved">if</span> (previousTab) {
+				objTabs.changeTab(previousTab.id);
+			}
+			<span class="reserved">else</span> {
+				<span class="comment">// Get next visible tab</span>
+				var nextTab = objTabs.getNextTab(true, objTabs.currentIndex);
+				<span class="reserved">if</span> (nextTab) {
+					objTabs.changeTab(nextTab.id);
+				}
+			}
+		}
+
+		objTab.setVisible(false);
+	}
+
+	objTabs.fireEvent(<span class="literal">'tabOnClose'</span>, id);
+}
+
+
+
+
+<span class="comment">/**
+ * Zapatec.Tabs constructor. Creates a new tabs object with given
+ * parameters.
+ *
+ * <span class="attrib">@constructor</span>
+ * <span class="attrib">@extends</span> Zapatec.Widget
+ * <span class="attrib">@param</span> {object} objArgs Tab configuration
+ *
+ * Constructor recognizes the following properties of the config object
+ * \code
+ *	property name			| description
+ *-------------------------------------------------------------------------------------------------
+ *	tabBar		| [object or string] Element or id of element that will hold
+ *            | the tab bar.
+ *	tabs			| [object or string] Element or id of element that will hold the
+ *            | all content panes. This element can also hold tabs content.
+ *	tabType	  | [string] "div" or "iframe" depending on what kind of pane is
+ *            | needed for the tabs
+ *  overflow | [string] Tab content overflow html attribute. Default: null
+ *	onInit		| [function] Called when tabs are created. Users can perform
+ *            | problem-specific initializations at this stage. No arguments.
+ *	onTabChange		| [function] Called after the tab was changed. Receives
+ *            |  following object:
+ *            |  {
+ *            |  oldTabId: [string] id of the old tab,
+ *            |  newTabId: [string] id of the new tab
+ *            |  }
+ *	onBeforeTabChange		| [function] Called when the tab is about to be changed,
+ *            | just before. Receives following object:
+ *            | {
+ *            |  oldTabId: [string] id of the old tab,
+ *            |  newTabId: [string] id of the new tab
+ *            | }
+ *            | Should return boolean. If returns other than "true", tab will
+ *            | not be changed.
+ *	ignoreUrl		| [boolean] If true, "#tabsId=tabId" part of URL is ignored and
+ *            | always the first tab is opened after page load.
+ *  changeUrl | [boolean] Specifies if browser location hash is to be changed
+ *          | on every tab change to reflect the currently active tab.
+ *	tab2tab		| [boolean] If true, pressing Tab key on the keyboard will navigate
+ *            | to next tab. If false, Tab key will also navigate through
+ *            | anchors and form fields inside tab. Default: false.
+ *	scrollMultiple | [boolean] If true, scrolls the tabs one 'page' at a time.
+ *            | Otherwise, scrolls singly.
+ *	iframeContent | [boolean] Marks the pane content as being an &lt;iframe&gt;.
+ *            | Deprecated. Use tabType instead.
+ *	windowOnLoad | [function] If set, this is run on window load.
+ *	showEffect | [string or array] What effects to apply to tab content when a
+ *            | tab is about to be visible.
+ *	showEffectSpeed | [number] Tab show animation speed. From 1(low speed) to
+ *            | 100(high speed)
+ *  mouseOverChangesTab | [boolean] specifies if tabs are to be changed by
+ *            | merely hoveing over them with the mouse. Default is false.
+ *  refreshOnTabChange | [boolean] When this option is set to true tab url
+ *           | is re-fetched on every tab change. Default is false.
+ *  shouldLoadOnInit | [boolean] When this option is set to true this tab url
+ *          | will be loaded as soon as tab is created. Default is false.
+ */</span>
+Zapatec.Tabs = <span class="reserved">function</span>(objArgs) {
+	<span class="reserved">if</span> (arguments.length == 0) {
+		objArgs = {};
+	}
+
+	Zapatec.Tabs.SUPERconstructor.call(<span class="reserved">this</span>, objArgs);
+};
+
+<span class="comment">/**
+ * Unique static id of the widget class. Gives ability for Zapatec#inherit to
+ * determine and store path to this file correctly when it is included using
+ * Zapatec#include. When this file is included using Zapatec#include or path
+ * to this file is gotten using Zapatec#getPath, this value must be specified
+ * as script id.
+ * <span class="attrib">@private</span>
+ */</span>
+Zapatec.Tabs.id = <span class="literal">'Zapatec.Tabs'</span>;
+
+<span class="comment">// Inherit Widget</span>
+Zapatec.inherit(Zapatec.Tabs, Zapatec.Widget);
+
+<span class="comment">/**
+ * Initializes object.
+ *
+ * <span class="attrib">@param</span> {object} objArgs User configuration
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.init = <span class="reserved">function</span>(objArgs) {
+
+	<span class="comment">// Call init method of superclass</span>
+	Zapatec.Tabs.SUPERclass.init.call(<span class="reserved">this</span>, objArgs);
+
+	<span class="reserved">this</span>.createTabs();
+
+	<span class="reserved">this</span>.initTabBar();
+};
+
+<span class="comment">/**
+ * Creates tabs DOM elements
+ * <span class="attrib">@private</span>
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.createTabs = <span class="reserved">function</span>() {
+	<span class="comment">// To maintain by id</span>
+	<span class="reserved">this</span>.createProperty(<span class="reserved">this</span>, <span class="literal">'tabs'</span>, {});
+	<span class="comment">// To maintain by index</span>
+	<span class="reserved">this</span>.createProperty(<span class="reserved">this</span>, <span class="literal">'tabsArray'</span>, []);
+
+	<span class="reserved">if</span> (null == <span class="reserved">this</span>.tabsThemeSuffix) {
+		<span class="reserved">this</span>.tabsThemeSuffix = <span class="literal">'Content'</span>;
+	}
+
+	<span class="comment">// Apply theme</span>
+	Zapatec.Utils.addClass(<span class="reserved">this</span>.config.tabs, <span class="reserved">this</span>.getClassName({
+		prefix: <span class="literal">'zpTabs'</span>,
+		suffix: <span class="reserved">this</span>.tabsThemeSuffix
+	}));
+
+	<span class="comment">// Call parent method to load data from the specified source</span>
+	<span class="reserved">this</span>.loadData();
+
+	<span class="comment">// Index of the current tab</span>
+	<span class="reserved">this</span>.currentIndex = -1;
+	<span class="comment">// onInit</span>
+	<span class="reserved">if</span> (typeof <span class="reserved">this</span>.config.onInit == <span class="literal">'function'</span>) {
+		<span class="reserved">this</span>.config.onInit();
+	}
+
+	<span class="comment">// Decide which tab to activate initially</span>
+	<span class="reserved">if</span> (<span class="reserved">this</span>.tabsArray.length) {
+		var strId = <span class="reserved">this</span>.getInitialActiveTabId();
+		<span class="reserved">if</span> (-1 != strId) {
+			<span class="reserved">this</span>.changeTab(strId);
+		}
+	}
+
+	<span class="comment">// If windowOnLoad is set, run it</span>
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.windowOnLoad != null)
+	{
+		<span class="reserved">this</span>.config.windowOnLoad();
+	}
+
+	<span class="comment">// If tab bar is not disabled</span>
+	<span class="reserved">if</span> (true != <span class="reserved">this</span>.noTabBar) {
+		<span class="comment">// Make tabs visible</span>
+		<span class="reserved">this</span>.addEventListener(<span class="literal">'loadThemeEnd'</span>, <span class="reserved">function</span>() {
+			<span class="reserved">this</span>.config.tabBar.style.display = <span class="literal">'block'</span>;
+		});
+	}
+}
+
+<span class="comment">/**
+ * Configures the widget. Gets called from init and reconfigure methods of
+ * superclass.
+ *
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {object} objArgs User configuration
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.configure = <span class="reserved">function</span>(objArgs) {
+	<span class="comment">// Define config options</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'tabBar'</span>, null);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'tabs'</span>, null);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'onInit'</span>, null);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'onTabChange'</span>, null);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'onBeforeTabChange'</span>, null);
+
+	<span class="comment">// If location hash is to be parsed on page initialization</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'ignoreUrl'</span>, false);
+	<span class="comment">// If browser url needs to be changed on every tab change</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'changeUrl'</span>, true);
+
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'tab2tab'</span>, false);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'scrollMultiple'</span>, null);
+
+	<span class="comment">//should we show content in IFRAME Pane or just simple div Pane</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'iframeContent'</span>, null);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'tabType'</span>, <span class="literal">'div'</span>);
+
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'windowOnLoad'</span>, null);
+
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'scrolls'</span>, false);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'noMoreTabsLeft'</span>, false);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'lastIndexLeft'</span>, 0);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'noMoreTabsRight'</span>, true);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'lastIndexRight'</span>, null);
+
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'showEffect'</span>, null);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'showEffectSpeed'</span>, null);
+
+	<span class="comment">// Determine if tabs are to be changed on mouse over</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'mouseOverChangesTab'</span>, false);
+
+	<span class="comment">// Determine if tabs are to be re-fetched every time they are activated</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'refreshOnTabChange'</span>, false);
+
+	<span class="comment">// Determine tab content overflow style attribute that is default for every tab</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'overflow'</span>, null);
+
+	<span class="comment">// Determine if tab content is to be fetched on tab creation</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'shouldLoadOnInit'</span>, false);
+
+	<span class="comment">// Specifies if tab can be closed using an x button that is visible</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'closable'</span>, false);
+	<span class="comment">// Specifies what happens then the x button is clicked</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'closeAction'</span>, <span class="literal">'close'</span>);
+
+	<span class="comment">// Determine tab to activate upon initialization</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'activeTabId'</span>, null);
+
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'langId'</span>, Zapatec.Tabs.id);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'lang'</span>, <span class="literal">"eng"</span>);
+
+	<span class="comment">// Determine scroll type</span>
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.scroll == null)
+	{
+		<span class="reserved">this</span>.config.scrollMultiple = false;
+	}
+	<span class="reserved">else</span> <span class="reserved">if</span> (<span class="reserved">this</span>.config.scrollMultiple != true &amp;&amp; <span class="reserved">this</span>.config.scrollMultiple != false)
+	{
+		<span class="reserved">this</span>.config.scrollMultiple = false;
+	}
+
+	<span class="comment">// Call parent method</span>
+	Zapatec.Tabs.SUPERclass.configure.call(<span class="reserved">this</span>, objArgs);
+
+	<span class="comment">// If tab bar is not disabled</span>
+	<span class="reserved">if</span> (true != <span class="reserved">this</span>.noTabBar) {
+		<span class="reserved">this</span>.config.tabBar = Zapatec.Widget.getElementById(<span class="reserved">this</span>.config.tabBar);
+		<span class="reserved">if</span> (!<span class="reserved">this</span>.config.tabBar) {
+			<span class="reserved">this</span>.initLang();
+			Zapatec.Log({description: <span class="reserved">this</span>.getMessage(<span class="literal">"unknownTabBarError"</span>)});
+			<span class="reserved">return</span>;
+		}
+	}
+
+	<span class="reserved">if</span> (<span class="literal">"string"</span> == typeof <span class="reserved">this</span>.config.tabs) {
+		<span class="reserved">this</span>.config.tabs = Zapatec.Widget.getElementById(<span class="reserved">this</span>.config.tabs);
+	}
+
+	<span class="reserved">if</span> (!<span class="reserved">this</span>.config.tabs) {
+		<span class="reserved">this</span>.initLang();
+		Zapatec.Log({description: <span class="reserved">this</span>.getMessage(<span class="literal">"unknownTabsError"</span>)});
+		<span class="reserved">return</span>;
+	}
+
+	<span class="comment">// Check tabType</span>
+	<span class="reserved">if</span> (typeof <span class="reserved">this</span>.config.tabType == <span class="literal">"string"</span>) {
+		<span class="reserved">this</span>.config.tabType = <span class="reserved">this</span>.config.tabType.toLowerCase();
+	}
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.tabType != <span class="literal">"div"</span> &amp;&amp; objArgs.tabType != <span class="literal">"iframe"</span>)
+	{
+		<span class="reserved">this</span>.config.tabType = <span class="literal">"div"</span>;
+	}
+
+	<span class="reserved">if</span> (true == <span class="reserved">this</span>.config.iframeContent) {
+		<span class="reserved">this</span>.config.tabType = <span class="literal">"iframe"</span>;
+	}
+};
+
+<span class="comment">/**
+ * Initializes the tab bar based on tabBar config property.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.initTabBar = <span class="reserved">function</span>() {
+	<span class="comment">// If tab bar is disabled</span>
+	<span class="reserved">if</span> (true == <span class="reserved">this</span>.noTabBar) {
+		<span class="reserved">return</span>;
+	}
+
+	<span class="comment">// Apply theme</span>
+	Zapatec.Utils.addClass(<span class="reserved">this</span>.config.tabBar, <span class="reserved">this</span>.getClassName({
+		prefix: <span class="literal">'zpTabs'</span>
+	}));
+
+	<span class="comment">// Determine width of content of tab bar</span>
+	var _tabBarContentWidth = 0;
+	var items = <span class="reserved">this</span>.config.tabBar.childNodes;
+	var tmp = <span class="literal">''</span>;
+
+	<span class="reserved">for</span> (var i = 0; i &lt; items.length; i++) {
+		<span class="reserved">if</span> (items[i].nodeType != 1) {
+			continue;
+		}
+
+		<span class="comment">// Must "cast" this to an absolutely positioned element for IE to get the correct width</span>
+		tmp = items[i].style.position;
+		items[i].style.position = <span class="literal">'absolute'</span>;
+
+		<span class="comment">// Store real width in element for future use</span>
+		<span class="comment">// Opera reports the widths of elements outside the content tab to have width of -1.</span>
+		<span class="comment">// For this reason, hide elements you've recorded to allow other elements to come into viewport</span>
+		<span class="comment">// Get the display type for all tabs, default to 'inline'</span>
+		items[i].originalDisplayType = items[i].style.display != <span class="literal">''</span> ? items[i].style.display : <span class="literal">'block'</span>;
+		_tabBarContentWidth += items[i].offsetWidth;
+		items[i].realWidth = items[i].offsetWidth;
+		items[i].style.display = <span class="literal">'none'</span>;
+
+		<span class="comment">// "Cast" back to original positioning</span>
+		items[i].style.position = tmp;
+
+		<span class="comment">// Capture tabs index in the tab bar</span>
+		items[i].arrayPosition = i;
+	}
+
+	<span class="comment">// Restore display to all tabs</span>
+	<span class="reserved">for</span> (var i = 0; i &lt; items.length; i++)
+	{
+		<span class="reserved">if</span> (items[i].nodeType != 1) {
+			continue;
+		}
+
+		items[i].style.display = items[i].originalDisplayType;
+	}
+
+	<span class="comment">// If the content width of the tab bar exceeds the current width of the tab bar...</span>
+	var _tabBarWidth = <span class="reserved">this</span>.config.tabBar.offsetWidth;
+	<span class="reserved">if</span> (_tabBarContentWidth &gt; _tabBarWidth)
+	{
+		<span class="reserved">this</span>.config.scrolls = true;
+
+		<span class="comment">// Find the first child node within the tab bar, which extends beyond tab bar's border</span>
+		var tmp = 0;
+		var i = 0;
+		<span class="reserved">while</span> (tmp &lt; _tabBarWidth) tmp += items[i++].realWidth;
+
+		<span class="comment">// Scroll page at a time</span>
+		<span class="comment">//if(this.config.scrollMultiple)</span>
+		<span class="comment">//{</span>
+		i--;
+		<span class="comment">//}</span>
+
+		<span class="comment">// Hide all elements of tab bar, which extend beyond tab bar's border</span>
+		<span class="reserved">for</span> (i; i &lt; items.length; i++)
+		{
+			items[i].style.display = <span class="literal">'none'</span>;
+		}
+
+		<span class="comment">// Display scrollies for tabs</span>
+		var _leftScrolly = Zapatec.Utils.createElement(<span class="literal">'div'</span>);
+		_leftScrolly.innerHTML = <span class="literal">'&amp;lt;'</span>;
+		var _rightScrolly = Zapatec.Utils.createElement(<span class="literal">'div'</span>);
+		_rightScrolly.innerHTML = <span class="literal">'&amp;gt;'</span>;
+
+		<span class="comment">// Attach scrolling functions</span>
+		var self = <span class="reserved">this</span>;
+		_rightScrolly.onclick = (<span class="reserved">this</span>.config.scrollMultiple) ? <span class="reserved">function</span> () {
+			self.scrollTabsLeft(true)
+		} : <span class="reserved">function</span> () {
+			self.scrollOneTabLeft(true)
+		};
+		_leftScrolly.onclick = (<span class="reserved">this</span>.config.scrollMultiple) ? <span class="reserved">function</span> () {
+			self.scrollTabsRight(true)
+		} : <span class="reserved">function</span> () {
+			self.scrollOneTabRight(true)
+		};
+
+		<span class="comment">// Make mouseover effects for the scrolly buttons</span>
+		var mouseoverFunc = <span class="reserved">function</span> ()
+		{
+			<span class="reserved">this</span>.style.color = <span class="literal">'black'</span>;
+		}
+		_leftScrolly.onmouseover = mouseoverFunc;
+		_rightScrolly.onmouseover = mouseoverFunc;
+
+		var mouseoutFunc = <span class="reserved">function</span> ()
+		{
+			<span class="reserved">this</span>.style.color = <span class="literal">'#aaa'</span>;
+		}
+		_leftScrolly.onmouseout = mouseoutFunc;
+		_rightScrolly.onmouseout = mouseoutFunc;
+
+		var _scrollyContainer = Zapatec.Utils.createElement(<span class="literal">'div'</span>);
+		_scrollyContainer.className = <span class="literal">'zpTabsScrolly'</span>;
+		_scrollyContainer.appendChild(_leftScrolly);
+		_scrollyContainer.appendChild(_rightScrolly);
+
+		<span class="reserved">if</span> (<span class="reserved">this</span>.config.scrollMultiple)
+		{
+			<span class="reserved">this</span>.config.tabBar.parentNode.insertBefore(_scrollyContainer,
+							<span class="reserved">this</span>.config.tabBar.nextSibling);
+		}
+	}
+
+}
+
+<span class="comment">/**
+ * Adds a tab link to the tab bar
+ *
+ * <span class="attrib">@param</span> {object} objTab object tab.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.addToTabBar = <span class="reserved">function</span>(objTab) {
+	<span class="reserved">if</span> (true == <span class="reserved">this</span>.noTabBar) {
+		<span class="reserved">return</span>;
+	}
+
+	var configIndex = objTab.config.index;
+	var insertBefore = null;
+
+	<span class="reserved">if</span> (-1 != configIndex) {
+		<span class="comment">// Insert tab link at the specified index</span>
+		var actualIndex = objTab.index;
+
+		var children = <span class="reserved">this</span>.config.tabBar.childNodes;
+		var childrenCount = children.length;
+
+		<span class="comment">// If we are inserting the tab at some position</span>
+		<span class="reserved">if</span> (0 &lt; childrenCount &amp;&amp; actualIndex &lt; childrenCount) {
+			insertBefore = children[actualIndex];
+		}
+	}
+
+	<span class="reserved">if</span> (!insertBefore) {
+		<span class="comment">// Append tab link on the end of the tab bar</span>
+		<span class="reserved">this</span>.config.tabBar.appendChild(objTab.linkNode);
+	}
+	<span class="reserved">else</span> {
+		<span class="reserved">this</span>.config.tabBar.insertBefore(objTab.linkNode, insertBefore);
+	}
+
+	<span class="comment">// If tab is set to be hidden</span>
+	<span class="reserved">if</span> (!objTab.config.visible) {
+		objTab.linkNode.style.display = <span class="literal">'none'</span>;
+	}
+}
+
+<span class="comment">/**
+ * Attaches a tab to the tabs at a specified index
+ *
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {object} objTab object tab.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.attachTab = <span class="reserved">function</span>(objTab) {
+
+	var index = objTab.config.index;
+
+	<span class="reserved">if</span> (<span class="reserved">this</span>.tabsArray.length &lt;= index) {
+		index = -1;
+	}
+
+	<span class="reserved">if</span> (-1 == index) {
+		objTab.index = <span class="reserved">this</span>.tabsArray.length;
+	}
+	<span class="reserved">else</span> {
+		objTab.index = index;
+		<span class="comment">// Shift tabsArray</span>
+		<span class="reserved">for</span> (var i = <span class="reserved">this</span>.tabsArray.length - 1; index &lt;= i; --i) {
+			var oldTab = <span class="reserved">this</span>.tabsArray[i];
+			oldTab.index = oldTab.index + 1;
+			<span class="reserved">this</span>.tabsArray[i + 1] = oldTab;
+		}
+
+		<span class="reserved">if</span> (index &lt;= <span class="reserved">this</span>.currentIndex) {
+			++<span class="reserved">this</span>.currentIndex;
+		}
+	}
+	<span class="comment">// Attach this Tab to Tabs object</span>
+	<span class="reserved">this</span>.tabsArray[objTab.index] = objTab;
+	<span class="reserved">this</span>.tabs[objTab.id] = objTab;
+
+	<span class="comment">// Set tab link hash</span>
+	var linkHash = <span class="reserved">this</span>.config.tabs.id + <span class="literal">"="</span> + objTab.id;
+	objTab.setLinkHash(linkHash);
+
+	var self = <span class="reserved">this</span>;
+	objTab.addEventListener(<span class="literal">"activateTab"</span>, <span class="reserved">function</span>() {
+		self.changeTab(objTab.id);
+	});
+}
+
+<span class="comment">/**
+ * Scrolls tabs to the left
+ *
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {boolean} setTab Whether the function should set the selected tab
+ * on its own.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.scrollOneTabLeft = <span class="reserved">function</span>(setTab) {
+	var tabBar = <span class="reserved">this</span>.config.tabBar;
+
+	<span class="comment">// Get tabs</span>
+	var items = tabBar.childNodes;
+
+	<span class="comment">// Find first visible tab</span>
+	var i = 0;
+	<span class="reserved">for</span> (i; i &lt; items.length; i++)
+	{
+		<span class="reserved">if</span> (items[i].style.display != <span class="literal">'none'</span>)
+		{
+			break;
+		}
+	}
+
+	<span class="comment">// Find first hidden tab</span>
+	var j = i;
+	<span class="reserved">for</span> (j; j &lt; items.length; j++)
+	{
+		<span class="reserved">if</span> (items[j].style.display == <span class="literal">'none'</span>)
+		{
+			break;
+		}
+	}
+
+	<span class="reserved">if</span> (j &gt;= items.length)
+	{
+		<span class="reserved">return</span>;
+	}
+
+	<span class="comment">// Hide first visible tab, show first hidden tab</span>
+	items[i].style.display = <span class="literal">'none'</span>;
+
+	<span class="comment">// If there aren't any hidden tabs left, don't try to display any</span>
+	<span class="reserved">if</span> (j &lt; items.length)
+	{
+		items[j].style.display = items[j].originalDisplayType;
+	}
+}
+
+<span class="comment">/**
+ * Scrolls tabs to the left
+ *
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {boolean} setTab Whether the function should set the selected tab
+ * on its own.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.scrollOneTabRight = <span class="reserved">function</span>(setTab) {
+	var tabBar = <span class="reserved">this</span>.config.tabBar;
+
+	<span class="comment">// Get tabs</span>
+	var items = tabBar.childNodes;
+
+	<span class="comment">// Find first visible tab</span>
+	var i = 0;
+	<span class="reserved">for</span> (i; i &lt; items.length; i++)
+	{
+		<span class="reserved">if</span> (items[i].style.display != <span class="literal">'none'</span>)
+		{
+			break;
+		}
+	}
+
+	<span class="comment">// If i==0, you're at the beginning of the tabs, just exit</span>
+	<span class="reserved">if</span> (i == 0)
+	{
+		<span class="reserved">return</span>;
+	}
+
+	<span class="comment">// Find first hidden tab</span>
+	var j = i;
+	<span class="reserved">for</span> (j; j &lt; items.length; j++)
+	{
+		<span class="reserved">if</span> (items[j].style.display == <span class="literal">'none'</span>)
+		{
+			break;
+		}
+	}
+
+	<span class="comment">// Hide last visible tab, show first hidden tab previous to the first visible tab</span>
+	items[j - 1].style.display = <span class="literal">'none'</span>;
+	items[i - 1].style.display = items[i - 1].originalDisplayType;
+}
+
+<span class="comment">/**
+ * Scrolls tabs to the left
+ *
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {boolean} setTab Whether the function should set the selected tab
+ * on its own.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.scrollTabsLeft = <span class="reserved">function</span>(setTab) {
+	<span class="comment">// Quit if you're at the end</span>
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.noMoreTabsLeft)
+	{
+		<span class="reserved">return</span>;
+	}
+
+	<span class="comment">// Mark that there are now (or will be) hidden tabs on the left</span>
+	<span class="reserved">this</span>.config.noMoreTabsRight = false;
+
+	<span class="comment">// Check arguments</span>
+	<span class="reserved">if</span> (!<span class="reserved">this</span>.config.tabBar)
+	{
+		<span class="reserved">return</span>;
+	}
+	var tabBar = <span class="reserved">this</span>.config.tabBar;
+
+	<span class="comment">// Content width of the tab bar</span>
+	var contentWidth = parseInt(tabBar.style.width);
+
+	<span class="comment">// Run through tabs hiding those that are currently visible</span>
+	var items = tabBar.childNodes;
+	var i = <span class="reserved">this</span>.config.lastIndexLeft - 1;
+	<span class="reserved">while</span> (++i &lt; items.length)
+	{
+		<span class="reserved">if</span> (items[i].style.display != <span class="literal">'none'</span>)
+		{
+			items[i].style.display = <span class="literal">'none'</span>;
+		}
+		<span class="reserved">else</span>
+		{
+			<span class="reserved">this</span>.config.lastIndexLeft = i;
+			break;
+		}
+	}
+
+	<span class="comment">// Now, make elements visible until you run out of room, or until there aren't any left</span>
+	var contentWidth = 0;
+	var tabBarWidth = parseInt(tabBar.style.width);
+	<span class="reserved">for</span> (i = <span class="reserved">this</span>.config.lastIndexLeft; i &lt; items.length; i++)
+	{
+		items[i].style.display = items[i].originalDisplayType;
+		contentWidth += items[i].realWidth;
+
+		<span class="comment">// If you've exceeded viewable area, retract</span>
+		<span class="reserved">if</span> (contentWidth &gt; tabBarWidth)
+		{
+			items[i].style.display = <span class="literal">'none'</span>;
+			<span class="reserved">this</span>.config.lastIndexRight = i - 1;
+
+			<span class="comment">// Make first visible tab the current tab</span>
+			<span class="reserved">if</span> (setTab)
+			{
+				<span class="reserved">this</span>.changeTab(items[<span class="reserved">this</span>.config.lastIndexLeft].name);
+			}
+
+			<span class="reserved">return</span>;
+		}
+	}
+
+	<span class="comment">// Adjust lastIndexRight for last increment performed in for loop</span>
+	<span class="reserved">this</span>.config.lastIndexRight = i - 1;
+
+	<span class="comment">// Make first visible tab the current tab</span>
+	<span class="reserved">if</span> (setTab)
+	{
+		<span class="reserved">this</span>.changeTab(items[<span class="reserved">this</span>.config.lastIndexLeft].name);
+	}
+
+	<span class="reserved">this</span>.config.noMoreTabsLeft = true;
+}
+
+<span class="comment">/**
+ * Scrolls tabs to the right
+ *
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {boolean} setTab Whether the function should set the selected tab
+ * on its own.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.scrollTabsRight = <span class="reserved">function</span>(setTab) {
+	<span class="comment">// Quit if you're at the end</span>
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.noMoreTabsRight)
+	{
+		<span class="reserved">return</span>;
+	}
+
+	<span class="comment">// Mark that there are now (or will be) hidden tabs on the right</span>
+	<span class="reserved">this</span>.config.noMoreTabsLeft = false;
+
+	<span class="comment">// Check arguments</span>
+	<span class="reserved">if</span> (!<span class="reserved">this</span>.config.tabBar)
+	{
+		<span class="reserved">return</span>;
+	}
+	var tabBar = <span class="reserved">this</span>.config.tabBar;
+
+	<span class="comment">// Content width of the tab bar</span>
+	var contentWidth = parseInt(tabBar.style.width);
+
+	<span class="comment">// Run through tabs hiding those that are currently visible</span>
+	<span class="comment">// Need some sort of pagination here</span>
+	var items = tabBar.childNodes;
+	var i = <span class="reserved">this</span>.config.lastIndexRight + 1;
+	<span class="reserved">while</span> (--i &gt;= 0)
+	{
+		<span class="reserved">if</span> (items[i].style.display != <span class="literal">'none'</span>)
+		{
+			items[i].style.display = <span class="literal">'none'</span>;
+		}
+		<span class="reserved">else</span>
+		{
+			<span class="reserved">this</span>.config.lastIndexRight = i;
+			break;
+		}
+	}
+
+	<span class="comment">// Now, make elements visible until you run out of room, or until there aren't any left</span>
+	var contentWidth = 0;
+	var tabBarWidth = parseInt(tabBar.style.width);
+	<span class="reserved">for</span> (i = <span class="reserved">this</span>.config.lastIndexRight; i &gt;= 0; i--)
+	{
+		items[i].style.display = items[i].originalDisplayType;
+		contentWidth += items[i].realWidth;
+
+		<span class="comment">// If you've exceeded viewable area, retract</span>
+		<span class="reserved">if</span> (contentWidth &gt; tabBarWidth)
+		{
+			items[i].style.display = <span class="literal">'none'</span>;
+			<span class="reserved">this</span>.config.lastIndexLeft = i + 1;
+
+			<span class="comment">// Make first visible tab the current tab</span>
+			<span class="reserved">if</span> (setTab)
+			{
+				<span class="reserved">this</span>.changeTab(items[<span class="reserved">this</span>.config.lastIndexRight].name);
+			}
+
+			<span class="reserved">return</span>;
+		}
+	}
+
+	<span class="comment">// Adjust lastIndexLeft for last decrement performed in for loop</span>
+	<span class="reserved">this</span>.config.lastIndexLeft = i + 1;
+
+	<span class="comment">// Make first visible tab the current tab</span>
+	<span class="reserved">if</span> (setTab)
+	{
+		<span class="reserved">this</span>.changeTab(items[<span class="reserved">this</span>.config.lastIndexRight].name);
+	}
+
+	<span class="reserved">this</span>.config.noMoreTabsRight = true;
+}
+
+<span class="comment">/**
+ * Loads data from the JSON source.
+ *
+ * <span class="attrib">@private</span>
+ * Following format is recognized:
+ * \code
+ * {
+ *   tabs: [
+ *     {
+ *       id: [string, optional] id of the tab,
+ *       innerHTML: [string] label,
+ *       accessKey: [string, optional] access key,
+ *       title: [string] title,
+ *       url: [string] URL of the content,
+ *		 tabType: [string] "div" or "iframe" for the content pane
+ *     },
+ *     ...
+ *   ]
+ * }
+ * \endcode
+ *
+ * <span class="attrib">@param</span> {object} objSource JSON object.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.loadDataJson = <span class="reserved">function</span>(objSource) {
+	<span class="comment">// Check arguments</span>
+	<span class="reserved">if</span> ((true != <span class="reserved">this</span>.noTabBar &amp;&amp; !<span class="reserved">this</span>.config.tabBar) || !<span class="reserved">this</span>.config.tabs) {
+		<span class="reserved">return</span>;
+	}
+	<span class="reserved">if</span> (!objSource || !objSource.tabs || !objSource.tabs.length) {
+		<span class="reserved">return</span>;
+	}
+	<span class="comment">// Parse source</span>
+	var iLen = objSource.tabs.length;
+	<span class="reserved">for</span> (var iTab = 0; iTab &lt; iLen; iTab++) {
+		var objTabDef = objSource.tabs[iTab];
+
+		<span class="reserved">this</span>.addTab(objTabDef);
+	}
+};
+
+<span class="comment">/**
+ * Create a new tab instance
+ *
+ * <span class="attrib">@param</span> {object} objArgs tab configuration
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.newTab = <span class="reserved">function</span>(objArgs) {
+	var objTab = new Zapatec.Tab(objArgs);
+	<span class="reserved">return</span> objTab;
+}
+
+<span class="comment">/**
+ * Loads data from the HTML source.
+ *
+ * <span class="attrib">@private</span>
+ * Following format is recognized:
+ * \code
+ * &lt;div id="tabs"&gt;
+ *   &lt;div id="tab-begin"&gt;
+ *     &lt;label&gt;The first tab&lt;/label&gt;
+ *     ... the tab contents here ...
+ *   &lt;/div&gt;
+ *   &lt;div id="tab-second"&gt;
+ *     &lt;label&gt;The second tab&lt;/label&gt;
+ *     ... the tab contents here ...
+ *   &lt;/div&gt;
+ *   ...
+ * &lt;/div&gt;
+ * \endcode
+ *
+ * <span class="attrib">@param</span> {object} objSource HTMLElement object.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.loadDataHtml = <span class="reserved">function</span>(objSource) {
+	<span class="comment">// Check arguments</span>
+	<span class="reserved">if</span> ((true != <span class="reserved">this</span>.noTabBar &amp;&amp; !<span class="reserved">this</span>.config.tabBar) || !<span class="reserved">this</span>.config.tabs) {
+		<span class="reserved">return</span>;
+	}
+	<span class="reserved">if</span> (!objSource) {
+		objSource = <span class="reserved">this</span>.config.tabs;
+	}
+
+	var childs = [];
+	<span class="reserved">for</span> (var ii = 0; ii &lt; objSource.childNodes.length; ii++) {
+		childs.push(objSource.childNodes[ii]);
+	}
+
+	<span class="comment">// Parse source</span>
+	<span class="reserved">for</span> (var iChild = 0; iChild &lt; childs.length; iChild++) {
+		var objChild = childs[iChild];
+
+		<span class="reserved">if</span> (objChild.nodeType == 1) { <span class="comment">// ELEMENT_NODE</span>
+			<span class="comment">// Get label</span>
+			var objLabel = Zapatec.Utils.getFirstChild(objChild, <span class="literal">'label'</span>);
+			<span class="reserved">if</span> (!objLabel) {
+				continue;
+			}
+
+			<span class="comment">// Remove label</span>
+			objLabel.parentNode.removeChild(objLabel);
+			<span class="comment">// Remove child</span>
+			objChild.parentNode.removeChild(objChild);
+
+			var objArgs = {
+				tabParent: <span class="reserved">this</span>.config.tabs,
+				id: objChild.getAttribute(<span class="literal">'id'</span>),
+				linkInnerHTML: objLabel.innerHTML,
+				accessKey: objLabel.getAttribute(<span class="literal">'accesskey'</span>),
+				title: objLabel.getAttribute(<span class="literal">'title'</span>),
+				content: objChild,
+				tabType: objChild.getAttribute(<span class="literal">'tabType'</span>),
+				url: objChild.getAttribute(<span class="literal">'url'</span>),
+				className: objChild.className,
+				overflow: objChild.style.overflow,
+				visible: objLabel.style.display != <span class="literal">"none"</span>,
+				refreshOnTabChange: objChild.getAttribute(<span class="literal">'refreshOnTabChange'</span>),
+				closable: objLabel.getAttribute(<span class="literal">'closable'</span>),
+				closeAction: objLabel.getAttribute(<span class="literal">'closeAction'</span>)
+			};
+
+			var objTab = <span class="reserved">this</span>.addTab(objArgs);
+
+			<span class="comment">// Return id of the tab trough container element</span>
+			<span class="reserved">if</span> (objTab.id) {
+				objTab.container.getContainer().setAttribute(<span class="literal">'id'</span>, objTab.id);
+				<span class="comment">// Remove id from div to avoid coliding with tab container</span>
+				objChild.removeAttribute(<span class="literal">'id'</span>);
+			}
+		}
+	}
+
+	<span class="comment">// Mark that we have initialized tabs by parsing html</span>
+	<span class="reserved">this</span>.isLoadedHtml = true;
+};
+
+<span class="comment">/**
+ * Adds a new tab.
+ *
+ * <span class="attrib">@private</span>
+ * Following format is recognized:
+ * \code
+ *  {
+ *    id: [string, optional] id of the tab,
+ *    innerHTML: [string] label,
+ *    accessKey: [string, optional] access key,
+ *    title: [string] title,
+ *    url: [string] URL of the content,
+ *	  tabType: [string] "div" or "iframe" for the content pane
+ *    index: [number, optional] index to make insert the new tab at
+ * }
+ * \endcode
+ *
+ * <span class="attrib">@param</span> {object} objTabDef JSON object.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.addTab = <span class="reserved">function</span>(objTabDef) {
+	<span class="comment">// Check arguments</span>
+	<span class="reserved">if</span> ((true != <span class="reserved">this</span>.noTabBar &amp;&amp; !<span class="reserved">this</span>.config.tabBar) || !<span class="reserved">this</span>.config.tabs) {
+		<span class="reserved">return</span>;
+	}
+	<span class="reserved">if</span> (!objTabDef) {
+		<span class="reserved">return</span>;
+	}
+	<span class="comment">// Parse source</span>
+	<span class="comment">// If no tabType is set to this tab</span>
+	<span class="reserved">if</span> (!objTabDef.tabType) {
+		<span class="comment">// Use config option from Tabs</span>
+		objTabDef.tabType = <span class="reserved">this</span>.config.tabType;
+	}
+	objTabDef.tabParent = <span class="reserved">this</span>.config.tabs;
+	objTabDef.changeUrl = <span class="reserved">this</span>.config.changeUrl;
+	<span class="reserved">if</span> (!objTabDef.lang) {
+		<span class="comment">// Use config option from Tabs</span>
+		objTabDef.lang = <span class="reserved">this</span>.config.lang;
+	}
+	<span class="reserved">if</span> (!objTabDef.mouseOverChangesTab) {
+		<span class="comment">// Use config option from Tabs</span>
+		objTabDef.mouseOverChangesTab = <span class="reserved">this</span>.config.mouseOverChangesTab;
+	}
+	<span class="reserved">if</span> (!objTabDef.refreshOnTabChange) {
+		<span class="comment">// Use config option from Tabs</span>
+		objTabDef.refreshOnTabChange = <span class="reserved">this</span>.config.refreshOnTabChange;
+	}
+	<span class="reserved">if</span> (!objTabDef.shouldLoadOnInit) {
+		<span class="comment">// Use config option from Tabs</span>
+		objTabDef.shouldLoadOnInit = <span class="reserved">this</span>.config.shouldLoadOnInit;
+	}
+	<span class="reserved">if</span> (!objTabDef.overflow &amp;&amp; <span class="literal">''</span> != objTabDef.overflow) {
+		<span class="comment">// Use config option from Tabs</span>
+		objTabDef.overflow = <span class="reserved">this</span>.config.overflow;
+	}
+	<span class="reserved">if</span> (!objTabDef.closable) {
+		<span class="comment">// Use config option from Tabs</span>
+		objTabDef.closable = <span class="reserved">this</span>.config.closable;
+	}
+	<span class="reserved">if</span> (!objTabDef.closeAction) {
+		<span class="comment">// Use config option from Tabs</span>
+		objTabDef.closeAction = <span class="reserved">this</span>.config.closeAction;
+	}
+	objTabDef.theme = <span class="reserved">this</span>.config.theme;
+	objTabDef.themePath = <span class="reserved">this</span>.config.themePath;
+	objTabDef.tabsId = <span class="reserved">this</span>.id;
+	<span class="comment">// Create tab</span>
+	var objTab = <span class="reserved">this</span>.newTab(objTabDef);
+
+	<span class="comment">// Return id of the tab through objTabDef</span>
+	<span class="reserved">if</span> (objTab.id) {
+		objTabDef.id = objTab.id;
+	}
+
+	var index = objTabDef.index;
+
+	<span class="reserved">this</span>.attachTab(objTab);
+
+	<span class="reserved">this</span>.addToTabBar(objTab);
+
+	<span class="reserved">return</span> objTab;
+};
+
+<span class="comment">/**
+ * Remove a tab from tabs.
+ *
+ * <span class="attrib">@private</span>
+ *
+ * <span class="attrib">@param</span> {string} strTabId Id of tab to remove
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.removeTab = <span class="reserved">function</span>(strTabId) {
+	var objTab = <span class="reserved">this</span>.getTab(strTabId);
+
+	<span class="reserved">if</span> (!objTab) {
+		<span class="reserved">return</span>;
+	}
+
+	<span class="comment">// Determine if we are removing the currently active tab</span>
+	var isRemovingCurrent = objTab.index == <span class="reserved">this</span>.currentIndex;
+
+	var newCurrentIndex;
+	<span class="reserved">if</span> (objTab.index &lt;= <span class="reserved">this</span>.currentIndex) {
+		newCurrentIndex = <span class="reserved">this</span>.currentIndex - 1;
+		<span class="reserved">if</span> (newCurrentIndex &lt; 0) {
+			newCurrentIndex = 0;
+		}
+	}
+
+	<span class="comment">// Remove tab link from tab bar</span>
+	<span class="reserved">this</span>.config.tabBar.removeChild(objTab.linkNode);
+
+	<span class="reserved">this</span>.tabs[strTabId] = null;
+
+	<span class="comment">// Create a new tabsArray without the tab being removed</span>
+	var newTabsArray = [];
+
+	var toIndex = 0;
+
+	<span class="reserved">for</span> (var fromIndex = 0; fromIndex &lt; <span class="reserved">this</span>.tabsArray.length;
+	     ++fromIndex) {
+		var fromTab = <span class="reserved">this</span>.tabsArray[fromIndex];
+		<span class="reserved">if</span> (objTab.index != fromTab.index) {
+			fromTab.index = toIndex;
+			newTabsArray[toIndex] = fromTab;
+			++toIndex;
+		}
+	}
+
+	<span class="reserved">this</span>.tabsArray = newTabsArray;
+
+	<span class="comment">// Remove content pane</span>
+	var container = objTab.container.getContainer();
+	objTab.container.getContainer().parentNode.removeChild(objTab.container.getContainer());
+
+	<span class="comment">// if we are removing the currently active tab</span>
+	<span class="reserved">if</span> (isRemovingCurrent) {
+		<span class="reserved">this</span>.currentIndex = -1;
+		<span class="reserved">if</span> (newCurrentIndex &lt; <span class="reserved">this</span>.tabsArray.length) {
+			<span class="comment">// Change tab</span>
+			<span class="reserved">this</span>.changeTab(<span class="reserved">this</span>.tabsArray[newCurrentIndex].id);
+		}
+	}
+
+	<span class="reserved">if</span> (newCurrentIndex) {
+		<span class="comment">// Set new currently active tab index</span>
+		<span class="reserved">this</span>.currentIndex = newCurrentIndex;
+	}
+}
+
+<span class="comment">/**
+ * Display a new tab. If onBeforeTabChange() returns false, the operation is
+ * cancelled.
+ *
+ * <span class="attrib">@param</span> {string} strNewTabId id of the new tab.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.changeTab = <span class="reserved">function</span>(strNewTabId) {
+	var strCurrTabId = null;
+	var objTab = null;
+	<span class="reserved">if</span> (<span class="reserved">this</span>.tabsArray[<span class="reserved">this</span>.currentIndex]) {
+		strCurrTabId = <span class="reserved">this</span>.tabsArray[<span class="reserved">this</span>.currentIndex].id;
+		objTab = <span class="reserved">this</span>.tabsArray[<span class="reserved">this</span>.currentIndex];
+	}
+	<span class="reserved">if</span> (strCurrTabId != strNewTabId) {
+		<span class="comment">// Check if callback function allows to change tab</span>
+		var boolChangeTab = true;
+		<span class="reserved">if</span> (typeof <span class="reserved">this</span>.config.onBeforeTabChange == <span class="literal">'function'</span>) {
+			boolChangeTab = <span class="reserved">this</span>.config.onBeforeTabChange({
+				oldTabId: strCurrTabId,
+				newTabId: strNewTabId
+			});
+		}
+		<span class="reserved">if</span> (!boolChangeTab) {
+			<span class="comment">// Return focus back</span>
+			<span class="reserved">if</span> (objTab &amp;&amp; objTab.linkNode.focus) {
+				<span class="comment">// Need to focus on tab first because FF 1.5 seems to have separate</span>
+				<span class="comment">// focus for links</span>
+				objTab.linkNode.focus();
+				<span class="comment">// Focus on content (in separate thread to let it focus on tab first)</span>
+				setTimeout(<span class="reserved">function</span>() {
+					<span class="reserved">if</span> (objTab.focusOn &amp;&amp; objTab.focusOn.focus) {
+						objTab.focusOn.focus();
+					}
+				}, 0);
+			}
+			<span class="reserved">return</span>;
+		}
+
+		<span class="reserved">if</span> (<span class="reserved">this</span>.config.scrolls)
+		{
+			<span class="comment">// If you're moving out of the visible tabs, scroll accordingly</span>
+			var _newTab = <span class="reserved">this</span>.tabsArray[<span class="reserved">this</span>.tabs[strNewTabId].index].linkNode;
+			<span class="reserved">if</span> (<span class="reserved">this</span>.tabsArray[<span class="reserved">this</span>.currentIndex])
+			{
+				var _curTab = <span class="reserved">this</span>.tabsArray[<span class="reserved">this</span>.currentIndex].linkNode;
+			}
+			<span class="reserved">else</span>
+			{
+				var _curTab = <span class="reserved">this</span>.tabsArray[0].linkNode;
+			}
+			<span class="reserved">if</span> (_curTab.arrayPosition &lt; _newTab.arrayPosition)
+			{
+				<span class="reserved">if</span> (<span class="reserved">this</span>.config.scrollMultiple)
+				{
+					<span class="reserved">while</span> (_newTab.style.display == <span class="literal">'none'</span>)
+					{
+						<span class="reserved">this</span>.scrollTabsLeft(false);
+					}
+				}
+				<span class="reserved">else</span>
+				{
+					<span class="reserved">while</span> (_newTab.style.display == <span class="literal">'none'</span>)
+					{
+						<span class="reserved">this</span>.scrollOneTabLeft(false);
+					}
+				}
+			}
+			<span class="reserved">else</span> <span class="reserved">if</span> (_curTab.arrayPosition &gt; _newTab.arrayPosition)
+			{
+				<span class="reserved">if</span> (<span class="reserved">this</span>.config.scrollMultiple)
+				{
+					<span class="reserved">while</span> (_newTab.style.display == <span class="literal">'none'</span>)
+					{
+						<span class="reserved">this</span>.scrollTabsRight(false);
+					}
+				}
+				<span class="reserved">else</span>
+				{
+					<span class="reserved">while</span> (_newTab.style.display == <span class="literal">'none'</span>)
+					{
+						<span class="reserved">this</span>.scrollOneTabRight(false);
+					}
+				}
+			}
+		}
+
+		<span class="comment">// Change tab</span>
+		<span class="reserved">if</span> (objTab) {
+			<span class="comment">// Hide old tab</span>
+			objTab.container.hide();
+			Zapatec.Utils.removeClass(objTab.linkNode, <span class="literal">'zpTabsActive'</span>);
+		}
+		objTab = <span class="reserved">this</span>.tabs[strNewTabId];
+		<span class="comment">// Show new tab</span>
+		<span class="reserved">if</span> (!<span class="reserved">this</span>.config.showEffect) {
+			objTab.container.show();
+		}
+		<span class="reserved">else</span> {
+			Zapatec.Effects.init(objTab.container.getContainer(),
+							true, <span class="reserved">this</span>.config.showEffectSpeed, <span class="reserved">this</span>.config.showEffect);
+		}
+
+		<span class="comment">// Refresh iframe element?</span>
+		<span class="reserved">if</span> (<span class="reserved">this</span>.config.refreshOnTabChange)
+		{
+			var iframes = objTab.container.getContainer().getElementsByTagName(<span class="literal">'iframe'</span>);
+
+			<span class="reserved">for</span> (var i = 0; i &lt; iframes.length; i++)
+			{
+				window.parent.frames[iframes[i].name].location.reload(true)
+			}
+		}
+
+		<span class="reserved">if</span> (!objTab.config.visible) {
+			objTab.setVisible(true);
+		}
+
+		Zapatec.Utils.addClass(objTab.linkNode, <span class="literal">'zpTabsActive'</span>);
+		<span class="reserved">this</span>.currentIndex = objTab.index;
+
+		<span class="comment">// Reload tab if needed and call onTabChange</span>
+		<span class="reserved">this</span>.refreshTab(objTab, strCurrTabId, strNewTabId);
+	}
+};
+
+<span class="comment">/**
+ * Reloads tab content if needed and calls onTabChange event after that.
+ *
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {object} objTab tab to refresh
+ * <span class="attrib">@param</span> {string} strCurrTabId old tab id
+ * <span class="attrib">@param</span> {string} strNewTabId new tab id
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.refreshTab = <span class="reserved">function</span>(objTab, strCurrTabId, strNewTabId) {
+	var url = null;
+	<span class="reserved">if</span> (objTab.config.contentType == <span class="literal">"html/url"</span>) {
+		url = objTab.config.content;
+	}
+	<span class="reserved">else</span> {
+		url = objTab.config.url;
+	}
+
+	<span class="comment">// If onTabChange handler is specified</span>
+	<span class="reserved">if</span> (typeof <span class="reserved">this</span>.config.onTabChange == <span class="literal">'function'</span>) {
+		var self = <span class="reserved">this</span>;
+		<span class="comment">// Mark that onTabChange is to be called</span>
+		objTab.pendingOnTabChange = <span class="reserved">function</span>() {
+			<span class="comment">// Call onTabChange event handler</span>
+			self.config.onTabChange({
+				oldTabId: strCurrTabId,
+				newTabId: strNewTabId
+			});
+		}
+	}
+
+	<span class="comment">// If tab is configured to load content from external source and</span>
+	<span class="comment">// tab is still empty or it is configured to refresh on every tab change</span>
+	<span class="reserved">if</span> (url) {
+		var isIframeDiffSrc = objTab.config.tabType == <span class="literal">'iframe'</span> &amp;&amp;
+		                      objTab.lastUrlSet != url;
+		<span class="comment">// If tab is a div and it's an empty one</span>
+		var isEmptyDiv = objTab.config.tabType == <span class="literal">'div'</span> &amp;&amp;
+		                 !objTab.container.getContainer().childNodes.length;
+		<span class="comment">// If Internet Explorer</span>
+		<span class="reserved">if</span> (Zapatec.is_ie) {
+			<span class="comment">// If tab is a div and it only contains a WCH</span>
+			var tabContents = objTab.container.getContainer().childNodes;
+			<span class="reserved">if</span> (objTab.config.tabType == <span class="literal">'div'</span> &amp;&amp;
+			    1 == tabContents.length &amp;&amp;
+			    tabContents[0].id.match(/wch/gi)) {
+				<span class="comment">// Mark tab as empty</span>
+				isEmptyDiv = true;
+			}
+		}
+		<span class="reserved">if</span> (isEmptyDiv || isIframeDiffSrc || objTab.config.refreshOnTabChange) {
+			<span class="comment">// Load remote url inside tab</span>
+			objTab.setPaneContent(url, <span class="literal">'html/url'</span>);
+			<span class="reserved">return</span>;
+		}
+	}
+	<span class="reserved">else</span> {
+		<span class="reserved">if</span> (!url) {
+			<span class="comment">// Update tab content</span>
+			objTab.setPaneContent();
+		}
+	}
+
+	<span class="reserved">if</span> (objTab.pendingOnTabChange) {
+		<span class="comment">// Call onTabChange event handler</span>
+		objTab.pendingOnTabChange(self);
+		objTab.pendingOnTabChange = null;
+	}
+}
+
+<span class="comment">/**
+ * Gets a tab with a given id
+ *
+ * <span class="attrib">@param</span> {string} tabId id of the tab to get
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.getTab = <span class="reserved">function</span>(tabId) {
+	var objTab = <span class="reserved">this</span>.tabs[tabId];
+	<span class="reserved">return</span> objTab;
+};
+
+<span class="comment">/**
+ * Gets a tab with a given index
+ *
+ * <span class="attrib">@param</span> {number} tabIndex index of the tab to get
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.getTabByIndex = <span class="reserved">function</span>(tabIndex) {
+	var objTab = <span class="reserved">this</span>.tabsArray[tabIndex];
+	<span class="reserved">return</span> objTab;
+};
+
+<span class="comment">/**
+ * Get next visible/hidden tab.
+ *
+ * <span class="attrib">@param</span> {boolean} isVisible type of tab to get
+ * <span class="attrib">@param</span> {number} tabIndex index of the pivot tab
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.getNextTab = <span class="reserved">function</span>(isVisible, tabIndex) {
+	var nextTabIndex = tabIndex + 1;
+	<span class="reserved">while</span> (nextTabIndex &lt; <span class="reserved">this</span>.tabsArray.length) {
+		var objTab = <span class="reserved">this</span>.tabsArray[nextTabIndex];
+		<span class="reserved">if</span> (objTab.config.visible == isVisible) {
+			<span class="reserved">return</span> objTab;
+		}
+		++nextTabIndex;
+	}
+	<span class="reserved">return</span> null;
+}
+
+<span class="comment">/**
+ * Get previous visible/hidden tab.
+ *
+ * <span class="attrib">@param</span> {boolean} isVisible type of tab to get
+ * <span class="attrib">@param</span> {number} tabIndex index of the pivot tab
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.getPreviousTab = <span class="reserved">function</span>(isVisible, tabIndex) {
+	var previousTabIndex = tabIndex - 1;
+	<span class="reserved">while</span> (0 &lt;= previousTabIndex) {
+		var objTab = <span class="reserved">this</span>.tabsArray[previousTabIndex];
+		<span class="reserved">if</span> (objTab.config.visible == isVisible) {
+			<span class="reserved">return</span> objTab;
+		}
+		--previousTabIndex;
+	}
+	<span class="reserved">return</span> null;
+}
+
+<span class="comment">/**
+ * Moves to the next tab.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.nextTab = <span class="reserved">function</span>() {
+
+	var nextTab = <span class="reserved">this</span>.getNextTab(true, <span class="reserved">this</span>.currentIndex);
+	<span class="reserved">if</span> (nextTab) {
+		<span class="reserved">this</span>.changeTab(nextTab.id);
+	}
+	<span class="reserved">else</span> {
+		<span class="comment">// Get first visible tab</span>
+		nextTab = <span class="reserved">this</span>.getNextTab(true, -1);
+		<span class="reserved">if</span> (nextTab) {
+			<span class="reserved">this</span>.changeTab(nextTab.id);
+		}
+	}
+};
+
+<span class="comment">/**
+ * Moves to the previous tab.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.prevTab = <span class="reserved">function</span>() {
+	<span class="comment">// Get first visible tab before the current one</span>
+	var previousTab = <span class="reserved">this</span>.getPreviousTab(true, <span class="reserved">this</span>.currentIndex);
+	<span class="reserved">if</span> (previousTab) {
+		<span class="reserved">this</span>.changeTab(previousTab.id);
+	}
+	<span class="reserved">else</span> {
+		<span class="comment">// Get last visible tab</span>
+		previousTab = <span class="reserved">this</span>.getPreviousTab(true, <span class="reserved">this</span>.tabsArray.length);
+		<span class="reserved">if</span> (previousTab) {
+			<span class="reserved">this</span>.changeTab(previousTab.id);
+		}
+
+	}
+};
+
+<span class="comment">/**
+ * Moves to the first tab.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.firstTab = <span class="reserved">function</span>() {
+	<span class="reserved">this</span>.changeTab(<span class="reserved">this</span>.tabsArray[0].id);
+};
+
+<span class="comment">/**
+ * Moves to the last tab.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.lastTab = <span class="reserved">function</span>() {
+	<span class="reserved">this</span>.changeTab(<span class="reserved">this</span>.tabsArray[<span class="reserved">this</span>.tabsArray.length - 1].id);
+};
+
+<span class="comment">/**
+ * Indicates if current tab is first.
+ *
+ * <span class="attrib">@return</span> {boolean} true if we are at the first tab, false otherwise.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.isFirstTab = <span class="reserved">function</span>() {
+	<span class="reserved">return</span> <span class="reserved">this</span>.currentIndex == 0;
+};
+
+<span class="comment">/**
+ * Indicates if current tab is last.
+ *
+ * <span class="attrib">@return</span> {boolean} true if we are at the last tab, false otherwise.
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.isLastTab = <span class="reserved">function</span>() {
+	<span class="reserved">return</span> <span class="reserved">this</span>.currentIndex == <span class="reserved">this</span>.tabsArray.length - 1;
+};
+
+<span class="comment">/**
+ * Gets the tab that is to become active after Tabs initialization
+ *
+ * <span class="attrib">@private</span>
+ */</span>
+Zapatec.Tabs.<span class="reserved">prototype</span>.getInitialActiveTabId = <span class="reserved">function</span>() {
+	var strId = null;
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.activeTabId) {
+		strId = <span class="reserved">this</span>.config.activeTabId;
+	}
+	<span class="reserved">else</span> {
+		<span class="comment">// Default to first tab</span>
+		strId = <span class="reserved">this</span>.tabsArray[0].id;
+	}
+
+	<span class="comment">// If url shows tab to be made active</span>
+	<span class="reserved">if</span> (!<span class="reserved">this</span>.config.ignoreUrl) {
+		<span class="comment">// Parse url param for a tab with a matching id</span>
+		var str = <span class="reserved">this</span>.config.tabs.id + <span class="literal">"="</span>;
+		var url = document.URL;
+		var pos = url.lastIndexOf(str);
+		<span class="comment">// If such param exists</span>
+		<span class="reserved">if</span> (-1 != pos) {
+			pos += str.length;
+			str = url.substring(pos);
+			<span class="comment">// Tab id ends where next param begins</span>
+			var tabId = str.split(<span class="literal">"&amp;"</span>)[0];
+			<span class="comment">// If a tab exists for tabId stated in the URL</span>
+			<span class="reserved">if</span> (<span class="reserved">this</span>.tabs[tabId]) {
+				strId = tabId;
+			}
+		}
+	}
+
+	<span class="reserved">return</span> strId;
+};
+</pre>
+	<hr>
+
+
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top"><em>
+<b>Zapatec Tabs</b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<font size="-1">
+
+</font>
+<div class="jsdoc_ctime">Documentation generated by <a href="http://jsdoc.sourceforge.net/" target="_parent">JSDoc</a> on Thu Aug 16 12:19:03 2007</div>
+</body>
+</html>

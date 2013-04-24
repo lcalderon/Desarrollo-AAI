@@ -1,0 +1,186 @@
+body { 
+	margin: 15px 0px 0px 0px;
+	font-family: Trebuchet MS;
+	color: #444444;
+	font-size: 11px;
+	background-image:url("images/RILzyc.png");background-repeat:repeat-x;
+}
+
+/*table,td {
+	color: #0c298f;
+	font-size: 11px;
+	font-family: Arial, sans-serif, Verdana,  Helvetica;
+}*/
+
+table.style_table {
+	color:#1A1A1A;
+	font-size: 11px;
+	font-family: Arial, sans-serif, Verdana,  Helvetica;
+}
+
+form {
+	margin: 0px;
+}
+
+a:link, a:visited {
+	color: #444444;
+	font-size: 11px;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #666666;
+	text-decoration: underline;
+}
+
+/* Controles de Formularios */
+	
+/*.button {
+	border: 1px solid #444444;
+	background-color: #ffffff;
+	font-size: 11px;
+	color: #444444;
+	font-weight: normal;
+	background-image: url(../../../Imagenes/formButtonBg.png);
+}*/
+	
+.buttonOn {
+	border: 1px solid #444444;
+	background-color: #ffffff;
+	font-size: 11px;
+	color: #444444;
+	font-weight: normal;
+	background-image: url(../../../images/formButtonBgOn.png);
+}
+	
+.buttonSumnit {
+    background: url("images/button.gif") no-repeat scroll 0 0 #FFFFFF;
+    border: 0 none;
+    color: #888888;
+    font-family: Trebuchet MS;
+    font-size: 12px;
+    height: 20px;
+    margin-top: 7px;
+    padding-bottom: 14px;
+    width: 100px;
+}
+
+/*input,select {
+	border: 1px solid #888888;
+	font-size: 11px;
+	background-color: #ffffff;
+}
+	
+textarea {
+	border: 1px solid #888888;
+	font-size: 12px;
+	background-color: #ffffff;
+}
+
+checkbox,radio {
+	border:0px;
+	background-color: transparent;
+	margin: 0px;
+	vertical-align: bottom;
+}*/
+
+
+/*input, textarea, select, .uneditable-input {
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    color: #555555;
+    display: inline-block;
+    font-size: 13px;
+    height: 18px;
+    line-height: 18px;
+    margin-bottom: 9px;
+    padding: 4px;
+}*/
+
+
+input.txt, select.txt {
+    background: url("images/input.gif") repeat scroll 0 0 transparent;
+    border: 1px solid #AAAAAA;
+	border-radius: 3px 3px 3px 3px;
+    color: #555555;
+	display: inline-block;
+    font: 11px Trebuchet MS;
+	height: 18px;
+	line-height: 18px;
+    padding: 1px; /* Default: 3*/
+}
+textarea.txt {
+    background: url("images/input.gif") repeat scroll 0 0 transparent;
+    border: 1px solid #AAAAAA;
+	border-radius: 3px 3px 3px 3px;
+    color: #555555;
+    font: 12px Trebuchet MS;
+    overflow: hidden;
+    padding: 1px;
+}
+
+input.txt:hover, textarea.txt:hover, select.txt:hover {
+    border: 1px solid #506BA3;
+}
+/*input.txt:focus, textarea.entrytext:focus {
+    background: url("images/input.gif") repeat scroll 0 0 transparent;
+    border: 1px solid #506BA3;
+}*/
+
+input, textarea, select {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+  transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+input.txt:focus, textarea.txt:focus, select.txt:focus {
+  border-color: rgba(82, 168, 236, 0.8);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+}
+
+/* Styles de Labels */
+.title_1 {
+	font-family:Arial, sans-serif, Verdana,  Helvetica;
+	font-size:16px;
+	color:#3a5982;
+	font-weight:700;
+	padding-bottom:5px;
+}
+
+.title_2 {
+	font-family:Arial, sans-serif, Verdana,  Helvetica;
+	font-size:12px;
+	color:#3a5982;
+	font-weight:700;
+	padding-bottom:5px;
+	padding-top:5px;
+}
+
+.title_3 {
+	font-family:Arial, sans-serif, Verdana,  Helvetica;
+	font-size:11px;
+	color:#3a5982;
+	font-weight:700;
+	padding-bottom:5px;
+	padding-top:5px;
+}
+/**/
+
+/* Styles de tabla*/
+table.style_table_2 {
+	background: url("images/top-middle.gif") repeat-x scroll 0 0 transparent;
+	font-size:11px;
+    height: 25px;
+}
+
+.estilo_cab_detalle{ font: 50.5% "Trebuchet MS", sans-serif;}
+/**/

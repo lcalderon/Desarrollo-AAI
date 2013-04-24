@@ -1,0 +1,1 @@
+<div class="pagination"><span class="current"><?=_("Nueva Busqueda") ;?></span><a href="newafiliado.php"><?=_("Contacto No Valido") ;?></a><a href="reportes.php"><?=_("Reporte") ;?></a><a href="estadisticas.php"><?=_("Estadisticas") ;?></a><a href="gestioncuentas.php"><?=_("Config. Cuentas") ;?></a></div>

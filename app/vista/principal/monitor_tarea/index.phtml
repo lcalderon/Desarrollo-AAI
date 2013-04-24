@@ -1,0 +1,120 @@
+<?php
+session_start();
+include_once('../../includes/head_prot.php');
+
+$idextension= $_SESSION['extension'];
+$idusuario = $_SESSION['user'];
+
+
+?>
+<link rel="stylesheet" href="/librerias/TinyAccordion/style2.css" type="text/css" />
+
+<body onload="carga();">
+
+<ul class="acc" id="acc">
+	<li>
+		<h4>
+		<table width="100%" >
+			<tr>
+				<td><h3><b><?=_('MONITOR DE TAREAS')?></b><h3></td>
+				<td align='right'><img src='../../../../imagenes/iconos/collapse-expand2.GIF' ></td>
+			</tr>
+		</table>
+		<h4>
+		
+		<div class="acc-section" id='zona_tarea'>
+		
+		</div>
+	</li>
+</ul>
+</body>
+<script type="text/javascript" src="/librerias/TinyAccordion/script.js"></script>
+<script type="text/javascript">
+
+
+var act_tareas;
+
+function lista(){
+	var selected = new Array();
+	try{
+		var ruta= parent.window.frames["ifr_principal"];
+		var ob = ruta.document.getElementById('idusuarios');
+
+		for (var i = 0; i < ob.options.length; i++)
+		if (ob.options[i].selected) selected[i]=ob.options[i].value;
+	} catch(e)
+	{
+		selected[0]="<?=$idusuario?>";
+	}
+
+
+	lista_usuarios=	selected.toJSON();
+	return lista_usuarios;
+}
+
+
+
+function carga()
+{
+	if (act_tareas)
+	{
+		act_tareas.stop();
+		delete act_tareas;
+	}
+
+	var lista_usuarios=lista();
+	
+	act_tareas = new Ajax.PeriodicalUpdater('zona_tarea','/app/controlador/ajax/ajax_tarea.php',
+	{
+		insertion: Insertion.top,
+		method: 'post',
+		parameters: {IDUSUARIOS: lista_usuarios	},
+		frequency: 30
+	});
+
+	return;
+}
+
+function tarea_invisible(id){
+	new Ajax.Request('/app/controlador/ajax/ajax_tarea_invisible.php',
+	{
+		method: 'post',
+		parameters: {ID : id},
+		onSuccess: function (){
+			carga()
+		}
+	}
+	);
+	return;
+}
+
+
+var parentAccordion=new TINY.accordion.slider("parentAccordion");
+parentAccordion.init("acc","h4",0,0);
+
+var nestedAccordion=new TINY.accordion.slider("nestedAccordion");
+nestedAccordion.init("nested","h4",1,-1,"acc-selected");
+
+function llamada(numero){
+
+	new Ajax.Request('/app/controlador/ajax/ajax_llamada.php',
+	{
+		method : 'get',
+		parameters: {
+			prefijo: "",
+			num: numero,
+			ext: '<?=$idextension?>'
+		},
+		onSuccess: function(t){
+			//		alert(t.responseText);
+
+		}
+	}
+	);
+	return;
+}
+
+
+</script>
+</body>
+</html>

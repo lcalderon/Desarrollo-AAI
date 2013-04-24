@@ -1,0 +1,168 @@
+/* $Id: rounded.css 7112 2007-05-10 19:37:05Z vkulov $ */
+/* 
+ * Tabs theme.
+ *
+ * Copyright (c) 2004-2006 by Zapatec, Inc.
+ * http://www.zapatec.com
+ * 1700 MLK Way, Berkeley, California,
+ * 94709, U.S.A.
+ * All rights reserved.
+ */
+
+/* Font styling for tab bar buttons */
+.zpTabsRounded {
+  font: bold 11px tahoma, verdana, sans-serif;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.zpTabsRounded a,
+.zpTabsRounded a:visited,
+.zpTabsRounded a:link {
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Left part of menu button if unselected (all) */
+
+.zpTabsRounded .zpTabLinkOuter {
+  background: url(rounded/left1.GIF) no-repeat  left top;
+  cursor: pointer;
+  float: left;
+  padding-left: 15px;
+}
+
+/* Right part of menu button if unselected (all) */
+.zpTabsRounded .zpTabLinkInner {
+  background: url(rounded/right1.GIF) no-repeat  right top;
+  padding-right: 15px;
+  color: #000000;
+  height: 18px;
+  float: left;
+}
+
+.zpTabsRounded .zpTab {
+  float: left;
+  margin-right: 1px;
+}
+
+.zpTabsRounded .zpTabLinkInner .zpTabAnchorHolder {
+  margin-top: 2px;
+  float: left;
+}
+
+/*menu buttons text color on mouseover*/
+.zpTabsRounded .zpTabsHover .zpTabLinkInner {
+  color: #666666;
+}
+.zpTabsRounded a u {
+  color: ButtonText;
+}
+
+/* Left part of menu button if selected */
+.zpTabsRounded .zpTabsActive .zpTabLinkOuter {
+  background: url(rounded/left_sel1.gif) no-repeat left top;
+  padding-left: 7px;
+  
+  /*height: 19px;*/
+  color: ButtonText;
+  float: left;
+}
+
+/* Left part of menu button if selected */
+.zpTabsRounded .zpTabsActive .zpTabLinkInner {
+  background: url(rounded/right_sel1.gif) no-repeat right top;
+  padding-right: 7px;
+ 
+  height: 19px;
+  color: ButtonText;
+  float: left;
+}
+
+/*menu button active letter color*/
+.zpTabsRounded .zpTabsActive u {
+  color: red;
+}
+
+.zpTabsRounded .zpTabClosable {
+  padding-right: 7px;
+}
+
+.zpTabsRounded .zpTabClose {
+  margin: 1px 0 0 8px;
+  float: left;
+  cursor: default;
+}
+
+.zpTabsRounded .zpTabsClearer {
+  clear: both;
+}
+
+.zpTabsRoundedContent {
+  border: 2px solid #a7b4b8;
+  font: 11px tahoma, verdana, sans-serif;
+  padding: 5px;
+  background: #f1f4f5;
+  border-width: 1px 1px 2px 1px;
+  clear: both;
+}
+
+/** Styles for tab scrollers **/
+.zpTabsScrolly  {
+  color: #aaa;
+  cursor: pointer;
+  width: 30px;
+  float: left;
+  border: #a7b4b8 solid;
+  border-width: 0 1px 1px 1px;
+  position: relative;
+/*  z-index: 999999;*/
+}
+
+.zpTabsScrolly div {
+  padding: 0 3px;
+  float: left;
+}
+
+.zpTabsRoundedContent .zpTab,
+.zpTabsRoundedAccordionContent .zpTab {
+  overflow: hidden;
+}
+
+.zpTabsRoundedContent .zpTabsNoOverflow,
+.zpTabsRoundedAccordionContent .zpTabsNoOverflow {
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+/** Accordion styles **/
+.zpTabsRoundedAccordionContent {
+  border: 2px solid #a7b4b8; 
+  font: 11px tahoma, verdana, sans-serif;
+  padding: 5px;
+  background: #f1f4f5;
+  border-width: 1px 1px 2px 1px;
+}
+
+.zpTabsRoundedAccordionContent div {
+  background: white;
+}
+
+.zpTabsRoundedAccordionContent div.tabChooser,
+.zpTabsRoundedAccordionContent div.tabChooser .zpTabAnchorHolder {
+  color: white;
+  background: ButtonFace;
+  cursor: pointer;
+}
+
+.zpTabsRoundedAccordionContent div.tabChooser a {
+  color: black;
+  text-decoration: none;
+  margin: 0 3px;
+  line-height: 23px;
+}
+
+.zpTabsRoundedAccordionContent div.tabChooser a u {
+  color: red;
+}

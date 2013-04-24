@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>llamadas entrantes</title>
+<link href="/dev_soaa_ng/estilos/tablas/styletable.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/dev_soaa_ng/librerias/windows_js_1.3/javascripts/prototype.js"></script>
+
+<style type="text/css">
+<!--
+.style2 {color: #999999}
+-->
+</style>
+</head>
+<?php
+include_once('../../../modelo/clase_mysqli.inc.php');
+include_once('/var/www/pruebaami/funciones.php');
+include_once('../../../modelo/clase_expediente.inc.php');
+include_once('../../../modelo/clase_usuario.inc.php');
+	$con = new DB_mysqli();
+	session_start();
+
+$usuario = new usuario();
+$extension = $usuario->extension_usada($_SESSION[user]);
+
+
+if($_GET['var']=='CON'){
+ $sql_call = "SELECT TELEFONO, CHANNEL, UNIQUEID FROM dev_soaa_ng_temporal.monitor_llamadas WHERE UNIQUEID = '".$_GET['id']."'";
+$exec_call = $con->query($sql_call);
+ if($rset_call = $exec_call->fetch_object()){
+	$channel=$rset_call->CHANNEL;
+}
+
+
+
+ $server = '192.168.0.188';
+ $user = 'soaa_ng'; 
+ $pass = 'swlagiu5';
+
+  $timeout = 10;
+   $socket2 = @fsockopen($server,'5038',$errno,$errstr,$timeout);
+   redirectCall($socket2,$user,$pass,$channel,$extension,'default');
+   fclose($socket2);
+
+	$sql_update_llamada="UPDATE dev_soaa_ng_temporal.monitor_llamadas SET STATUS='ANSWER' WHERE UNIQUEID='".$_GET['id']."'";
+	$exec_update_llamada = $con->query($sql_update_llamada);
+
+
+ }
+
+
+?>
+<body>
+<h3 >Llamadas entrantes</h3>
+<table  id='en_espera' 	border="0" cellpadding="1" cellspacing="1" class="catalogos" width="600px">
+
+</table> 
+
+
+<script type="text/javascript">
+function lastSpy() {
+	var target = $('en_espera');
+	if (!target) return false;
+	new Ajax.PeriodicalUpdater(target,
+	'../../../controlador/ajax/ajax_espera.php',
+	{ 
+		insertion: Insertion.top,
+		method: 'post',
+		frecuency: 0.1});
+}
+
+
+Event.observe(window, 'load', lastSpy, false);
+
+</script>
+
+
+
+</body>
+</html>

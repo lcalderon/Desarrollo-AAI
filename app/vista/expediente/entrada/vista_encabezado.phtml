@@ -1,0 +1,90 @@
+<?php
+	
+	include_once("/app/modelo/clase_mysqli.inc.php");
+	include_once("/app/vista/login/Auth.class.php");
+	include_once("/app/modelo/clase_ubigeo.inc.php");
+	include_once("/app/vista/includes/arreglos.php");
+	
+	$con= new DB_mysqli();	
+	if($con->Errno){
+		printf("Fallo de conexion: %s\n", $con->Error);
+		exit();
+	}
+	 
+	session_start(); 
+ 	Auth::required(); 
+
+	if($_GET["ani"] and !$idexpediente){
+	
+		$ani_exis=$con->consultation("SELECT
+										  catalogo_afiliado.IDAFILIADO
+										FROM $con->catalogo.catalogo_afiliado_persona_telefono
+										  INNER JOIN $con->catalogo.catalogo_afiliado
+											ON catalogo_afiliado.IDAFILIADO = catalogo_afiliado_persona_telefono.IDAFILIADO
+										WHERE catalogo_afiliado_persona_telefono.NUMEROTELEFONO ='$_GET[ani]'
+										ORDER BY catalogo_afiliado.IDAFILIADO DESC
+										LIMIT 1");
+										
+		$_REQUEST["idafiliado"]=$ani_exis[0][0];
+	} 
+	
+	if($idexpediente || $_GET["telefono"]){	
+		$Sql_exp_afi="SELECT					 
+					  catalogo_afiliado.CVEAFILIADO,
+					  catalogo_afiliado.FECHAFINVIGENCIA,
+					  catalogo_afiliado.FECHAINICIOVIGENCIA,
+					  catalogo_afiliado.STATUSASISTENCIA,
+					  expediente.IDEXPEDIENTE,
+					  expediente.ARRSTATUSEXPEDIENTE,
+					  expediente.OBSERVACIONES,
+					  expediente.ARRTIPOAUTORIZACION,
+					  expediente.NUMAUTORIZACION,
+					  expediente.NOMAUTORIZACION					  
+					FROM $con->temporal.expediente
+					   LEFT JOIN $con->catalogo.catalogo_afiliado
+						ON catalogo_afiliado.IDAFILIADO = expediente.IDAFILIADO
+					WHERE expediente.IDEXPEDIENTE ='".$idexpediente."'  ";
+	} else{
+	
+		$Sql_exp_afi="SELECT
+					  catalogo_afiliado.IDAFILIADO,
+					  catalogo_afiliado.CVEAFILIADO,
+					  catalogo_afiliado.FECHAINICIOVIGENCIA,
+					  catalogo_afiliado.FECHAFINVIGENCIA,
+					  catalogo_afiliado.STATUSASISTENCIA
+					FROM $con->catalogo.catalogo_afiliado
+					  INNER JOIN $con->catalogo.catalogo_afiliado_persona
+						ON catalogo_afiliado_persona.IDAFILIADO = catalogo_afiliado.IDAFILIADO
+					WHERE catalogo_afiliado.IDAFILIADO ='".$_REQUEST["idafiliado"]."'";
+ 
+	}
+
+	$result=$con->query($Sql_exp_afi);
+	$row_info = $result->fetch_object();	
+	if($row_info->ARRSTATUSEXPEDIENTE=="CER")	$disabledall="DISABLED";
+	$idafliado=  $row_info->IDAFILIADO;
+	
+	if($row_info->ARRSTATUSEXPEDIENTE=="CER")	$valor="PRO"; else if($row_info->ARRSTATUSEXPEDIENTE=="PRO") $valor=""; else $valor="CER";
+
+?>
+	<input type="hidden" name="statusafi" id="statusafi" value="<?=$row_info->STATUSASISTENCIA;?>"/>
+	<table bgcolor="#8ccbff" width="100%" border="0" cellpadding="1" cellspacing="0" style="border:1px solid #AFC8D3">
+		<tr>
+			<td width="190"><?=_('# EXPEDIENTE')?>:&nbsp; <span class="style3"><font size="2"><?=$row_info->IDEXPEDIENTE;?></font></span></td>
+			<td width="150" colspan="2" align="center"><?=_('AFILIACION')?>: 
+				<strong><span class="<?=($row_info->STATUSASISTENCIA=="CAN")?"style2":""?>">
+				 
+					<?=$desc_status_afi_asistencia[$row_info->STATUSASISTENCIA];?>
+				 </span></strong>
+			</td>
+			<td width="230"><div align="center"><?=_('INICIO VIGENCIA')?>: <strong> <?=$row_info->FECHAINICIOVIGENCIA;?></strong></div></td>
+			<td width="230"><?=_(' FIN VIGENCIA ')?>:<strong><?=$row_info->FECHAFINVIGENCIA;?></strong></td>
+			<td colspan="2" align="right"><?=_('STATUS')?>:		
+				<? $con->cmb_array("cmbstatusexp",$desc_status_expeduiente,($_GET["idexpediente"] or $_GET["telefono"])?$row_info->ARRSTATUSEXPEDIENTE:"PRO"," $disabled class='classtexto' onFocus='coloronFocus(this);' onBlur='colorOffFocus(this);'","1","","",$valor)?>			
+			
+			  <? if($_GET["idexpediente"]) {?> 
+			  <input type="button" name="btnverhistorico" title="<?=_('Ver movimiento expediente')?>" id="btnverhistorico" value="V" style="font-weight:bold;width:30px;font-size:10px;" onClick="verificardiv('BloqueHistorico',this.value,this.name);" /> 
+			  <? } ?>
+			</td>
+		</tr>
+	</table>

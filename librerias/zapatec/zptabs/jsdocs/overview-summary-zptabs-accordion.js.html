@@ -1,0 +1,912 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Frameset//EN""http://www.w3.org/TR/REC-html40/frameset.dtd">
+<html>
+<head>
+<title>
+Zapatec Tabs Overview
+</title>
+<link rel ="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+<script>
+function asd() {
+	
+		parent.document.title="zptabs-accordion.js Overview";
+	
+}
+</script>
+</head>
+<body bgcolor="white" onload="asd();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> 	<font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top">
+<em>
+<b>Zapatec Tabs</b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<center>
+	
+	   <h2>zptabs-accordion.js</h2>
+	
+</center>
+
+	
+
+
+<h4>Summary</h4>
+<p>
+	
+		Accordion style tabs extension. Extends Tabs class (zptabs.js)
+ adding accordion style tabs.
+
+ <pre>
+ Copyright (c) 2004-2006 by Zapatec, Inc.
+ http://www.zapatec.com
+ 1700 MLK Way, Berkeley, California,
+ 94709, U.S.A.
+ All rights reserved.
+ </pre><BR/><BR/>
+	
+</p>
+
+<hr>
+
+
+    <table border="1" cellpadding="3" cellspacing="0" width="100%">
+    <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+    <td colspan=2><font size="+2">
+    
+        <b>Class Summary</b>
+    
+    </font></td>
+    </tr>
+    
+    <tr bgcolor="white" class="TableRowColor">
+    <td width="15%"><b><a href="Zapatec/AccordionTab.html">Zapatec.AccordionTab</a></b></td>
+    <td>&nbsp;</td>
+    </tr>
+    
+    <tr bgcolor="white" class="TableRowColor">
+    <td width="15%"><b><a href="Zapatec/AccordionTabs.html">Zapatec.AccordionTabs</a></b></td>
+    <td>&nbsp;</td>
+    </tr>
+    
+    </table>
+    <hr/> 
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<!-- ========== END METHOD SUMMARY =========== -->
+
+
+        <pre class="sourceview"><span class="comment">// $Id: zptabs-accordion.js 7376 2007-06-08 11:59:17Z vkulov $</span>
+<span class="comment">/**
+ * <span class="attrib">@fileoverview</span> Accordion style tabs extension. Extends Tabs class (zptabs.js)
+ * adding accordion style tabs.
+ *
+ * &lt;pre&gt;
+ * Copyright (c) 2004-2006 by Zapatec, Inc.
+ * http://www.zapatec.com
+ * 1700 MLK Way, Berkeley, California,
+ * 94709, U.S.A.
+ * All rights reserved.
+ * &lt;/pre&gt;
+ */</span>
+
+<span class="comment">/**
+ * Zapatec.AccordionTab constructor. Creates a new accordion tab object with
+ * given parameters. Configuration options are the same as in Zapatec.Tab
+ *
+ * <span class="attrib">@constructor</span>
+ * <span class="attrib">@extends</span> Zapatec.Widget
+ * <span class="attrib">@param</span> {object} objArgs Tab configuration
+ */</span>
+Zapatec.AccordionTab = <span class="reserved">function</span>(objArgs) {
+	<span class="reserved">if</span> (arguments.length == 0) {
+		objArgs = {};
+	}
+
+	<span class="comment">// Call constructor of superclass</span>
+	Zapatec.AccordionTab.SUPERconstructor.call(<span class="reserved">this</span>, objArgs);
+};
+
+<span class="comment">/**
+ * Unique static id of the widget class. Gives ability for Zapatec#inherit to
+ * determine and store path to this file correctly when it is included using
+ * Zapatec#include. When this file is included using Zapatec#include or path
+ * to this file is gotten using Zapatec#getPath, this value must be specified
+ * as script id.
+ * <span class="attrib">@private</span>
+ */</span>
+Zapatec.AccordionTab.id = <span class="literal">'Zapatec.AccordionTab'</span>;
+
+<span class="comment">// Inherit Tab</span>
+Zapatec.inherit(Zapatec.AccordionTab, Zapatec.Tab);
+
+<span class="comment">/**
+ * Creates elements needed for the new tab
+ */</span>
+Zapatec.AccordionTab.<span class="reserved">prototype</span>.createTab = <span class="reserved">function</span>()
+{
+	<span class="reserved">this</span>.config.closable = false;
+
+	var tabParent = <span class="reserved">this</span>.config.tabParent;
+
+	<span class="comment">// Create a container for this tab</span>
+	<span class="reserved">this</span>.tabContainer = document.createElement(<span class="literal">'div'</span>);
+
+	<span class="comment">// Add tab container to tabs</span>
+	tabParent.appendChild(<span class="reserved">this</span>.tabContainer);
+	<span class="reserved">this</span>.config.tabParent = <span class="reserved">this</span>.tabContainer;
+
+	<span class="comment">// Call parent init</span>
+	Zapatec.AccordionTab.SUPERclass.createTab.call(<span class="reserved">this</span>);
+
+	<span class="comment">// Show content pane</span>
+	<span class="reserved">this</span>.container.getContainer().style.display = <span class="literal">'block'</span>;
+	<span class="reserved">this</span>.container.getContainer().style.width = <span class="literal">''</span>;
+
+	<span class="reserved">this</span>.tabContainer.tabId = <span class="reserved">this</span>.id;
+
+	<span class="comment">// Keyboard navigation support</span>
+	<span class="reserved">this</span>.linkNode.tabIndex = Zapatec.AccordionTab.tabIndex;
+
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.collapseOnClick) {
+		<span class="comment">// Reset onfocus handler in this mode</span>
+		<span class="reserved">this</span>.linkNode.onfocus = null;
+	}
+
+	<span class="reserved">if</span> (!<span class="reserved">this</span>.tab2tab)
+	{
+		<span class="comment">// Next tabIndex is reserved for tab content</span>
+		Zapatec.AccordionTab.tabIndex += 2;
+	}
+
+	<span class="comment">// Add title bar to tab</span>
+	<span class="reserved">this</span>.chooser = Zapatec.Utils.createElement(<span class="literal">'div'</span>);
+	<span class="reserved">this</span>.chooser.className = <span class="literal">'tabChooser'</span>;
+	<span class="reserved">this</span>.chooser.onclick = <span class="reserved">this</span>.onActivate;
+	<span class="reserved">this</span>.tabContainer.insertBefore(<span class="reserved">this</span>.chooser,
+					<span class="reserved">this</span>.tabContainer.childNodes[0]);
+
+	<span class="reserved">this</span>.chooser.appendChild(<span class="reserved">this</span>.linkNode);
+
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.tabType != <span class="literal">"iframe"</span>) {
+		<span class="comment">// Create WCH</span>
+		<span class="reserved">this</span>.wch = Zapatec.Utils.createWCH(<span class="reserved">this</span>.container.getContainer());
+		<span class="comment">// Put WCH under container</span>
+		<span class="reserved">if</span> (<span class="reserved">this</span>.wch) {
+			<span class="reserved">this</span>.wch.style.zIndex = -1;
+		}
+	}
+};
+
+<span class="comment">/**
+ * Configures the widget. Gets called from init and reconfigure methods of
+ * superclass.
+ *
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {object} objArgs User configuration
+ */</span>
+Zapatec.AccordionTab.<span class="reserved">prototype</span>.configure = <span class="reserved">function</span>(objArgs) {
+	<span class="comment">// Define config options</span>
+	<span class="comment">// Id of the tab</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'collapseOnClick'</span>, null);
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'visibleHeight'</span>, -1);
+	<span class="comment">// Call parent method</span>
+	Zapatec.AccordionTab.SUPERclass.configure.call(<span class="reserved">this</span>, objArgs);
+
+	<span class="reserved">if</span> (<span class="reserved">this</span>.config.content &amp;&amp; 1 == <span class="reserved">this</span>.config.content.nodeType) {
+		<span class="comment">// Get tab height as specified in html</span>
+		<span class="reserved">this</span>.config.visibleHeight = parseInt(<span class="reserved">this</span>.config.content.style.height);
+		<span class="reserved">this</span>.config.content.style.height = <span class="literal">""</span>;
+  }
+}
+
+<span class="comment">/**
+ * Determines child node of the container which gets focus first.
+ * Needed for keyboard navigation.
+ * <span class="attrib">@private</span>
+ */</span>
+Zapatec.AccordionTab.<span class="reserved">prototype</span>.getFocusOn = <span class="reserved">function</span> ()
+{
+	<span class="comment">// Remove old value</span>
+	<span class="reserved">this</span>.focusOn = null;
+
+	<span class="comment">// Check keyboard navigation type</span>
+	<span class="reserved">if</span> (<span class="reserved">this</span>.tab2tab)
+	{
+		<span class="reserved">return</span>;
+	}
+
+	<span class="comment">// Put it in separate process to speed up initialization</span>
+	var self = <span class="reserved">this</span>;
+
+	setTimeout(<span class="reserved">function</span>()
+	{
+		<span class="comment">// Flag to determine lower tabIndex</span>
+		var iTabIndex = 0;
+
+		<span class="comment">// Gets element with lower tabIndex</span>
+		<span class="reserved">function</span> parse(objNode)
+		{
+			var objChild = objNode.firstChild;
+
+			<span class="reserved">while</span> (objChild)
+			{
+				<span class="reserved">if</span> (objChild.nodeType == 1)
+				{
+					<span class="comment">// ELEMENT_NODE</span>
+					var strTag = objChild.tagName.toLowerCase();
+
+					<span class="reserved">if</span> (strTag == <span class="literal">'a'</span> || strTag == <span class="literal">'input'</span> || strTag == <span class="literal">'select'</span> ||
+					    strTag == <span class="literal">'textarea'</span> || strTag == <span class="literal">'button'</span>)	<span class="comment">// Element may obtain focus</span>
+					{
+						<span class="reserved">if</span> (!self.focusOn)
+						{
+							self.focusOn = objChild;
+						}
+						<span class="reserved">else</span> <span class="reserved">if</span> (objChild.tabIndex &amp;&amp; objChild.tabIndex &gt; 0 &amp;&amp;
+						         (!iTabIndex || iTabIndex &gt; objChild.tabIndex))
+						{
+							self.focusOn = objChild;
+							iTabIndex = objChild.tabIndex;
+						}
+
+						<span class="reserved">if</span> (!objChild.tabIndex)
+						{
+							objChild.tabIndex = self.linkNode.tabIndex + 1;
+						}
+					}
+
+					parse(objChild);
+				}
+
+				objChild = objChild.nextSibling;
+			}
+		};
+
+		<span class="comment">// Parse tab content</span>
+		parse(self.container.getContainer());
+	}, 0);
+};
+
+
+<span class="comment">/**
+ * Zapatec.AccordionTabs constructor. Creates a new accordion tabs object
+ * with given parameters.
+ *
+ * <span class="attrib">@constructor</span>
+ * <span class="attrib">@extends</span> Zapatec.Widget
+ * <span class="attrib">@param</span> {object} objArgs Tab configuration
+ *
+ * See Zapatec.Tabs for a list of recognized properties of the config object
+ */</span>
+Zapatec.AccordionTabs = <span class="reserved">function</span>(objArgs) {
+	Zapatec.AccordionTabs.SUPERconstructor.call(<span class="reserved">this</span>, objArgs);
+};
+
+<span class="comment">/**
+ * Unique static id of the widget class. Gives ability for Zapatec#inherit to
+ * determine and store path to this file correctly when it is included using
+ * Zapatec#include. When this file is included using Zapatec#include or path
+ * to this file is gotten using Zapatec#getPath, this value must be specified
+ * as script id.
+ * <span class="attrib">@private</span>
+ */</span>
+Zapatec.AccordionTabs.id = <span class="literal">'Zapatec.AccordionTabs'</span>;
+
+<span class="comment">// Inherit Tabs</span>
+Zapatec.inherit(Zapatec.AccordionTabs, Zapatec.Tabs);
+
+<span class="comment">/**
+ * Configures the widget. Gets called from init and reconfigure methods of
+ * superclass.
+ *
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {object} objArgs User configuration
+ */</span>
+Zapatec.AccordionTabs.<span class="reserved">prototype</span>.configure = <span class="reserved">function</span>(objArgs) {
+	<span class="comment">// Define config options</span>
+	<span class="comment">// If tabs are to collapse on click when they are active</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'collapseOnClick'</span>, false);
+	<span class="comment">// If page is to scroll with tabs as they slide.</span>
+	<span class="comment">// This option is true by default for IE6 and Mozilla</span>
+	<span class="reserved">this</span>.defineConfigOption(<span class="literal">'scrollPageOnSlide'</span>,
+					(Zapatec.is_ie &amp;&amp; !Zapatec.is_ie7) || Zapatec.is_gecko);
+	<span class="comment">// Call parent method</span>
+	Zapatec.AccordionTabs.SUPERclass.configure.call(<span class="reserved">this</span>, objArgs);
+}
+
+<span class="comment">/**
+ * Initializes object.
+ *
+ * <span class="attrib">@param</span> {object} objArgs User configuration
+ */</span>
+Zapatec.AccordionTabs.<span class="reserved">prototype</span>.init = <span class="reserved">function</span>(objArgs, i)
+{
+	<span class="comment">// Reference to this</span>
+	var self = <span class="reserved">this</span>;
+
+	<span class="comment">// Patch onInit handler</span>
+	var funcOnInit = objArgs.onInit;
+
+	objArgs.onInit = <span class="reserved">function</span>()
+	{
+		<span class="comment">// Setup tabs</span>
+		<span class="comment">//var _tabContainer = Zapatec.Widget.getElementById(self.config.tabs);</span>
+		var _tabContainer = self.config.tabs;
+		var items = _tabContainer.childNodes;
+		<span class="reserved">for</span> (var i = items.length - 1; i &gt;= 0; i--)
+		{
+			var tagName = items[i].tagName;
+			<span class="reserved">if</span> (tagName) {
+				tagName = tagName.toLowerCase();
+			}
+			<span class="reserved">if</span> (<span class="literal">'div'</span> == tagName || <span class="literal">'iframe'</span> == tagName) {
+				self.config._tabArray.push(items[i]);
+			}
+		}
+		topPos = self.config._tabArray[self.config._tabArray.length - 1].offsetTop;
+
+		<span class="comment">// Position tabs</span>
+		<span class="comment">// You need the number of tabs and their order</span>
+		<span class="comment">// then, you can calculate where they should start and stop.</span>
+		<span class="comment">////</span>
+		<span class="comment">// Each tab has a visible area of:</span>
+		<span class="comment">//	tabContainerHeight - (numOfTabs-1 * heightOfTabTitle)</span>
+		<span class="comment">//</span>
+		<span class="comment">// Each tab has a unique viewing position, derived from its place among the tabs as follows:</span>
+		<span class="comment">//	tabTop = tabContainerTop + (tabIndex-1 * heightOfTabTitle)</span>
+		<span class="comment">//</span>
+		<span class="comment">// Each tab has a unique hidden position, derived from its place among the tabs as follows:</span>
+		<span class="comment">//	tabTop = tabContainerTop + tabContainerHeight - (tabIndex * heightOfTabTitle)</span>
+		<span class="comment">//</span>
+		<span class="comment">// The tabs are layerd on top of each other in the order in which they appear in the HTML.</span>
+		<span class="comment">// The first tab appears as the default.</span>
+		<span class="comment">// In opening a tab, the chosen tab will carry all tabs below it along with it.</span>
+		<span class="comment">// In closing a tab, the chosen tab will carry all tabs above it along with it.</span>
+
+		var _tabZIndex = 100;
+
+		<span class="reserved">for</span> (var i = 0; i &lt; self.config._tabArray.length; i++)
+		{
+			var tab = self.getTabByIndex(i);
+			var tabContainer = tab.tabContainer;
+			var contentContainer = tab.container.getContainer();
+
+			var visibleHeight = tab.config.visibleHeight;
+			<span class="reserved">if</span> (tab.config.tabType.toLowerCase() == <span class="literal">"iframe"</span>) {
+				tab.container.getContainer().style.width = <span class="literal">'100%'</span>;
+			}
+
+			<span class="comment">// Set tab content container height to 1 pixel</span>
+			contentContainer.style.height = <span class="literal">'1px'</span>;
+			Zapatec.Utils.addClass(contentContainer, <span class="literal">"zpTabsNoOverflow"</span>);
+
+			<span class="comment">// Subract two to account for border</span>
+			tabContainer.style.width = _tabContainer.style.width;
+
+			<span class="comment">// Layer the tabs</span>
+			tabContainer.style.zIndex = _tabZIndex--;
+
+			<span class="comment">// This tab's array position</span>
+			tabContainer.arrayPosition = i;
+
+			<span class="comment">// This tab's viewing position</span>
+			tabContainer.viewingPosition = topPos + ((self.config._tabArray.length - 1 - i) * self.config.tabBarHeight);
+
+			<span class="comment">// This tab's hidden position</span>
+			tabContainer.hiddenPosition = topPos + parseInt(_tabContainer.style.height) - ((i + 1) * self.config.tabBarHeight);
+
+			<span class="comment">// This tab's final viewing height</span>
+			<span class="reserved">if</span> (visibleHeight &amp;&amp; 0 &lt; visibleHeight) {
+				tabContainer.viewingHeight = visibleHeight;
+			}
+			<span class="reserved">else</span> {
+				var tabContainerHeight = parseInt(_tabContainer.style.height);
+				<span class="reserved">if</span> (tabContainerHeight &amp;&amp; 0 &lt; tabContainerHeight) {
+					<span class="comment">// Calculate tab visible height by tabContainer total height and tab count</span>
+					tabContainer.viewingHeight = tabContainerHeight -
+					                             ((self.config._tabArray.length<span class="comment">/*-1*/</span>) * self.config.tabBarHeight);
+				}
+				<span class="reserved">else</span> {
+					<span class="comment">// Use default height if one can't be computed</span>
+					tabContainer.viewingHeight = 100;
+				}
+			}
+
+			<span class="comment">// This tab's hidden height</span>
+			tabContainer.hiddenHeight = self.config.tabBarHeight;
+		}
+
+		<span class="comment">// Get tab id to make active</span>
+		var activeTabId = self.getInitialActiveTabId();
+		<span class="reserved">if</span> (-1 != activeTabId) {
+			<span class="comment">// Get tab to make active</span>
+			var activeTab = self.getTab(activeTabId);
+			var tabContainer = activeTab.tabContainer;
+			var contentContainer = activeTab.container.getContainer();
+			<span class="comment">// Activate tab</span>
+			contentContainer.style.height = tabContainer.viewingHeight + <span class="literal">'px'</span>;
+			var setOverflowFunc = <span class="reserved">function</span>() {
+				Zapatec.Utils.removeClass(contentContainer, <span class="literal">"zpTabsNoOverflow"</span>);
+			};
+			<span class="reserved">if</span> (Zapatec.is_ie) {
+				setTimeout(setOverflowFunc, 0);
+			}
+			<span class="reserved">else</span> {
+				setOverflowFunc();
+			}
+			self.currentIndex = activeTab.index;
+			<span class="comment">// Reload tab if needed and call onTabChange</span>
+			self.refreshTab(activeTab, null, activeTabId);
+		}
+		<span class="comment">// Patch onBeforeTabChange handler</span>
+		var funcOnBeforeTabChange = self.config.onBeforeTabChange;
+
+		self.config.onBeforeTabChange = <span class="reserved">function</span>(objArgs)
+		{
+			<span class="comment">// Call original function</span>
+			<span class="reserved">if</span> (typeof funcOnBeforeTabChange == <span class="literal">'function'</span>)
+			{
+				<span class="reserved">return</span> funcOnBeforeTabChange(objArgs);
+			}
+			<span class="reserved">return</span> true;
+		};
+
+		<span class="comment">// Patch onTabChange handler</span>
+		var funcOnTabChange = self.config.onTabChange;
+
+		self.config.onTabChange = <span class="reserved">function</span>(objArgs)
+		{
+			<span class="comment">// Get new tab id</span>
+			var strNewTabId = objArgs.newTabId;
+
+			<span class="comment">// Get new tab</span>
+			var objNewTab = self.tabs[strNewTabId];
+
+			<span class="reserved">if</span> (!objNewTab)
+			{
+				<span class="reserved">return</span>;
+			}
+
+			<span class="comment">// Call original function</span>
+			<span class="reserved">if</span> (typeof funcOnTabChange == <span class="literal">'function'</span>)
+			{
+				funcOnTabChange(objArgs);
+			}
+		};
+
+		<span class="comment">// Call original function</span>
+		<span class="reserved">if</span> (typeof funcOnInit == <span class="literal">'function'</span>)
+		{
+			funcOnInit(objArgs);
+		}
+	};
+
+
+	<span class="comment">// Disable tab bar</span>
+	<span class="reserved">this</span>.noTabBar = true;
+
+	<span class="comment">// Define config options</span>
+	<span class="reserved">this</span>.config.windowOnLoad = null;
+
+	<span class="comment">// Tab controllers</span>
+	<span class="reserved">this</span>.config._tabArray = new Array();
+	<span class="reserved">this</span>.config.IN_MOTION = false;
+	<span class="reserved">this</span>.config.tabBarHeight = 24;
+	<span class="reserved">this</span>.config.topPos = null;
+	<span class="reserved">this</span>.config.indexOfWidget = i;
+
+	<span class="reserved">this</span>.tabsThemeSuffix = <span class="literal">'AccordionContent'</span>;
+
+	<span class="comment">// Call parent init</span>
+	Zapatec.AccordionTabs.SUPERclass.init.call(<span class="reserved">this</span>, objArgs);
+
+}
+
+<span class="comment">/**
+ * Adds a new tab.
+ *
+ * <span class="attrib">@private</span>
+ * Following format is recognized:
+ * \code
+ *  {
+ *    id: [string, optional] id of the tab,
+ *    innerHTML: [string] label,
+ *    accessKey: [string, optional] access key,
+ *    title: [string] title,
+ *    url: [string] URL of the content,
+ *	  tabType: [string] "div" or "iframe" for the content pane
+ *    index: [number, optional] index to make insert the new tab at
+ * }
+ * \endcode
+ *
+ * <span class="attrib">@param</span> {object} objTabDef JSON object.
+ */</span>
+Zapatec.AccordionTabs.<span class="reserved">prototype</span>.addTab = <span class="reserved">function</span>(objTabDef) {
+
+	<span class="reserved">if</span> (!objTabDef.collapseOnClick) {
+		<span class="comment">// Use config option from Tabs</span>
+		objTabDef.collapseOnClick = <span class="reserved">this</span>.config.collapseOnClick;
+	}
+
+	<span class="comment">// Call parent addTab</span>
+	var objTab = Zapatec.AccordionTabs.SUPERclass.addTab.call(<span class="reserved">this</span>, objTabDef);
+
+	<span class="comment">// Store index of tab container within tabs</span>
+	objTab.tabContainer.index = objTab.index;
+
+	<span class="reserved">return</span> objTab;
+}
+
+<span class="comment">/**
+ * Create a new tab instance
+ *
+ * <span class="attrib">@param</span> {object} objArgs tab configuration
+ */</span>
+Zapatec.AccordionTabs.<span class="reserved">prototype</span>.newTab = <span class="reserved">function</span>(objArgs) {
+	var objTab = new Zapatec.AccordionTab(objArgs);
+	<span class="reserved">return</span> objTab;
+}
+
+<span class="comment">/**
+ * Display a new accordion tab. If onBeforeTabChange() returns false, the
+ * operation is cancelled.
+ *
+ * <span class="attrib">@param</span> {string} strNewTabId id of the new tab.
+ */</span>
+Zapatec.AccordionTabs.<span class="reserved">prototype</span>.changeTab = <span class="reserved">function</span>(strNewTabId) {
+	var strCurrTabId = null;
+	var objTab = null;
+
+	<span class="reserved">if</span> (<span class="reserved">this</span>.tabsArray[<span class="reserved">this</span>.currentIndex])
+	{
+		strCurrTabId = <span class="reserved">this</span>.tabsArray[<span class="reserved">this</span>.currentIndex].id;
+		objTab = <span class="reserved">this</span>.tabsArray[<span class="reserved">this</span>.currentIndex];
+	}
+
+	<span class="reserved">if</span> (strCurrTabId != strNewTabId &amp;&amp; !<span class="reserved">this</span>.config.IN_MOTION)
+	{
+		<span class="comment">// Check if callback function allows to change tab</span>
+		var boolChangeTab = true;
+		<span class="reserved">if</span> (typeof <span class="reserved">this</span>.config.onBeforeTabChange == <span class="literal">'function'</span>) {
+			boolChangeTab = <span class="reserved">this</span>.config.onBeforeTabChange({
+				oldTabId: strCurrTabId,
+				newTabId: strNewTabId
+			});
+		}
+		<span class="reserved">if</span> (!boolChangeTab) {
+			<span class="reserved">return</span>;
+		}
+		<span class="comment">// Change tab</span>
+		<span class="reserved">if</span> (objTab)
+		{
+			Zapatec.Utils.removeClass(objTab.linkNode, <span class="literal">'zpTabsActive'</span>);
+		}
+
+		objTab = <span class="reserved">this</span>.getTab(strNewTabId);
+
+		var oOffset = Zapatec.Utils.getElementOffset(<span class="reserved">this</span>.config.tabs);
+		<span class="comment">// Setup WCH</span>
+		Zapatec.Utils.setupWCH(objTab.wch, 0, 0, oOffset.width, oOffset.height);
+
+		Zapatec.Utils.addClass(objTab.linkNode, <span class="literal">'zpTabsActive'</span>);
+		<span class="reserved">this</span>.currentIndex = objTab.index;
+
+		<span class="comment">// Initiate sliding:</span>
+		<span class="reserved">this</span>.slide(objTab.tabContainer.arrayPosition, 5, 10);
+
+		<span class="comment">// Reload tab if needed and call onTabChange</span>
+		<span class="reserved">this</span>.refreshTab(objTab, strCurrTabId, strNewTabId);
+	}
+	<span class="reserved">else</span> {
+		<span class="comment">// If collapseOnClick config option is set and</span>
+		<span class="comment">// the current tab is being re-activated</span>
+		<span class="reserved">if</span> (<span class="reserved">this</span>.config.collapseOnClick &amp;&amp; strCurrTabId == strNewTabId &amp;&amp;
+		    !<span class="reserved">this</span>.config.IN_MOTION) {
+			<span class="comment">// Collapse active tab</span>
+			<span class="reserved">this</span>.collapseTab();
+		}
+	}
+};
+
+<span class="comment">/**
+ * Scrolls tabs to the left. Moves tab(s) by pxInc every timeInc
+ *
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {boolean} setTab Whether the function should set the selected tab
+ * on its own.
+ */</span>
+Zapatec.AccordionTabs.<span class="reserved">prototype</span>.slide = <span class="reserved">function</span>(index, pxInc, timeInc) {
+	<span class="reserved">if</span> (false == <span class="reserved">this</span>.config.IN_MOTION) {
+		var date = new Date();
+		<span class="reserved">this</span>.moveStartTime = date.getTime();
+		<span class="reserved">this</span>.lastTime = <span class="reserved">this</span>.moveStartTime - timeInc;
+		<span class="reserved">this</span>.isDecreaseHeight = true;
+	}
+
+	<span class="comment">// Test for index validity</span>
+	<span class="reserved">if</span> (isNaN(index) || index &lt; -1 || index &gt;= <span class="reserved">this</span>.config._tabArray.length)
+	{
+		<span class="comment">// Allow switching again</span>
+		<span class="reserved">this</span>.config.IN_MOTION = false;
+
+		<span class="reserved">return</span>;
+	}
+
+	var date = new Date();
+	var time = date.getTime();
+	<span class="comment">// Calculate time elapsed since last frame</span>
+	var diffTime = time - <span class="reserved">this</span>.lastTime;
+	<span class="comment">// Calculate pixels difference for elapsed time</span>
+	var inc = Math.round((diffTime / timeInc) * pxInc);
+	<span class="reserved">if</span> (0 == inc) {
+		var self = <span class="reserved">this</span>;
+		<span class="comment">// Go again</span>
+		setTimeout(<span class="reserved">function</span>() {
+			self.slide(index, pxInc, timeInc);
+		}, timeInc);
+		<span class="reserved">return</span>;
+	}
+	<span class="reserved">this</span>.lastTime = time;
+
+	var resizeTabs = {decreaseDif: 0, increaseDif: 0};
+
+	<span class="comment">// Flags if any tab has been resized</span>
+	var isAdjust = false;
+	<span class="comment">// Find 1 tab to increase and 1 tab to decrease</span>
+	<span class="reserved">for</span> (var tries = 0; tries &lt; 2; tries++) {
+		<span class="reserved">for</span> (var i = 0; i &lt; <span class="reserved">this</span>.config._tabArray.length; i++)
+		{
+			var tab = <span class="reserved">this</span>.getTabByIndex(i);
+			var tabContainer = tab.tabContainer;
+			var contentContainer = tab.container.getContainer();
+			var newHeight = -1;
+
+			var oldHeight = parseInt(contentContainer.style.height);
+			var isCurrent = tab.index == <span class="reserved">this</span>.currentIndex;
+			<span class="reserved">if</span> (!isCurrent &amp;&amp; <span class="reserved">this</span>.isDecreaseHeight) {
+				newHeight = oldHeight - inc;
+
+				<span class="comment">// Check for lower limit</span>
+				<span class="reserved">if</span> (newHeight &lt; 1) {
+					newHeight = 1;
+				}
+			}
+			<span class="reserved">else</span> <span class="reserved">if</span> (isCurrent &amp;&amp; !<span class="reserved">this</span>.isDecreaseHeight) {
+				newHeight = oldHeight + inc;
+
+				<span class="comment">// Watch out for upper limit</span>
+				<span class="reserved">if</span> (tabContainer.viewingHeight &lt;= newHeight) {
+					newHeight = tabContainer.viewingHeight;
+				}
+			}
+			<span class="comment">// If a new height is determined</span>
+			<span class="reserved">if</span> (-1 != newHeight &amp;&amp; oldHeight != newHeight) {
+
+				<span class="reserved">if</span> (<span class="reserved">this</span>.isDecreaseHeight) {
+					resizeTabs.decreaseTab = contentContainer;
+					resizeTabs.decreaseDif = oldHeight - newHeight;
+				}
+				<span class="reserved">else</span> {
+					resizeTabs.increaseTab = contentContainer;
+					resizeTabs.increaseDif = newHeight - oldHeight;
+				}
+
+				isAdjust = true;
+
+				break;
+			}
+		}
+		<span class="reserved">this</span>.isDecreaseHeight = !<span class="reserved">this</span>.isDecreaseHeight;
+
+	}
+
+	var dif;
+	<span class="reserved">if</span> (resizeTabs.increaseTab &amp;&amp; resizeTabs.decreaseTab) {
+		dif = Math.min(resizeTabs.decreaseDif, resizeTabs.increaseDif);
+	}
+	<span class="reserved">else</span> <span class="reserved">if</span> (!resizeTabs.increaseTab) {
+		dif = resizeTabs.decreaseDif;
+	}
+	<span class="reserved">else</span> {
+		dif = resizeTabs.increaseDif;
+	}
+
+	var incTab = resizeTabs.increaseTab;
+	var decTab = resizeTabs.decreaseTab;
+	<span class="reserved">if</span> (incTab) {
+		var incOldHeight = parseInt(incTab.style.height);
+		incTab.style.height = (incOldHeight + dif) + <span class="literal">'px'</span>;
+
+		<span class="reserved">if</span> (<span class="reserved">this</span>.isLoadedHtml &amp;&amp; incTab.tagName &amp;&amp;
+		    incTab.tagName.toLowerCase() != <span class="literal">'iframe'</span>) {
+			var tabContentDiv = Zapatec.Utils.getFirstChild(incTab, <span class="literal">"div"</span>);
+			Zapatec.Utils.addClass(tabContentDiv, <span class="literal">"zpTabsNoOverflow"</span>);
+		}
+
+		Zapatec.Utils.addClass(incTab, <span class="literal">"zpTabsNoOverflow"</span>);
+	}
+	<span class="reserved">if</span> (decTab) {
+		var decOldHeight = parseInt(decTab.style.height);
+		<span class="reserved">if</span> (!incTab &amp;&amp; <span class="reserved">this</span>.config.scrollPageOnSlide) {
+			var scrollY = Zapatec.Utils.getPageScrollY();
+
+			var winSize = Zapatec.Utils.getWindowSize();
+
+			var decTabPos = Zapatec.Utils.getAbsolutePos(decTab);
+			var scrollPosBottom = scrollY + winSize.height - document.body.clientHeight;
+			<span class="comment">// If vertical scroller is at the bottom</span>
+			<span class="reserved">if</span> (0 &lt;= scrollPosBottom &amp;&amp; scrollPosBottom &lt; 20) {
+				var y = decTabPos.y + decOldHeight - winSize.height;
+				<span class="reserved">if</span> (y &lt; 0) {
+					y = 0;
+				}
+				window.scrollTo(0, y);
+			}
+			<span class="comment">// If decreased tab goes up from browser viewport</span>
+			<span class="reserved">if</span> (decTabPos.y + decOldHeight - dif &lt; scrollY) {
+				var y = decTabPos.y + decOldHeight - winSize.height;
+				<span class="reserved">if</span> (y &lt; 0) {
+					y = 0;
+				}
+				window.scrollTo(0, y);
+			}
+		}
+		decTab.style.height = (decOldHeight - dif) + <span class="literal">'px'</span>;
+
+		<span class="reserved">if</span> (<span class="reserved">this</span>.isLoadedHtml &amp;&amp; decTab.tagName &amp;&amp;
+		    decTab.tagName.toLowerCase() != <span class="literal">'iframe'</span>) {
+			var tabContentDiv = Zapatec.Utils.getFirstChild(decTab, <span class="literal">"div"</span>);
+			Zapatec.Utils.addClass(tabContentDiv, <span class="literal">"zpTabsNoOverflow"</span>);
+		}
+
+		Zapatec.Utils.addClass(decTab, <span class="literal">"zpTabsNoOverflow"</span>);
+	}
+
+	<span class="reserved">if</span> (!isAdjust) {
+		<span class="comment">// Allow switching again</span>
+		<span class="reserved">this</span>.config.IN_MOTION = false;
+
+		<span class="reserved">if</span> (-1 != <span class="reserved">this</span>.currentIndex) {
+			var currentTab = <span class="reserved">this</span>.getTabByIndex(<span class="reserved">this</span>.currentIndex);
+
+			var stoppedTabContainer = currentTab.container.getContainer();
+			Zapatec.Utils.removeClass(stoppedTabContainer, <span class="literal">"zpTabsNoOverflow"</span>);
+		}
+
+		<span class="reserved">return</span>;
+	}
+
+	<span class="comment">// Stop switching while this process is running</span>
+	<span class="reserved">this</span>.config.IN_MOTION = true;
+
+	var self = <span class="reserved">this</span>;
+	<span class="comment">// Go again</span>
+	setTimeout(<span class="reserved">function</span>() {
+		self.slide(index, pxInc, timeInc);
+	}, timeInc);
+}
+
+<span class="comment">/**
+ * Collapses the currently active tab
+ *
+ * <span class="attrib">@private</span>
+ */</span>
+Zapatec.AccordionTabs.<span class="reserved">prototype</span>.collapseTab = <span class="reserved">function</span>() {
+	<span class="reserved">if</span> (-1 != <span class="reserved">this</span>.currentIndex) {
+		var currentTab = <span class="reserved">this</span>.getTabByIndex(<span class="reserved">this</span>.currentIndex);
+		Zapatec.Utils.removeClass(currentTab.linkNode, <span class="literal">'zpTabsActive'</span>);
+	}
+
+	<span class="reserved">this</span>.currentIndex = -1;
+
+	<span class="comment">// Initiate sliding:</span>
+	<span class="reserved">this</span>.slide(-1, 5, 10);
+
+}</pre>
+	<hr>
+
+
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top"><em>
+<b>Zapatec Tabs</b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<font size="-1">
+
+</font>
+<div class="jsdoc_ctime">Documentation generated by <a href="http://jsdoc.sourceforge.net/" target="_parent">JSDoc</a> on Thu Aug 16 12:19:03 2007</div>
+</body>
+</html>

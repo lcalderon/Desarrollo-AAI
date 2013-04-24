@@ -1,0 +1,133 @@
+body { 
+	margin: 15px 0px 0px 0px;
+	font-family: Arial, sans-serif, Verdana, Helvetica;
+	color: #444444;
+	font-size: 11px;
+	background-image:url(../../../Imagenes/Estilo_window/RILzyc.png);background-repeat:repeat-x;
+}
+
+table,td {
+	color: #0c298f;
+	font-size: 11px;
+	font-family: Arial, sans-serif, Verdana,  Helvetica;
+}
+	
+form {
+	margin: 0px;
+}
+
+a:link, a:visited {
+	color: #444444;
+	font-size: 11px;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #666666;
+	text-decoration: underline;
+}
+
+/* Controles de Formularios */
+	
+/*.button {
+	border: 1px solid #444444;
+	background-color: #ffffff;
+	font-size: 11px;
+	color: #444444;
+	font-weight: normal;
+	background-image: url(../../../Imagenes/formButtonBg.png);
+}*/
+	
+.buttonOn {
+	border: 1px solid #444444;
+	background-color: #ffffff;
+	font-size: 11px;
+	color: #444444;
+	font-weight: normal;
+	background-image: url(../../../images/formButtonBgOn.png);
+}
+	
+.buttonSumnit {
+    background: url("images/button.gif") no-repeat scroll 0 0 #FFFFFF;
+    border: 0 none;
+    color: #888888;
+    font-family: Trebuchet MS;
+    font-size: 12px;
+    height: 20px;
+    margin-top: 7px;
+    padding-bottom: 14px;
+    width: 100px;
+}
+
+/*input,select {
+	border: 1px solid #888888;
+	font-size: 11px;
+	background-color: #ffffff;
+}
+	
+textarea {
+	border: 1px solid #888888;
+	font-size: 12px;
+	background-color: #ffffff;
+}
+
+checkbox,radio {
+	border:0px;
+	background-color: transparent;
+	margin: 0px;
+	vertical-align: bottom;
+}*/
+
+
+input.txt {
+    background: url("images/input.gif") repeat scroll 0 0 transparent;
+    border: 1px solid #AAAAAA;
+    color: #555555;
+    font: 12px Trebuchet MS;
+    padding: 3px;
+}
+textarea.entrytext {
+    background: url("images/input.gif") repeat scroll 0 0 transparent;
+    border: 1px solid #AAAAAA;
+    color: #555555;
+    font: 12px Trebuchet MS;
+    overflow: hidden;
+    padding: 1px;
+}
+
+input.txt:hover, textarea.entrytext:hover {
+    border: 1px solid #506BA3;
+}
+input.txt:focus, textarea.entrytext:focus {
+    background: url("images/input.gif") repeat scroll 0 0 transparent;
+    border: 1px solid #506BA3;
+}
+
+
+.button {
+    padding: 4px 10px 3px 25px;
+    border: solid 1px #8AB134;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    background-image: url( 'bkg.png' );
+    background-repeat: repeat-x;
+    font-size: 11px;
+    height: 16px;
+    text-decoration: none;
+    color: #40740D;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+}
+
+.button img {
+    position: absolute;
+    top: -4px;
+    left: -12px;
+    border: none;
+}
+.button:hover {
+    color: #8AB134;
+}  

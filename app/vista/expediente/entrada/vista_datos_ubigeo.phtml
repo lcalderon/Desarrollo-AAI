@@ -1,0 +1,109 @@
+<?php
+
+	session_start();
+	
+	include_once("../../../modelo/clase_mysqli.inc.php");
+	include_once("../../../modelo/clase_lang.inc.php");
+	include_once("../../../modelo/validar_permisos.php");
+	include_once("../../includes/arreglos.php");
+ 	include_once("../../../modelo/clase_ubigeo.inc.php");
+	
+	$con= new DB_mysqli();	
+	if($con->Errno){
+		printf("Fallo de conexion: %s\n", $con->Error);
+		exit();
+	}
+
+	$idexpediente=$_GET["idexpediente"];	
+ 
+	if($_GET["idexpediente"] or $_POST["opcion"]=="EXP"){
+	
+		if($_POST["opcion"]=="EXP")	$idexpediente=$_REQUEST["idcodigo"];
+
+		$Sql_ubi="SELECT					 
+				  IDEXPEDIENTE	as ubigeo					  
+				FROM $con->temporal.expediente_ubigeo
+				WHERE IDEXPEDIENTE ='$idexpediente'";
+
+		$tabla="expediente_ubigeo";
+		$base=$con->temporal;
+		$campo="IDEXPEDIENTE";
+	
+		$idubigeo=$con->consultation($Sql_ubi);
+		$idubigeo=$idubigeo[0][0];
+ 
+	} else{
+		if($_POST["opcion"]=="EXP"){
+			$tabla="expediente_ubigeo";
+			$base=$con->temporal;
+			$campo="IDEXPEDIENTE";			
+			$idubigeo=$_POST["idcodigo"];
+		} else if($_POST["opcion"]=="ASI"){
+			$tabla="asistencia_lugardelevento";
+			$base=$con->temporal;
+			$campo="ID";			
+			$idubigeo=$_POST["idcodigo"];			
+		} else if($_POST["opcion"]=="SAC"){
+			$tabla="catalogo_afiliado_persona_domicilio_ubigeo";
+			$base=$con->catalogo;
+			$campo="ID";			
+			$idubigeo=$_POST["idcodigo"];
+		} else if($_POST["opcion"]=="AFI" || $_REQUEST["idcodigo"] || $_REQUEST["idafiliado"]){
+			$tabla="catalogo_afiliado_persona_ubigeo";
+			$base=$con->catalogo;
+			$campo="IDAFILIADO";
+			if($_REQUEST["idafiliado"] !="")	$_POST["idcodigo"]=	$_REQUEST["idafiliado"];
+			$idubigeo=$_POST["idcodigo"];
+		} 	
+	}	
+ 
+	if($idubigeo!="" or $idubigeo!=0){
+		$ubigeo = new ubigeo();
+		$ubigeo->leer($campo,$base,$tabla,$idubigeo);
+	}
+ ?>	
+	<table bgcolor="#F1F4F5" width="100%" border="0" cellpadding="1" cellspacing="1" style="border:1px solid #002f5e"> 
+		<? include('../../includes/vista_entidades2.php'); ?>		
+		<input type='hidden'  name='LATITUD' id='latitud'/>
+		<input type='hidden'  name='LONGITUD' id='longitud'/>		  
+		<tr class="modo1">
+			<td><?=_('DIRECCION')?> <span class="style2">*</span></td>
+			<td><input type="text" name='DIRECCION'  value="<?=utf8_encode($ubigeo->direccion);?>" id='direccion' size='70' autocomplete="off" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" class="classtexto" style="text-transform:uppercase;" >
+				<? if($idexpediente or $_POST["idcodigo"]){ ?> <img src="../../../../imagenes/iconos/historial_ubi.gif" width="16" height="16" style="cursor:pointer" onclick="ventana_ubigeo('<?=$_GET["gestion"]?>')"  title="<?=_("HISTORIAL DE DIRECCIONES") ;?>" alt="<?=_("HISTORIAL") ;?>"><? } ?></td>							
+				<div id='sugeridos' class="autocomplete" style="display:none"></div>
+		</tr>
+		<tr class="modo1">
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr class="modo1">
+			<td colspan="2"><strong><span class="style1"><?=_('REFERENCIAS')?></span></strong></td>
+		</tr>
+		<tr class="modo1">
+			<td colspan="2"><textarea name="txtareferencia" id="txtareferencia" cols="80" rows="2" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" class="classtexto" style="text-transform:uppercase;"><?=utf8_encode($ubigeo->descripcion); ?></textarea></td>
+		</tr>		
+ 	</table>
+	
+	<script type="text/javascript">	 
+// **********************  Ajax para autocompletar las calles ********************************//
+		new Ajax.Autocompleter('direccion',	'sugeridos',"/app/controlador/ajax/ajax_calles.php",{
+			method: "get",
+			paramName: "calle",
+			callback: function(editor, paramText){
+				parametros = "&cveentidad1="+ $F('cveentidad1')
+				+"&cveentidad2="+$F('cveentidad2')
+				+"&cveentidad3="+$F('cveentidad3')
+				//+"&cveentidad4="+$F('cveentidad4')
+				//+"&cveentidad5="+$F('cveentidad5')
+				//+"&cveentidad6="+$F('cveentidad6')
+				//+"&cveentidad7="+$F('cveentidad7');
+				return  paramText+parametros;
+			},
+			afterUpdateElement: function(text,li){
+				var coordenadas = li.id.split(',');
+				$('latitud').value=coordenadas[0];
+				$('longitud').value=coordenadas[1];
+			},
+			minChars: 2,
+			selectFirst: false 
+		}); 	 
+	</script>

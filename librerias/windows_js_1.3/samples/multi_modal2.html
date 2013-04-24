@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<script>
+  var cssPath ="../themes/"
+</script>
+<link href="../themes/default.css" rel="stylesheet" type="text/css" >	 </link> 
+<link href="../themes/alphacube.css" rel="stylesheet" type="text/css" >	 </link>
+
+<script type="text/javascript" src="../javascripts/prototype.js"> </script>
+<script type="text/javascript" src="../javascripts/effects.js"> </script>
+<script type="text/javascript" src="../javascripts/window.js"> </script>
+<script type="text/javascript" src="../javascripts/window_effects.js"> </script>
+<script type="text/javascript" src="../javascripts/debug.js"> </script>
+
+<style>
+.alphacube_buttons input    {
+  	width:40%;
+  }
+  
+</style>
+</head>
+
+<body>
+<a href="#" onclick="openConfirm()">open alert dialog</a><br/>
+<a href="#" onclick="openDialog('content')"><span style="font-size:16px">Open a modal window</span></a><br/>
+<input type="checkbox" checked="checked" value="1" onchange="Window.keepMultiModalWindow = ! this.checked" >
+Hide modal window when on new one is open
+<div id="content" style="display:none">
+        <input value="Ok" onclick="Dialog.okCallback()" class=" ok_button" type="button">       
+  
+    <input value="Ok" onclick="Dialog.okCallback()" class=" ok_button" type="button">   
+	
+</div> 
+
+<script type="text/javascript">
+  var win = null;
+  var index = 1;
+  
+	function openDialog(id) {
+	  Dialog.alert($(id).innerHTML, {
+	  
+	  className: "alphacube", 
+	  okLabel: "Cerrar",
+	  url: "/dev_soaa_ng/app/vista/catalogos/asignacion_familia/ver.php",
+	  width:250, id: "d" + index
+	  
+	  })
+	  index++;
+	  
+	  
+  }	
+  
+   function openConfirm() {
+   
+   
+    //Dialog.alert("Add your <b>HTML</b> message here<br/>Better than a classic javascript alert?", 
+    Dialog.alert("Add your <b>HTML</b> message here<br/>Better than a classic javascript alert?", 
+                   {top: 10, width:250, className: "alphacube", okLabel: "cerar"})
+				   
+				   
+				   
+  }
+  
+ 
+</script>
+
+</body>
+</html>

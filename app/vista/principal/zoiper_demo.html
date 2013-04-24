@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Zoiper Web Example</title>
+</head>
+<body onunload="Quit()">
+
+<script type="text/javascript">
+var Zoiper;
+var ActiveCall;
+
+function GetValue(name)
+{
+	return document.getElementById(name).value;
+}
+
+function Quit()
+{
+	Zoiper.DelContact("web demo");
+	Zoiper.DelAccount("Sample");
+	document.getElementById('ZoiperA').innerHTML = "";
+}
+
+function Hang()
+{
+	if (null != ActiveCall)
+	ActiveCall.Hang();
+	ActiveCall = null;
+}
+
+function Dial()
+{
+	ActiveCall = Zoiper.Dial(GetValue("number"));
+}
+
+function Hold()
+{
+	if (null != ActiveCall)	ActiveCall.Hold();
+}
+
+function Login()
+{
+	var user = GetValue("user");
+	var pass = GetValue("pass");
+	Zoiper.Login(user,pass);
+}
+
+function Logout()
+{
+	Zoiper.Logout();
+}
+
+function Status(text)
+{
+	var node = document.getElementById("Status");
+	node.innerHTML = text;
+
+}
+
+function OnZoiperReady(phone)
+{
+	Zoiper = phone;
+	var Config = Zoiper.GetConfig();
+	Config.PopupMenuOnIncomingCall = "false";
+	Config.DebugLogPath = "d:\\";
+	Config.EnableDebugLog = "true";
+	Account = Zoiper.AddAccount("Sample", "sip");
+//	Account.Domain = "10.2.1.9:6060";
+	Account.Domain = "192.168.0.6";
+	Account.CallerID = "4105";
+	Account.UserName = "4105";
+	Account.Password = "4105";
+	Account.STUNHost = "192.168.0.6";
+	Account.STUNPort = "3478";
+	Account.AddCodec("gsm");
+	Account.DTMFType = "media_inband";
+	Account.Apply();
+	Account.Register();
+	Zoiper.UseAccount("Sample");
+	
+	var Contact = Zoiper.AddContact("web demo");
+	Contact.Account = "Sample";
+	Contact.Display = "web demo display";
+	Contact.FirstName = "John";
+	Contact.MiddleName = "F.";
+	Contact.LastName = "Doe";
+	Contact.Country = "Alabama";
+	Contact.City = "Huntsville";
+	Contact.WorkPhone = "work";
+	Contact.HomePhone = "home";
+	Contact.CellPhone = "cell";
+	Contact.FaxNumber = "fax";
+	Contact.Apply();
+}
+
+function OnZoiperCallFail(call)
+{
+	Status(call.Phone + " failed");
+}
+function OnZoiperCallRing(call)
+{
+	Status(call.Phone + " ring");
+}
+function OnZoiperCallHang(call)
+{
+	Status(call.Phone + " hang");
+}
+function OnZoiperCallHold(call)
+{
+	Status(call.Phone + " hold");
+}
+function OnZoiperCallUnhold(call)
+{
+	Status(call.Phone + " unhold");
+}
+function OnZoiperCallAccept(call)
+{
+	Status(call.Phone + " accept");
+}
+function OnZoiperCallReject(call)
+{
+	Status(call.Phone + " reject");
+}
+function OnZoiperCallIncoming(call)
+{
+	Status(call.Phone + " incoming");
+}
+function OnZoiperAccountRegister(account)
+{
+	Status(account.Name + " is registered");
+}
+function OnZoiperAccountUnregister(account)
+{
+	Status(account.Name + " is unregistered");
+}
+function OnZoiperAccountRegisterFail(account)
+{
+	Status(account.Name + " failed to register");
+}
+function OnZoiperContactStatus(contact,status)
+{
+	Status(contact.Name + " is " + status);
+}
+</script>
+<p id="Status">Ready</p>
+<table>
+	<tr>
+		<td>Number</td>
+	</tr>
+	<tr>
+		<td><input id="number" type="text"/></td>
+		<td></td>
+		<td><button onclick="Dial()">Dial</button></td>
+		<td><button onclick="Hold()">Hold</button></td>
+		<td><button onclick="Hang()">Hang</button></td>
+	</tr>
+	<tr>
+		<td>Login</td>
+		<td>Password</td>
+	</tr>
+	<tr>
+		<td><input id="user" type="text"/></td>
+		<td><input id="pass" type="text"/></td>
+		<td><button onclick="Login()">Login</button></td>
+		<td><button onclick="Logout()">Logout</button></td>
+	</tr>
+</table>
+
+<object id="ZoiperA" classid="clsid:BCCA9B64-41B3-4A20-8D8B-E69FE61F1F8B"
+CODEBASE="http://www.zoiper.com/webphone/InstallerWeb.cab#Version=1,17,0,6802" align="left"
+width="434" height="236" >
+<embed id="ZoiperN" type="application/x-zoiper-plugin" align="left" width="434" height="236"/>
+</object>
+</body>
+</html>

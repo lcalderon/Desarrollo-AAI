@@ -1,0 +1,1041 @@
+body {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px; 
+}
+
+table.table1 {
+
+	border-width: 1px;
+	border-spacing: 0px;
+	border-color: #AEAEAF;
+	border-collapse: separate;
+	background-color: white;
+}
+
+table.table1 td {
+
+	border-color: #AEAEAF;
+	/*background-color: white;	*/
+	margin: 01px;
+ 	font-size: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	padding: 01px;
+	color: #000000;
+}
+
+table.table1 th {
+
+	border-color: #AEAEAF;
+	background-color: #D7D9DB;	
+	margin: 01px;
+ 	font-size: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	padding: 01px;
+	color: #000000;
+	font-weight: bold;
+}
+
+table.table1 input:focus{
+
+	background-color: #FFFFD5;
+	border:1px solid #336699;
+
+}
+
+table.table2 {
+
+	border-width: 01px;
+	border-spacing: 02px;
+	border-color: #FFFFFF;
+	background-color: #EFEFEF;
+}
+
+table.table2 td {
+
+	border-color: #336699;
+	background-color: white;	
+	margin: 01px;
+ 	font-size: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	padding: 01px;
+	font-weight: bold;
+	color: #666666;
+}
+
+table.table2 input{
+
+	background: #CCCCCC;
+	border:1px solid #828282;
+	color: #FFFFFF;
+}
+ 
+table.llamadas {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:8px;
+	text-align: center;
+	
+}
+ 
+table.llamadas th {
+
+	padding: 2px;
+	font-size: 8px;
+	background-color: #CCCFD2;
+	font-weight: bold;
+	/*background-image: url('/imagenes/logos/fondo_th.png');
+	background-repeat: repeat-x;*/
+	color: #000000;
+	text-align: center;
+
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+	font-family: �Trebuchet MS�, Arial;
+	
+	/*text-transform: uppercase;*/
+}
+
+table.llamadas td{
+	background-color: #FFFFFF;
+	font-size:8px;	
+}
+
+table.llamadas .modo1 {
+
+	font-size: 11px;
+	font-weight:normal;
+	background-color: #e2ebef;
+	/*background-image: url('/imagenes/logos/fondo_tr02.png');*/
+	background-repeat: repeat-x;
+	color: #34484E;
+	font-family: �Trebuchet MS�, Arial;
+}
+
+table.llamadas .modo2 {
+
+	font-size: 10px;
+	font-weight:normal;
+	background-color: #f0f0f0;
+	/*background-image: url(fondo_tr01.png);*/
+	background-repeat: repeat-x;
+	color: #34484E;
+	font-family: �Trebuchet MS�, Arial;
+}
+
+input.eventos {
+
+	font-size:12px;
+	padding-left:12px;
+	border-color: #8ba3b9;
+	border-style: solid;
+	border-width: 1px;
+	color: #333333;
+	text-transform: uppercase;
+
+}
+
+input.eventos:focus{
+	background-image:url('/imagenes/iconos/user1.gif');  
+	background-repeat:no-repeat;
+	padding-left:12px;  
+	border-width:1px;  
+	border-style:solid;  
+	border-color:#CC0000;
+	font-size: 12px;
+}
+  
+table.lista {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	text-align: center;
+	width: 560px;
+	
+
+}
+ 
+table.lista th {
+
+	padding: 1px;
+	font-size: 10px;
+	background-color: #83aec0;
+	background-image:  url('/imagenes/logos/text-bg.gif');
+	background-repeat: repeat-x;
+	color: #000000;
+	text-align: center;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #558FA6;
+	border-bottom-color: #558FA6;
+	font-family: �Trebuchet MS�, Arial;
+	/*text-transform: uppercase;*/
+}
+
+
+ 
+table.catalogos_costos {
+
+	font-family: Times New Roman, Times, serif;
+	font-size:10px;
+	text-align: center;
+	width: 565px;
+
+}
+
+table.disponiblidad {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	text-align: center;
+	border-spacing: 0px;
+	border-color: #FFFFFF;
+	border-collapse: separate;
+	border-width: 1px;
+}
+ 
+table.disponibilidad th {
+
+	padding: 1px;
+	font-size: 10px;
+	background-color: #83aec0;
+	background-repeat: repeat-x;
+	color: #FFFFFF;
+	text-align: center;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #558FA6;
+	border-bottom-color: #558FA6;
+	font-family: Trebuchet MS, Arial;
+	/*text-transform: uppercase;*/
+}
+
+table.catalogos {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	text-align: center;
+}
+ 
+table.catalogos th {
+
+	padding: 1px;
+	font-size: 10px;
+	background-color: #83aec0;
+	background-image: url('/imagenes/logos/fondo_cat.png');
+	background-repeat: repeat-x;
+	color: #FFFFFF;
+	text-align: center;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #558FA6;
+	border-bottom-color: #558FA6;
+	font-family: Trebuchet MS, Arial;
+	/*text-transform: uppercase;*/
+}
+
+table.catalogos .modo1 {
+
+	font-size: 11px;
+	font-weight:normal;
+	background-color: #e2ebef;
+	background-repeat: repeat-x;
+	color: #34484E;
+	text-align: left;
+	padding: 01px;
+	margin: 01px;
+	font-family: �Trebuchet MS�, Arial;
+}
+
+
+table.catalogos .modo2 {
+
+	font-size: 10px;
+	font-weight:normal;
+	background-color: #e2ebef;
+	background-image: url('/imagenes/logos/fondo_tr_cat.png');
+	background-repeat: repeat-x;
+	color: #34484E;
+	font-family: �Trebuchet MS�, Arial;
+	text-align: left;
+}
+
+/* catalogo planes*/
+
+table.catalogos_plan {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	text-align: center;
+
+}
+ 
+table.catalogos_plan th {
+
+	padding: 1px;
+	font-size: 10px;
+	background-color: #83aec0;
+	background-image: url('/imagenes/logos/fondo_cat.png');
+	background-repeat: repeat-x;
+	color: #FFFFFF;
+	text-align: center;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #558FA6;
+	border-bottom-color: #558FA6;
+	font-family: �Trebuchet MS�, Arial;
+	/*text-transform: uppercase;*/
+}
+
+table.catalogos_plan .modo1 {
+
+	font-size: 11px;
+	font-weight:normal;
+	background-color: #e2ebef;
+	background-repeat: repeat-x;
+	color: #34484E;
+	text-align: left;
+	padding: 01px;
+	margin: 01px;
+	font-family: �Trebuchet MS�, Arial;
+}
+
+
+table.catalogos_plan.modo2 {
+
+	font-size: 10px;
+	font-weight:normal;
+	background-color: #e2ebef;
+	background-image: url('/imagenes/logos/fondo_tr_cat.png');
+	background-repeat: repeat-x;
+	color: #34484E;
+	font-family: �Trebuchet MS�, Arial;
+	text-align: left;
+}
+
+
+table.listados {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:09px;
+	text-align: center;
+	/*background-color:#000091;*/
+}
+ 
+table.listados th {
+
+	padding: 1px;
+	font-size: 10px;
+	background-color: #83aec0;
+	background-image: url('/imagenes/logos/fondo_cat.png');
+	background-repeat: repeat-x;
+	color: #FFFFFF;
+	text-align: center;
+	cursor:pointer;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #558FA6;
+	border-bottom-color: #558FA6;
+	font-family: �Trebuchet MS�, Arial;
+	/*text-transform: uppercase;*/
+}
+
+table.listados .modo1 {
+
+	font-size: 11px;
+	font-weight:normal;
+	background-color: #e2ebef;
+	background-repeat: repeat-x;
+	color: #34484E;
+	text-align: left;
+	padding: 01px;
+	margin: 01px;
+	font-family: �Trebuchet MS�, Arial;
+}
+
+table.listados .modo2 {
+
+	font-size: 10px;
+	font-weight:normal;
+	background-color: #e2ebef;
+	background-image: url('/imagenes/logos/fondo_tr_cat.png');
+	background-repeat: repeat-x;
+	color: #34484E;
+	font-family: �Trebuchet MS�, Arial;
+	text-align: left;
+} 
+
+
+h2 {
+	font-size: 1.2em;
+	margin: 0;
+	border-bottom: 1px solid #797979;
+	margin-bottom: 2px;
+	color: #354158;
+}
+
+
+/* a {
+	color: #FFFFFF;
+	text-decoration: none;
+	cursor:pointer;
+}
+
+a:hover {
+	color: #FFFF99;
+} */
+
+.FormObjOnFocus {
+	border-color: #8ba3b9;
+	border-style: solid; 
+	border-width: 1px;
+	color: #333333; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	background-color: #FFFFBC 
+	
+}
+
+.FormObjOffFocus {
+	border-color: #8ba3b9;
+	border-style: solid;
+	border-width: 1px;
+	color: #333333;
+	font-size: 10px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+
+}
+
+.classtexto {
+	border-color: #8ba3b9;
+	border-style: solid;
+	border-width: 1px;
+	color: #333333;
+	font-size: 10px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	
+}
+ 
+
+.classtextoreadonly {
+	border-color: #8ba3b9;
+	border-style: solid;
+	border-width: 1px;
+	color: #333333;
+	font-size: 10px; 
+	background-color: #cccccc; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	
+}
+.boton{
+	font-size:10px;
+	font-family:Verdana,Helvetica;
+	font-weight:bold;
+	color:#FFFFFF;
+	background: #638cb5;
+}
+
+.botonstandar{
+    font-size:10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+    width:70px;
+	height:24px;
+}
+
+.botonelimnar{
+    font-size:10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+    width:65px;
+	height:25px;
+}
+
+.botonactualizar{
+    font-size:10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+    width:63px;
+	height:22px;
+}
+
+.FormObjOnFocustxta{
+	border-color: #8ba3b9;
+	border-style: solid; 
+	border-width: 1px;
+	color: #333333; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px; 
+	background-color: #FFFFBC;
+	width:95%;
+}
+
+.FormObjOffFocustxta {
+
+	border-color: #8ba3b9;
+	border-style: solid; 
+	border-width: 1px;
+	color: #333333; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px; 
+	width:95%;
+}
+
+.classtxta{
+	border-color: #8ba3b9;
+	border-style: solid; 
+	border-width: 1px;
+	color: #333333; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px; 
+	width:95%;
+ 
+
+}
+.fondoimg
+ {  
+ background-image:url('/imagenes/iconos/search4.gif');  
+ background-repeat:no-repeat;
+ border-width:1px;  
+ border-style:solid;  
+ border-color:#8ba3b9; 
+ padding-left:17px;
+ color: #666666;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+ height:20px; 
+
+ }
+ 
+ .fondoimg2
+ {  
+ background-image:url('/imagenes/iconos/search4.gif');  
+ background-repeat:no-repeat;
+ border-width:1px;  
+ border-style:solid;  
+ border-color:#8ba3b9; 
+ padding-left:17px;
+ color: #666666;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+ height:16px; 
+
+ }
+
+.classtextoimg {
+
+ background-repeat:no-repeat;
+ border-width:1px;  
+ border-style:solid;  
+ border-color:#8ba3b9;  ; 
+ 
+}
+
+.trdir1 {
+	 BACKGROUND: #E1E1E1;
+}
+
+.trdir1:hover {
+	BACKGROUND: #78A5D1;
+	color:#FFFFFF;
+}
+
+.trarq0:hover {
+	BACKGROUND: #78A5D1;
+	color:#FFFFFF;	
+}
+
+.trarq0 {
+	BACKGROUND: #FFFFD9;
+}
+
+
+.trbuc0 {
+	 BACKGROUND: #8A8A8A;
+}
+
+.trbuc0:hover {
+	BACKGROUND: #78A5D1;
+	color:#FFFFFF;
+}
+
+
+.trbuc1:hover {
+	BACKGROUND: #78A5D1;
+	color:#FFFFFF;	
+}
+
+.trbuc1 {
+	BACKGROUND: #F0F0F0;
+}
+
+
+.trbuc3 {
+	BACKGROUND: #FBFBFB;
+}
+
+.trdir3{
+	 BACKGROUND: #EAEAEA;
+}
+
+.trbuc3:hover {
+	BACKGROUND: #78A5D1;
+}
+.trdir3:hover {
+	BACKGROUND: #78A5D1;
+}
+
+table.servicios {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	width: 500px;
+	background-color: #FFFFFF  ;
+	border:1px solid #638cb5;
+ 
+}
+
+table.servicios td {
+	border-color: #6080C0 ;
+	background: #EEF2F7;
+	margin: 01px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px; 
+	padding: 02px;
+	color: #000000;
+}
+ 
+table.beneficiario {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	width: 220px;
+	background-color: #FFFFFF  ;
+	border:1px solid #638cb5;
+ 
+}
+
+table.beneficiario td {
+	border-color: #6080C0 ;
+	background: #EEF2F7;
+	margin: 01px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 09px; 
+	padding: 01px;
+	color: #000000;
+}
+ 
+input.file_action {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-top: 1px solid #a7c6eb;
+	border-right: 1px solid #225590;
+	border-bottom: 1px solid #153c69;
+	border-left: 1px solid #6a9eda;
+	background: #2D75C9;
+	color: #FFF;
+	font-size:10px;
+}
+
+input.file_action:disabled{
+	border: 1px solid #006699;
+	color: #F7F7EE;
+	background: #a7c6eb;
+}
+
+input.file_action_servicio {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-top: 1px solid #a7c6eb;
+	border-right: 1px solid #225590;
+	border-bottom: 1px solid #153c69;
+	border-left: 1px solid #6a9eda;
+	background: #E2E2E2;
+	color: #330000;
+	font-size:11px;
+}
+
+input.file_action_servicio:disabled{
+	border: 1px solid #006699;
+	color: #F7F7EE;
+	background: #a7c6eb;
+	font-size:10px;
+}
+
+	#bloquedoc{
+	position:absolute;
+	width:200px;
+	height:150px;
+	top:180px;
+	left:800px;
+	}
+	#bloquedoccont{
+	position:absolute;
+	width:200px;
+	height:150px;
+	top:200px;
+	left:800px;
+
+	}
+	#bloquedocbenef{
+	position:absolute;
+	width:200px;
+	height:150px;
+	top:200px;
+	left:800px;
+
+	}
+	
+
+
+  
+table.catalogos_modelo {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:09px;
+}  
+
+table.costos {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:09px;
+	text-align: center;
+	width: 200px;
+	background-color: #D7D7D7;
+
+}
+ 
+table.costos .modo {
+
+	font-size: 09px;
+	font-weight:normal;
+	background-color: #D5ECFF;
+	background-repeat: repeat-x;
+	color: #34484E;
+	text-align: left;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* div flotante  */
+
+ 
+
+div#en_espera
+ {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 15px;
+  padding: 0px;
+  margin: 0px;
+
+}
+
+
+
+
+
+table.catalogos2 {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	text-align: center;
+	width: 640px;
+
+}
+ 
+table.catalogos2 th {
+
+	padding: 1px;
+	font-size: 10px;
+	background-color: #83aec0;
+	background-image: url('/imagenes/logos/fondo_cat.png');
+	background-repeat: repeat-x;
+	color: #FFFFFF;
+	text-align: center;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #558FA6;
+	border-bottom-color: #558FA6;
+	font-family: Trebuchet MS, Arial;
+	/*text-transform: uppercase;*/
+}  
+
+table.catalogos2  td {
+
+	font-size: 10px;
+	font-weight:normal;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+
+table.catalogos3 {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	text-align: center;
+	
+
+}
+
+table.catalogos3 th {
+
+	padding: 1px;
+	font-size: 10px;
+	background-color: #83aec0;
+	/*background-image: url('/magenes/logos/fondo_cat.png');*/
+	background-repeat: repeat-x;
+	color: #FFFFFF;
+	text-align: center;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #558FA6;
+	border-bottom-color: #558FA6;
+	font-family: Trebuchet MS, Arial;
+	/*text-transform: uppercase;*/
+}  
+
+table.catalogos3  td {
+
+	font-size: 10px;
+	font-weight:normal;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+table.catalogo_servicios {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	text-align: center;
+	width:700px;
+
+}
+ 
+table.catalogo_servicios th {
+
+	padding: 1px;
+	font-size: 10px;
+	background-color: #83aec0;
+	background-image: url('/imagenes/logos/fondo_cat.png');
+	background-repeat: repeat-x;
+	color: #FFFFFF;
+	text-align: center;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #558FA6;
+	border-bottom-color: #558FA6;
+	font-family: Trebuchet MS, Arial;
+	/*text-transform: uppercase;*/
+}  
+
+table.catalogo_servicios  td {
+
+	font-size: 10px;
+	font-weight:normal;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+
+
+
+table.catalogos_plan {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	text-align: center;
+	width: 750px;
+
+}
+ 
+table.catalogos_plan th {
+
+	padding: 1px;
+	font-size: 10px;
+	background-color: #83aec0;
+	background-image: url('/imagenes/logos/fondo_cat.png');
+	background-repeat: repeat-x;
+	color: #FFFFFF;
+	text-align: center;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #558FA6;
+	border-bottom-color: #558FA6;
+	font-family: Trebuchet MS, Arial;
+	/*text-transform: uppercase;*/
+}  
+
+table.catalogos_plan  td {
+
+	font-size: 10px;
+	font-weight:normal;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+
+
+table.catalogos_usuarios {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	text-align: center;
+	width: 800px;
+
+}
+ 
+table.catalogos_usuarios th {
+
+	padding: 1px;
+	font-size: 10px;
+	background-color: #83aec0;
+	background-image: url('/imagenes/logos/fondo_cat.png');
+	background-repeat: repeat-x;
+	color: #FFFFFF;
+	text-align: center;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #558FA6;
+	border-bottom-color: #558FA6;
+	font-family: Trebuchet MS, Arial;
+	/*text-transform: uppercase;*/
+}  
+
+table.catalogos_usuarios  td {
+
+	font-size: 10px;
+	font-weight:normal;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+
+table.parametros {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	text-align: center;
+	width: 425px;
+	background-color: #FFFFFF;	
+
+}
+ 
+ 
+table.parametros  td {
+
+	font-size: 10px;
+	font-weight:normal;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+table.parametros .modo1 {
+
+    background-color:  #D9ECB3;
+}
+ 
+table.parametros .modo2 {
+
+    background-color:  #FFF2E6;
+}  
+
+
+table.asistenciasyprocesos {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:09px;
+	width: 1024px;
+	background-color: #FFFFFF;
+	border:1px solid #5BB0B0;
+
+}
+
+table.asistenciasyprocesos2 {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:09px;
+	width: 800px;
+	background-color: #FFFFFF;
+	border:1px solid #5BB0B0;
+
+}
+
+table.historicomovimiento {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:08px;
+	background-color: #A8D5D5;
+	border:1px solid #5BB0B0;
+
+}
+ 
+.Box{
+	background-color:#9fd1ff;
+	border:1px dotted #DFE7ED;
+	font-size:17px; 
+	font-weight : bold;
+}
+
+.Box2{
+	background-color:#F0F8FF;
+	border:1px dotted #C2C9CE;
+	font-weight:bold;
+}
+
+ 
+table.modelotablas {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	text-align: center;
+	
+}
+
+table.modelotablas td {
+
+	font-size: 11px;
+	font-weight:normal;
+	background-color: #e2ebef;
+	background-repeat: repeat-x;
+	color: #34484E;
+	text-align: left;
+	padding: 01px;
+	margin: 01px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+table.calculadora {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:09px;
+	background-color: #CCCCFF;
+
+}
+
+.cambicolor {
+	border-color: red;
+	border-style: solid;
+	border-width: 1px;
+	color: #333333;
+	background-color: #FFE8E8;
+	font-size: 10px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+}

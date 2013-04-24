@@ -1,0 +1,341 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Zapatec DHTML Tabs Manual</title><link rel="stylesheet" href="themes/print.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="#id2410434" title="Zapatec DHTML Tabs Manual"><link rel="next" href="#get_files" title="Chapter 1. Get the Zapatec DHTML Tabs files"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="book" lang="en"><div class="titlepage"><div><div><h1 class="title"><a name="id2410434"></a>Zapatec DHTML Tabs Manual</h1></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="chapter"><a href="#get_files">1. Get the Zapatec DHTML Tabs files</a></span></dt><dd><dl><dt><span class="sect1"><a href="#download_zip">1. Download the Zip file</a></span></dt><dt><span class="sect1"><a href="#unzip_files">2. Extract zptabs.zip</a></span></dt></dl></dd><dt><span class="chapter"><a href="#quick_startup">2. Quick Startup</a></span></dt><dd><dl><dt><span class="sect1"><a href="#set_up_tabs">1. Set Up Your Tabs</a></span></dt><dd><dl><dt><span class="sect2"><a href="#path_warn">1.1. Path Warning</a></span></dt><dt><span class="sect2"><a href="#upgr_warn">1.2. Upgrade Warning</a></span></dt></dl></dd><dt><span class="sect1"><a href="#build_tabs">2. Attach the Zapatec Tabs Object to your Presentation</a></span></dt><dt><span class="sect1"><a href="#copy_files">3. Copy your files to your web server</a></span></dt><dt><span class="sect1"><a href="#test_tabs">4. Test the tabs application</a></span></dt></dl></dd><dt><span class="chapter"><a href="#conf_options">3. Tabs</a></span></dt><dd><dl><dt><span class="sect1"><a href="#configuration_obj_func">1. Tabs Options</a></span></dt><dd><dl><dt><span class="sect2"><a href="#tabBar">1.1. tabBar (string or HTMLElement)</a></span></dt><dt><span class="sect2"><a href="#tabs">1.2. tabs (string or HTMLElement)</a></span></dt><dt><span class="sect2"><a href="#tabType">1.3. tabType (string, default: "div")</a></span></dt><dt><span class="sect2"><a href="#overflow">1.4. overflow (string, default: "hidden")</a></span></dt><dt><span class="sect2"><a href="#theme">1.5. theme (string, default: "default")</a></span></dt><dt><span class="sect2"><a href="#themePath">1.6. themePath (string, default: path to "zptabs/themes" directory)</a></span></dt><dt><span class="sect2"><a href="#ignoreUrl">1.7. ignoreUrl (boolean, default: false)</a></span></dt><dt><span class="sect2"><a href="#changeUrl">1.8. changeUrl (boolean, default: true)</a></span></dt><dt><span class="sect2"><a href="#tab2tab">1.9. tab2tab (boolean, default: false)</a></span></dt><dt><span class="sect2"><a href="#showEffect">1.10. showEffect (string or array)</a></span></dt><dt><span class="sect2"><a href="#showEffectSpeed">1.11. showEffectSpeed (number)</a></span></dt><dt><span class="sect2"><a href="#mouseOverChangesTab">1.12. mouseOverChangesTab (boolean, default: false)</a></span></dt><dt><span class="sect2"><a href="#refreshOnTabChange">1.13. refreshOnTabChange (boolean, default: false)</a></span></dt><dt><span class="sect2"><a href="#shouldLoadOnInit">1.14. shouldLoadOnInit (boolean, default: false)</a></span></dt><dt><span class="sect2"><a href="#activeTabId">1.15. activeTabId (string)</a></span></dt><dt><span class="sect2"><a href="#onInit">1.16. onInit (function)</a></span></dt><dt><span class="sect2"><a href="#onTabChange">1.17. onTabChange (function)</a></span></dt><dt><span class="sect2"><a href="#onBeforeTabChange">1.18. onBeforeTabChange(function)</a></span></dt></dl></dd><dt><span class="sect1"><a href="#id2469721">2. Tabs Public Methods</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id2469738">2.1. changeTab(string)</a></span></dt><dt><span class="sect2"><a href="#id2469753">2.2. addTab(object)</a></span></dt><dt><span class="sect2"><a href="#id2469775">2.3. setVisible(boolean)</a></span></dt><dt><span class="sect2"><a href="#id2469796">2.4. removeTab(string)</a></span></dt></dl></dd><dt><span class="sect1"><a href="#tab_options">3. Tab Options</a></span></dt><dd><dl><dt><span class="sect2"><a href="#tab_string">3.1. id (string)</a></span></dt><dt><span class="sect2"><a href="#tab_index">3.2. index (number)</a></span></dt><dt><span class="sect2"><a href="#tab_linkInnerHTML">3.3. linkInnerHTML (string)</a></span></dt><dt><span class="sect2"><a href="#tab_accesKey">3.4. accessKey (string)</a></span></dt><dt><span class="sect2"><a href="#tab_content">3.5. content (mixed)</a></span></dt><dt><span class="sect2"><a href="#tab_contentType">3.6. contentType (string)</a></span></dt><dt><span class="sect2"><a href="#tab_url">3.7. url (string)</a></span></dt><dt><span class="sect2"><a href="#tab_title">3.8. title (string)</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#wizrd_widget">4. Wizard</a></span></dt><dd><dl><dt><span class="sect1"><a href="#wizard_conf">1. Wizard Options</a></span></dt><dd><dl><dt><span class="sect2"><a href="#action">1.1. action (string)</a></span></dt><dt><span class="sect2"><a href="#submitTabId">1.2. submitTabId (string)</a></span></dt><dt><span class="sect2"><a href="#method">1.3. method (string, optional)</a></span></dt><dt><span class="sect2"><a href="#contentType">1.4. contentType (string, optional)</a></span></dt><dt><span class="sect2"><a href="#formThemePath">1.5. formThemePath (string, optional)</a></span></dt><dt><span class="sect2"><a href="#formTheme">1.6. formTheme (string, optional)</a></span></dt><dt><span class="sect2"><a href="#formStatusImgPos">1.7. formStatusImgPos (string, optional)</a></span></dt><dt><span class="sect2"><a href="#showErrors">1.8. showErrors (string, optional)</a></span></dt><dt><span class="sect2"><a href="#onError">1.9. onError (function, optional)</a></span></dt><dt><span class="sect2"><a href="#onValid">1.10. onValid (function, optional)</a></span></dt><dt><span class="sect2"><a href="#onSuccess">1.11. onSuccess (function, optional)</a></span></dt></dl></dd><dt><span class="sect1"><a href="#adding_forms_wiz">2. Adding Forms to the Wizard</a></span></dt><dt><span class="sect1"><a href="#init_wizard">3. Initializing the Wizard</a></span></dt></dl></dd><dt><span class="chapter"><a href="#accordion">5. Accordion</a></span></dt><dt><span class="chapter"><a href="#scenario">6. Scenarios</a></span></dt><dd><dl><dt><span class="sect1"><a href="#next/prev">1. Next / Previous tab</a></span></dt></dl></dd></dl></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="get_files"></a>Chapter 1. Get the Zapatec DHTML Tabs files</h2></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="download_zip"></a>1. Download the Zip file</h2></div></div></div><p>The DHTML Tabs files are bundled in a zip file. Click on the download link in
+the Tabs section of Zapatec web site, and follow the instructions to
+download the file.</p><p>Save the file (zptabs.zip) to your website root folder on your computer or server.</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="unzip_files"></a>2. Extract zptabs.zip</h2></div></div></div><div class="orderedlist"><ol type="1"><li><p>On your computer, go to the folder where you saved the file zptabs.zip.
+</p></li><li><p>zptabs.zip contains a folder called zapatec that holds all of the files you will need to create your tabs.
+</p></li><li><p>Double-click zptabs.zip to extract it.
+</p></li></ol></div></div></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="quick_startup"></a>Chapter 2. Quick Startup</h2></div></div></div><p>If you have not done so, follow the instructions in section 1.1. 
+to download and extract the Tabs files.</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="set_up_tabs"></a>1. Set Up Your Tabs</h2></div></div></div><p>In your web editor (Dreamweaver, UltraEdit, etc.), open the web page where you want to place the tabs.  Position the  cursor before the ending &lt;/head&gt; tag.
+Paste the following style path and script paths before the ending &lt;/head&gt; tag:</p><pre class="programlisting">&lt;!-- Javascript Zapatec utilities file --&gt;  
+&lt;script type="text/javascript" src="zapatec/utils/zapatec.js"&gt;&lt;/script&gt;
+&lt;!-- Javascript file to support tabs --&gt;
+&lt;script type="text/javascript" src="zapatec/zptabs/src/zptabs.js"&gt; &lt;/script&gt;
+
+&lt;!-- optional Javascript file to support wizard --&gt;
+&lt;script type="text/javascript" src="zapatec/zptabs/src/zptabs-wizard.js"&gt;&lt;/script&gt;
+
+&lt;!-- optional Javascript file to support accordion tabs --&gt;
+&lt;script type="text/javascript" src="zapatec/zptabs/src/zptabs-accordion.js"&gt;&lt;/script&gt;</pre><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="path_warn"></a>1.1. Path Warning</h3></div></div></div><p>If you save the web page containing the tabs in the zptabs folder, these
+lines will work without any changes. If, however, you save your web page
+in another location (for example, directly under your website root folder), you 
+need to adjust the path for these files.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="upgr_warn"></a>1.2. Upgrade Warning</h3></div></div></div><p>If you have been using a version of Zapatec tabs that is older than version 2.0 and are now migrating to the current version, you need to adjust the header files. </p><p>The older utils.js, transport.js, zpwidget.js  are no longer supported. To upgrade, replace the old lines:</p><pre class="programlisting">&lt;script src="utils/utils.js" type="text/javascript"&gt;&lt;/script&gt; 
+&lt;script src="utils/transport.js" type="text/javascript"&gt;&lt;/script&gt; 
+&lt;script src="utils/zpwidget.js" type="text/javascript"&gt;&lt;/script&gt;</pre><p>with the following ones:</p><pre class="programlisting">&lt;script type="text/javascript" src="zapatec/utils/zapatec.js"&gt;&lt;/script&gt;</pre><p>The new zapatec.js file includes facilities to handle AJAX communications that used to be provided by the obsolete transport.js.</p><p>In addition, the use of the LINK element for CSS inclusion in pre-2.0 versions is no longer supported. For example, if you used the rounded.css in the HEAD of the HTML page your pre-2.0 version as in:</p><pre class="programlisting">&lt;link href="themes/rounded.css" rel="stylesheet" /&gt;</pre><p>you should delete this line. Instead, set the CSS using the theme option in the Zapatec.Tabs constructor. </p><p>See the <a href="#theme" title='1.5. theme (string, default: "default")'>
+            <span class="property">theme</span>
+          </a> configuration option for details.</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="build_tabs"></a>2. Attach the Zapatec Tabs Object to your Presentation</h2></div></div></div><p>All you need in order to create  Zapatec Tabs is two DIV elements - a tab bar and a content pane.  
+The tabs implementation can get your content from a DIV in your document, as
+described in this section, or from files on a remote server accessed with Zapatec Transport.</p><p>Here is an example that lays out a web page with tabs. The tab bar is placed above the content. There are 2 tabs along with their content specified in HTML.You can put any kind of HTML after the label tag in  tab body and it will be the content of your tab.</p><pre class="programlisting">&lt;div id="tabBar" style="width: 400px"&gt;&lt;/div&gt;
+&lt;div id="tabs" style="height: 200px"&gt;
+  &lt;div id="photo"&gt;
+    &lt;label accesskey="h" title="Photo"&gt;P&lt;u&gt;h&lt;/u&gt;oto&lt;/label&gt;
+    Photo Tab Contents
+  &lt;/div&gt;
+  &lt;div id="music"&gt;
+    &lt;label accesskey="m" title="Music"&gt;&lt;u&gt;M&lt;/u&gt;usic&lt;/label&gt;
+    Music Tab Contents
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+  var objTabs = new Zapatec.Tabs({
+    tabBar: 'tabBar',
+    tabs: 'tabs'
+  });
+&lt;/script&gt;</pre></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="copy_files"></a>3. Copy your files to your web server</h2></div></div></div><p>Using your editing or FTP program, copy or move your web page and the entire
+tree folder to the root of your website.</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="test_tabs"></a>4. Test the tabs application</h2></div></div></div><p>Using your web browser, navigate to the web page that you created to include
+the Zapatec DHTML Tabs.  Congratulations! You have set up the most
+basic version of the Zapatec DHTML Tabs! </p></div></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="conf_options"></a>Chapter 3. Tabs</h2></div></div></div><p>When you create tabs, you can pass a set of configuration options
+    that affect its behavior.</p><p>A few configuration options are required:</p><div class="itemizedlist"><ul type="disc"><li><p><span class="property">theme</span></p></li><li><p><span class="property">tabBar</span> option that specifies tab bar element</p></li><li><p><span class="property">tabs</span> option that specified tab content pane element</p></li></ul></div><p>Other configurations are optional.</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="configuration_obj_func"></a>1. Tabs Options</h2></div></div></div><p>This section describes all supported configuration options you can pass when creating a new Zapatec Tab object.</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="tabBar"></a>1.1. tabBar (string or HTMLElement)</h3></div></div></div><p>The <span class="property">tabBar</span> option is a string or html DOM element reference, usually a DIV.</p><p>The tab bar is used to show the tabs that are currently opened. There is a DIV in the tab bar for each tab that is created. There is a text inside this DIV that is called tab label. When you click this label the tab becomes active.</p><p>It is up to you to set tab bar location relative to
+the tab content. You can place the tab bar above, alongside, or below the content. </p><p>To set tab bar above the content you should use the following  layout:</p><pre class="programlisting">&lt;div id="tabBar"&gt;&lt;/div&gt;
+&lt;div id="tabs"&gt;
+...
+&lt;/div&gt;</pre><p>To set tab bar below the content use:
+</p><pre class="programlisting">&lt;div id="tabs"&gt;
+...
+&lt;/div&gt;
+&lt;div id="tabBar"&gt;&lt;/div&gt;</pre><p>To set tab bar to the right of the content you can use:</p><pre class="programlisting">&lt;table&gt;
+&lt;tr&gt;&lt;td&gt;
+&lt;div id="tabs"&gt;
+...
+&lt;/div&gt;
+&lt;/td&gt;&lt;td&gt;
+&lt;div id="tabBar"&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</pre><p>The tabs theme that you use needs to support the type of positioning you choose. The themes currently provided by Zapatec are designed for tab bars positioned above the content. You can always create custom themes (CSS) to  make tabs look good with your custom tab bar layout.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="tabs"></a>1.2. tabs (string or HTMLElement)</h3></div></div></div><p>The <span class="property">tabs</span> option is a string or html DOM element reference, usually a DIV. It is the element where the actual tabs content is dispayed.</p><p>The tabs content pane contains one DIV for each tab but only one of them is visible at a time. The currently visible one is called the active tab.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="tabType"></a>1.3. tabType (string, default: "div")</h3></div></div></div><p>The <span class="property">tabType</span> option specifies what kind of tabs you need. Setting this option to "div" will put tab content in a div. If you set it to "iframe", an iframe will be used for the tab content.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="overflow"></a>1.4. overflow (string, default: "hidden")</h3></div></div></div><p>The <span class="property">overflow</span> option specifies the overflow html attribute that is to be applied to tab content pane. Default is "hidden". Supported options are "visible", "auto" and "hidden". Set this option to "auto" to make scrollbars appear automatically when needed.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="theme"></a>1.5. theme (string, default: "default")</h3></div></div></div><p>The <span class="property">theme</span> option specifies the CSS used to present  tabs.</p><p>The string argument is the name of the theme:</p><pre class="programlisting">theme : 'winxp'</pre><p>or the absolute or relative path to the theme file:</p><pre class="programlisting">theme : '../themes/winxp.css'</pre><p>The theme name is case-insensitive. Some themes are provided in the themes folder.</p><p>If the <span class="property">theme</span> option is not specified, the default.css file in the themes folder is used.</p><p>To use your own CSS throughout the enterprise without specifying the theme option for each page, you can rename your own CSS file "default.css" and move it to the themes folder.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="themePath"></a>1.6. themePath (string, default: path to "zptabs/themes" directory)</h3></div></div></div><p>This is the path to the themes directory. If the path to the theme
+      is passed as the argument to the <a href="#theme" title='1.5. theme (string, default: "default")'>
+            <span class="property">theme</span>
+          </a> option, the <span class="property">themePath</span> is not
+      needed.</p><p>If you use standard themes, the <span class="property">themePath</span> is not needed.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="ignoreUrl"></a>1.7. ignoreUrl (boolean, default: false)</h3></div></div></div><p>The tabs add a URL fragment "#tabId=activaTabId" to the page URL to create an unique URL for each tab. This way,
+if a user bookmarks the page, he will return to the tab that was bookmarked. </p><p>This is not always the desired behavior, since  you may want the user to start at the first tab every time.</p><p>The <span class="property">ignoreUrl</span> boolean indicates whether to ignore the #tabId section in the URL of a tab. To ignore the #tabId section of the URL, set <span class="property">ignoreUrl</span> to true.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="changeUrl"></a>1.8. changeUrl (boolean, default: true)</h3></div></div></div><p>The <span class="property">changeUrl</span> boolean indicates whether browser location hash is to be changed
+on every tab change to reflect the current tab (as described above). If set to true, #tabId will
+be added to browser URL on every tab change. If false, tabs won't modify browser URL.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="tab2tab"></a>1.9. tab2tab (boolean, default: false)</h3></div></div></div><p>The <span class="property">tab2tab</span> option specifies if active tab should be changed by pressing the <span><strong class="keycap">TAB</strong></span> key. Set this option to true to be able to navigate through tabs using the <span><strong class="keycap">TAB</strong></span> key on your keyboard.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="showEffect"></a>1.10. showEffect (string or array)</h3></div></div></div><p>The <span class="property">showEffect</span> defines animation effects to apply on tab content pane when a tab is made visible.
+Effect can be a string or an array. See <code class="methodname">Zapatec.Effects.init</code>  for more details. No effect will be applied if this option is not specified.</p><p>If you use this option you will have to include the following script file manually
+</p><pre class="programlisting">&lt;!-- Javascript Zapatec Effects file --&gt;
+&lt;script type="text/javascript" src="zpeffects/src/effects.js"&gt;&lt;/script&gt;</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="showEffectSpeed"></a>1.11. showEffectSpeed (number)</h3></div></div></div><p>The <span class="property">showEffectSpeed</span> number indicates how fast should an effect be applied. See option above.</p><p>Here's an example of putting effects options to work.</p><pre class="programlisting">var objTabs = new Zapatec.Tabs({
+  ...
+  // Make new tab fade-in when activated
+  showEffect: "fade",
+  // Set animation speed to 100ms
+  showEffectSpeed: 100
+});
+</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="mouseOverChangesTab"></a>1.12. mouseOverChangesTab (boolean, default: false)</h3></div></div></div><p>The <span class="property">mouseOverChangesTab</span> option specifies if tabs are to be changed by merely hovering over them with the mouse.
+When this option is set to true there is no need to click in order to make a tab active.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="refreshOnTabChange"></a>1.13. refreshOnTabChange (boolean, default: false)</h3></div></div></div><p>The<span class="property"> refreshOnTabChange</span> boolean indicates if tabs are to reload from server each time they are to become active.
+When this option is set to true, tab contents is re-fetched every time a tab  is activated.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="shouldLoadOnInit"></a>1.14. shouldLoadOnInit (boolean, default: false)</h3></div></div></div><p>The <span class="property">shouldLoadOnInit</span> option indicates if tab contents is to be pre-fetched during tabs creation.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="activeTabId"></a>1.15. activeTabId (string)</h3></div></div></div><p>The <span class="property">activeTabId</span> option specifies the tab that is to become active after successful Tabs initialization. If not specified the first tab will be made active by default.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="onInit"></a>1.16. onInit (function)</h3></div></div></div><p>The <span class="property">onInit</span> option specifies a function called when the tabs are created. You can use it to perform application-specific initialization. </p><p>The function definition could look like this:</p><pre class="programlisting">function callbackOnInit() {
+}</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="onTabChange"></a>1.17. onTabChange (function)</h3></div></div></div><p>The <span class="property">onTabChange</span> option allows you to set a callback that is called after the focus has left the old tab and is in the new one. The respective tab IDs are passed in one argument called <em class="parameter"><code>objArgs</code></em>.</p><p>The function definition could look like this</p><pre class="programlisting">function callbackOnTabChange(objArgs) {
+  // Get old tab ID string
+  var oldTabId = objArgs.oldTabId;
+  // Get new tab ID string
+  var newTabId = objArgs.newTabId;
+}</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="onBeforeTabChange"></a>1.18. onBeforeTabChange(function)</h3></div></div></div><p>The <span class="property">onBeforeTabChange</span> option allows you to set a callback that is called  when the user has indicated a desire to leave a tab. Return false in the callback to prevent tab change, return true to allow it.</p><p>A common use of <span class="property">onBeforeTabChange</span> is to validate the contents of a tab and return false if the user needs to fix some errors before moving on to another tab. </p><p>The function definition could look like this</p><pre class="programlisting">function callbackOnBeforeTabChange(objArgs) {
+  // Get old tab ID string
+  var oldTabId = objArgs.oldTabId;
+  // Get new tab ID string
+  var newTabId = objArgs.newTabId;
+  // Allow tab change
+  return true; 
+}</pre></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2469721"></a>2. Tabs Public Methods</h2></div></div></div><p>Use public methods to do different manipulations with tabs using script.</p><p>To call public methods use the following syntax:</p><pre class="programlisting">objTabs.methodname(argument);</pre><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2469738"></a>2.1. changeTab(string)</h3></div></div></div><p>Changes the currently active tab. Accepts one argument - <em class="parameter"><code>id</code></em> of the tab which will become active.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2469753"></a>2.2. addTab(object)</h3></div></div></div><p>Adds new tab. Accepts one argument - tab object which will be added to tabs.</p><p>For example:</p><pre class="programlisting">  objTabs.addTab({
+    id: 'myTabId',
+    linkInnerHTML: '&lt;u&gt;M&lt;/u&gt;y tab',
+    title: 'My Tab',
+    url: 'content-game.html'
+  });</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2469775"></a>2.3. setVisible(boolean)</h3></div></div></div><p>This method applies to single tab, not to whole tabs object. That is why it should be called like this:</p><pre class="programlisting">objTabs.getTab('tabId').setVisible(false);</pre><p>Its only argument is a boolean value which states if tab object is to be visible.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2469796"></a>2.4. removeTab(string)</h3></div></div></div><p>Removes the specified tab. Accepts one argument - <em class="parameter"><code>id</code></em> of the tab which will be removed from tabs.</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="tab_options"></a>3. Tab Options</h2></div></div></div><p>You can set up  labels and contents of the tabs either directly in HTML or using
+Javascript and AJAX. See section <a href="#build_tabs" title="2. Attach the Zapatec Tabs Object to your Presentation">Attach the Zapatec Tabs Object to your Presentation</a>. The following section explains how to create them using Javascript and AJAX.</p><p>Using this approach, you define the tabs in Javascript and fetch the data with AJAX, using an URL to point to the contents for each tab. The content is fetched from  web
+server and inserted into the tab.  </p><p>
+There are several advantages to this
+approach:</p><div class="itemizedlist"><ul type="disc"><li><p>The main page does not hold any content.
+It holds only the definition of the tabs structure.  </p></li><li><p>This is a more modular
+approach in which the contents of each pane are stored in a separate file.  </p></li><li><p>The
+contents of the panes are fetched on an as-needed basis when the user
+requests them.  </p></li></ul></div><p>
+Here is an example of the tabs implemented in Javascript:</p><pre class="programlisting">var objSource = {
+  tabs: [
+    {
+      id: 'photo',
+      linkInnerHTML: 'P&lt;u&gt;h&lt;/u&gt;oto',
+      accessKey: 'h',
+      title: 'Photo',
+      url: 'content-photo.html'
+    },
+    {
+      id: 'music',
+      linkInnerHTML: '&lt;u&gt;M&lt;/u&gt;usic',
+      accessKey: 'm',
+      title: 'Music',
+      url: 'content-music.html'
+    }
+  ]
+};
+
+var objTabs = new Zapatec.Tabs({
+  tabBar: 'tabBar',
+  tabs: 'tabs',
+  source: objSource,
+  sourceType: 'json'
+});
+</pre><p>Some options can be specified for an individual Tab as well as  for Tabs. These are:</p><div class="itemizedlist"><ul type="disc"><li><p><span class="property">tabType</span></p></li><li><p><span class="property">overflow</span></p></li><li><p><span class="property">changeUrl</span></p></li><li><p><span class="property">tab2tab</span></p></li><li><p><span class="property">refreshOnTabChange</span></p></li><li><p><span class="property">shouldLoadOnInit</span></p></li></ul></div><p>Their meaning is the same as for whole Tabs object. They take precedence over the same options specified in Tabs. This way you can pass common option values to Tabs and override them when needed for an individual Tab.</p><p>Here are the options that are new to Tab:</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="tab_string"></a>3.1. id (string)</h3></div></div></div><p>The <span class="property">id</span> option specifies an unique string id for the tab. It is optional; if not defined, the tab generates an unique id automatically. You can use this id  to get the tab instance.</p><pre class="programlisting">var objTab = objTabs.getTab('photo');</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="tab_index"></a>3.2. index (number)</h3></div></div></div><p>The <span class="property">index</span> option specifies where  tab is to be inserted relative to  other tabs. It is optional; if not defined, a tab is appended after the last tab. This is a zero based index. Once the tab is created you can easily check what index it was inserted at.</p><pre class="programlisting">var objTab = objTabs.getTab('photo');
+var tabIndex = objTab.index;</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="tab_linkInnerHTML"></a>3.3. linkInnerHTML (string)</h3></div></div></div><p>The <span class="property">linkInnerHTML</span> option specifies html to be used as a tab label. We use this option in the example above to set the  tab label with our shortcut letter underlined.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="tab_accesKey"></a>3.4. accessKey (string)</h3></div></div></div><p>The <span class="property">accessKey</span> option specifies a keyboard shortcut for the tab. For example, the letter &#8217;m&#8217; is used for the Music tab above. The user can activate the tab by pressing <span><strong class="keycap">ALT</strong></span> + access key.  When defining a keyboard shortcut, be aware that the shortcut you choose might not work if it conflicts with  a browser shortcut.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="tab_content"></a>3.5. content (mixed)</h3></div></div></div><p>The <span class="property">content</span> option specifies tab content as an html string, URL or a DOM reference. See Zapatec Pane for more details as it is used internally by Tab to hold the actual content.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="tab_contentType"></a>3.6. contentType (string)</h3></div></div></div><p>The <span class="property">contentType</span> option specifies type of content. Valid options are "html", "html/text", "html/url". See Zapatec Pane for more details.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="tab_url"></a>3.7. url (string)</h3></div></div></div><p>The <span class="property">url</span> option specifies a relative or absolute URL where tab contents should be fetched from. This is equivalent as setting <a href="#tab_content" title="3.5. content (mixed)">
+            <span class="property">content</span>
+          </a> option to the url string and <a href="#tab_contentType" title="3.6. contentType (string)">
+            <span class="property">contentType</span>
+          </a> to "html/url". This is a legacy option that was left in for compatibility.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="tab_title"></a>3.8. title (string)</h3></div></div></div><p>The <span class="property">title</span> option specifies a  title html attribute to be applies to the label anchor. It acts as a tooltip of the tab label in some browsers. It is useful for specifying the title when it is broken up by HMTL formatting.</p></div></div></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="wizrd_widget"></a>Chapter 4. Wizard</h2></div></div></div><p>Wizard is a separate widget that inherits Tabs. It supports all options that Tabs does and some new ones.</p><p>You can easily build a wizard by combining two components, the Zapatec AJAX Tabs and the Zapatec AJAX Form. </p><p>Because it uses Form, before creating a wizard add the following to the headers:</p><pre class="programlisting">&lt;script type="text/javascript" src="zapatec/zpform/src/form.js"&gt;&lt;/script&gt;</pre><p>The typical applications that use a wizard are a shopping cart or a
+loan application in which the user can navigate back and forth through the different sections of the wizard.</p><p>Each tab would contain a form, which validates input data for the fields in the tab. Before allowing the user to continue on to the next tab, all required fields in the current tab would have to be validated. On the other hand, users could back up to the previous tab without requiring validation in the current tab. Such a wizard can easily be implemented using Zapatec Form and Zapatec Tabs.</p><p>One of the tabs can play the role of the <span class="guibutton">Submit</span> button. When a user clicks that tab, the following operations take place:
+</p><div class="orderedlist"><ol type="1"><li><p>All previous tabs are validated in order. If the validation fails in any tab, the user is taken to the tab that generated the error.
+</p></li><li><p>If all forms on the previous tabs are valid, the data gathered from all wizard forms is submitted to the server. 
+</p></li><li><p>Depending on the server response to the submission, the onError or onSuccess callback is invoked. 
+</p></li></ol></div><p>When constructing a wizard, make sure that the fields throughout the wizard have unique names.  </p><p>Since a wizard is the combination of the Zapatec AJAX Tabs and the Zapatec AJAX
+Form, we suggest that you should first become familiar with both of these components prior to creating a wizard.</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="wizard_conf"></a>1. Wizard Options</h2></div></div></div><p>The wizard supports all the standard Tab options described above. Additionally,
+it supports the following options:</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="action"></a>1.1. action (string)</h3></div></div></div><p>This is the <span class="property">action</span> attribute value of the hidden form. It specifies the URL to which you submit the form. The action option is required to submit data to the server. In some rare cases there is no need for the application to submit data or the data is submitted by an external script. In those cases the action option  should be omitted.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="submitTabId"></a>1.2. submitTabId (string)</h3></div></div></div><p>This is the id of tab that handles the submit result.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="method"></a>1.3. method (string, optional)</h3></div></div></div><p>Use &#8217;GET&#8217; or &#8217;POST&#8217; to submit the form.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="contentType"></a>1.4. contentType (string, optional)</h3></div></div></div><p>This is the content type for the POST method. Valid values are "div" or "iframe".</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="formThemePath"></a>1.5. formThemePath (string, optional)</h3></div></div></div><p>This is the relative or absolute URL to the form themes directory. See the Form documentation for details.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="formTheme"></a>1.6. formTheme (string, optional)</h3></div></div></div><p>Sets the theme for the Form.  See the Form documentation for details.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="formStatusImgPos"></a>1.7. formStatusImgPos (string, optional)</h3></div></div></div><p>This option controls the position of the status image in relation to the field. See the Form documentation for details.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="showErrors"></a>1.8. showErrors (string, optional)</h3></div></div></div><p>This option controls the relative position of the error message in relation to the invalid field.  See the Form documentation for details.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="onError"></a>1.9. onError (function, optional)</h3></div></div></div><p>This is the callback function to invoke on error. It receives the following object as an argument: </p><pre class="programlisting">{
+  tabId: [string] tab id
+  serverSide: [boolean] true if this is server response or false if validation result,
+  generalError: [string] Human readable error description,
+  fieldErrors: [
+    {
+      field: [object] field element object,
+      errorMessage: [string] Human readable error description
+    },
+    ...
+  ]
+}</pre><p>
+See Zapatec.Form <span class="property">submitErrorFunc</span> configuration option for details.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="onValid"></a>1.10. onValid (function, optional)</h3></div></div></div><p>This is the callback function to invoke after validation is passed. It receives the following object as an argument:
+</p><pre class="programlisting">{
+  tabId: [string] tab id
+}</pre><p>
+See Zapatec.Form <span class="property">submitValidFunc</span> configuration option for details.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="onSuccess"></a>1.11. onSuccess (function, optional)</h3></div></div></div><p>Callback function to call after form
+  was submitted and "success" response received from server. Receives object
+  passed from server as argument.</p><p>See Zapatec.Form <span class="property">asyncSubmitFunc</span> configuration option for details.
+</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="adding_forms_wiz"></a>2. Adding Forms to the Wizard</h2></div></div></div><p>To indicate that a Zapatec form should be included in the wizard, add the
+zpForm class to the form class attribute. </p><p>Each tab can contain only one Zapatec form. If there are multiple forms with zpForm in the class attribute, only the first form is used for validation. The others are ignored. You can, however, put additional non-Zapatec forms in the tab.</p><p>Form fields should be defined according to the Form rules.</p><p>A tab definition containing a form has the following structure: 
+</p><pre class="programlisting">&lt;div id="tab-begin"&gt;
+  &lt;label&gt;The first tab&lt;/label&gt;
+
+  ... tab content ...
+
+  &lt;form class="zpForm"&gt;
+
+    ... form fields definition ...
+
+  &lt;/form&gt;
+
+  ... tab content ...
+
+&lt;/div&gt;</pre><p>
+Here is a sample tab definition for a wizard:
+</p><pre class="programlisting">&lt;div id="productTab"&gt;
+  &lt;label&gt;Product Info&lt;/label&gt;
+  &lt;div style="margin-bottom: 10px"&gt;
+    &lt;strong&gt; In the Website field&lt;/strong&gt;&lt;br /&gt;
+    For a Single Server license, enter the full url of the server.&lt;br /&gt;
+    For a Domain Wide license, enter the domain name.&lt;br /&gt;
+    For an Unlimited license, enter the primary domain name.
+  &lt;/div&gt;
+  &lt;form id="productForm" name="productForm" class="zpForm" style="margin: 0px"&gt;
+    &lt;div id="productTabError" style="display: none; padding: 5px; font: bold 14px arial, sans-serif; color: #f00"&gt;&lt;/div&gt;
+    &lt;table&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;label class="zpFormLabel" id="pWebsiteLabel" for="pWebsite"&gt;Website&lt;/label&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;input class="zpFormRequired" size="40" maxlength="1024" id="pWebsite" name="pWebsite" type="text" /&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;label class="zpFormLabel" id="pNumberLicensesLabel" for="pNumberLicenses"&gt;Number of Licenses&lt;/label&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;input class="zpFormRequired zpFormInt" value="1" size="10" maxlength="11" id="pNumberLicenses" name="pNumberLicenses" type="text" /&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;label class="zpFormLabel" id="pLicenseTypeLabel" for="pLicenseType"&gt;License Type&lt;/label&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;select class="zpFormRequired" id="pLicenseType" name="pLicenseType"&gt;
+          &lt;option value="Suite Single Server"&gt;Suite Single Server ($399) &lt;/option&gt;
+          &lt;option value="Suite Domain Wide"&gt;Suite Domain Wide ($2400) &lt;/option&gt;
+          &lt;option value="Suite Unlimited"&gt;Suite Unlimited ($3700) &lt;/option&gt;
+          &lt;option value="Suite Library"&gt;Suite Library ($4800) &lt;/option&gt;
+        &lt;/select&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;label class="zpFormLabel" id="pCommentsLabel" for="pComments"&gt;Comments&lt;/label&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;textarea id="pComments" name="pComments" cols="40" rows="3"&gt;&lt;/textarea&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/form&gt;
+&lt;/div&gt;</pre></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="init_wizard"></a>3. Initializing the Wizard</h2></div></div></div><p>The following code initializes the wizard. The  action and <a href="#submitTabId" title="1.2. submitTabId (string)">
+          <span class="property">submitTabId</span>
+        </a> configuration options are required.</p><pre class="programlisting">var objWizard = new Zapatec.TabsWizard({
+
+  // Tab bar div id
+  tabBar: 'tabBar',
+
+  // Tabs container div id
+  tabs: 'tabs',
+
+  // Tabs theme path
+  theme: '../suite/zptabs/themes/red.css',
+
+  // Before tab change event handler
+  onBeforeTabChange: funcOnBeforeTabChange,
+
+  // After tab change event handler
+  onTabChange: funcOnTabChange,
+
+  // Ignore "#tabId" part of URL to prevent opening other tab than the first right after initialization
+  ignoreUrl: true,
+
+  // Server script URL
+  action: 'order.php',
+
+  // Id of tab which submits data to the server
+  submitTabId: 'orderTab',
+
+  // Submit method
+  method: 'POST',
+
+  // Forms theme
+  formTheme: '../suite/zpform/themes/winxp1.css',
+
+  // Show error message after the field
+  showErrors: 'afterField',
+
+  // Error handler
+  onError: funcError,
+
+  // Valid handler
+  onValid: funcValid,
+
+  // Success handler
+  onSuccess: funcSuccess
+
+});</pre><p>The <a href="#onBeforeTabChange" title="1.18. onBeforeTabChange(function)">
+          <span class="property">onBeforeTabChange</span>
+        </a> and <a href="#onTabChange" title="1.17. onTabChange (function)">
+          <span class="property">onTabChange</span>
+        </a> configuration options can be used to define callback functions that perform certain tasks before and after the user moves to a different tab. For example, they can control buttons behaviour, as in the following example:
+</p><pre class="programlisting">// Before tab change event handler
+var funcOnBeforeTabChange = function(objArgs) {
+  if (objArgs.newTabId == 'orderTab') {
+    // Set "Next" button to submit PayPal form
+    document.getElementById('buttonNext').onclick = function() {
+      document.forms._xclick.submit();
+    };
+  } else {
+    // Set "Next" button to change tab
+    document.getElementById('buttonNext').onclick = function() {
+      objWizard.nextTab();
+    };
+  }
+  return true;
+};
+
+// After tab change event handler
+var funcOnTabChange = function(objArgs) {
+  // Show "Prev" button
+  if (objArgs.newTabId != 'productTab') {
+    document.getElementById('buttonPrev').style.display = 'inline';
+  } else {
+    document.getElementById('buttonPrev').style.display = 'none';
+  }
+};</pre><p>The <a href="#onError" title="1.9. onError (function, optional)">
+          <span class="property">onError</span>
+        </a> and <a href="#onValid" title="1.10. onValid (function, optional)">
+          <span class="property">onValid</span>
+        </a> configuration options can be used to define callback functions
+that perform certain tasks when errors occur during form validation.
+For example, they can show or hide the error message:
+</p><pre class="programlisting">// Error handler
+var funcError = function(objArgs) {
+  var objErrorDiv = document.getElementById(objArgs.tabId + 'Error');
+  if (!objErrorDiv) {
+    return;
+  }
+  objErrorDiv.innerHTML = formErrorMessage(objArgs);
+  objErrorDiv.style.display = 'block';
+};
+
+// Valid handler
+var funcValid = function(objArgs) {
+  var objErrorDiv = document.getElementById(objArgs.tabId + 'Error');
+  if (!objErrorDiv) {
+    return;
+  }
+  objErrorDiv.style.display = 'none';
+};</pre><p>This example shows how a <code class="methodname">formErrorMessage</code> function parses the error object and constructs the error message:
+</p><pre class="programlisting">function formErrorMessage(objArgs) {
+  var strMessage = objArgs.generalError + '&lt;br /&gt;';
+  if (objArgs.fieldErrors) {
+    for (var iField = 0; iField &lt; objArgs.fieldErrors.length; iField++) {
+      var strFieldName = objArgs.fieldErrors[iField].field.name;
+      var objLabel = document.getElementById(objArgs.fieldErrors[iField].field.name + 'Label');
+      if (objLabel) {
+        strFieldName = objLabel.innerHTML;
+      }
+      strMessage += strFieldName + ': ' +
+       objArgs.fieldErrors[iField].errorMessage + '&lt;br /&gt;';
+    }
+  }
+  return strMessage;
+}</pre><p>The <a href="#onSuccess" title="1.11. onSuccess (function, optional)">
+          <span class="property">onSuccess</span>
+        </a> configuration option can be used to define a callback function that performs certain tasks when wizard data is submitted and a success response is received from the server.</p><pre class="programlisting">var funcSuccess = function(objArgs) {
+  ... do something with objArgs object received from the server ...
+};</pre></div></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="accordion"></a>Chapter 5. Accordion</h2></div></div></div><p>Accordion is a separate widget that inherits Tabs. It supports all options that Tabs does.</p><p>Accordion is Tabs with a special slidding effect during tab change. Accordion ignores the <span class="property">tabBar</span> option so it is no longer required as in Tabs.</p><p>All you have to do in order to use Accordion Tabs instead of regular Tabs is to change:</p><pre class="programlisting">var objTabs = new Zapatec.Tabs({
+  ...
+});</pre><p>into this</p><pre class="programlisting">var objTabs = new Zapatec.AccordionTabs({
+  ...
+});</pre></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="scenario"></a>Chapter 6. Scenarios</h2></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="next/prev"></a>1. Next / Previous tab</h2></div></div></div><p>You can also add optional navigation buttons to the page to move the focus to the next and previous tabs. You can put these
+buttons anywhere on the page.
+</p><pre class="programlisting">&lt;button onclick="objTabs.prevTab()" accesskey="p"&gt;&amp;laquo; &lt;u&gt;P&lt;/u&gt;rev.&lt;/button&gt;
+&lt;button onclick="objTabs.nextTab()" accesskey="n"&gt;&lt;u&gt;N&lt;/u&gt;ext &amp;raquo;&lt;/button&gt;</pre></div></div></div></body></html>

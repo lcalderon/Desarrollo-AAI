@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+
+	<meta name="description" content=" Use option scrollMultiple to define the scrolling of the tabs. Set to false to have the tabs scroll one tab at at time. Set to true to have multiple tabs scrolled. This option is useful if your full set of tabs is not visible in the container. Scrolling occurs when you click on &lt or &gt button. scrollMultiple is set to false, so one tab is scrolled at a time. ">
+	<meta name="keywords" content="dhtml tools,javascript,DHTML Tools,Javascript,ajax,AJAX,Ajax,ajax tools,AJAX Tools,tools controls,simple javascript tools">
+	<title>Zapatec DHTML Tabs Widget - Scrolling Tabs</title>
+
+	<!-- Common JS files -->
+	<script type='text/javascript' src='../../utils/zapatec.js'></script>
+
+	<!-- Custom includes -->	
+	<script type="text/javascript" src="../src/zptabs.js"></script>
+
+	<!-- ALL demos need these css -->
+	<link href="../../website/css/zpcal.css" rel="stylesheet" type="text/css">
+	<link href="../../website/css/template.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+		body {
+			width: 778px;
+		}
+	</style>
+	<link rel="SHORTCUT ICON" href="http://www.zapatec.com/website/main/favicon.ico">
+	
+
+
+</head>
+<body>	<div class='zpCalSubHeader' style='text-align:center;'>Scrolling Tabs</div>
+
+		<div class='zpCalDemoText'>
+		<ul>
+		
+		
+	<li>Use option <b>scrollMultiple</b> to define the scrolling of the tabs.</li>
+	<li>Set to false to have the tabs scroll one tab at at time.</li>
+	<li>Set to true to have multiple tabs scrolled.</li>
+	<li>This option is useful if your full set of tabs is not visible in the container.</li>
+	<li>Scrolling occurs when you click on &lt or &gt button.</li>
+	<li><b>scrollMultiple</b> is set to false, so one tab is scrolled at a time.</li>
+
+		</ul>
+		</div>
+
+
+
+		<div id="tabs" style="height:400px;">
+
+		  <div id="game">
+			<label accesskey="g" title="Game"><u>G</u>ame</label>
+
+			Game Information
+			<br />
+			<br />
+			Which is your favorite platform?
+			<br />
+			 PS2      <input type="radio" name="platform" value='ps2' />
+			 XBox     <input type="radio" name="platform" value='xbox' />
+			 Nintendo <input type="radio" name="platform" value='nintendo' />
+		  </div>
+
+		  <div id="photo">
+			<label accesskey="h" title="Photo">P<u>h</u>oto</label>
+
+			Photo Tab1
+		  </div>
+
+		  <div id="music">
+			<label accesskey="m" title="Music"><u>M</u>usic</label>
+
+			Music Tab2
+		  </div>
+
+		  <div id="chat8">
+			<label accesskey="c" title="Chat"><u>C</u>hat99</label>
+
+			Chat Tab3
+		  </div>
+
+		  <div id="chat19">
+			<label accesskey="w" title="Chat">End<u>w</u></label>
+
+			End Tab4
+		  </div>
+
+		  <div id="photoz">
+			<label accesskey="h" title="Photo">P<u>h</u>oto</label>
+
+			Photo Tab5
+		  </div>
+
+		  <div id="musicz">
+			<label accesskey="m" title="Music"><u>M</u>usic</label>
+
+			Music Tab6
+		  </div>
+
+		  <div id="chat8z">
+			<label accesskey="c" title="Chat"><u>C</u>hat99</label>
+
+			Chat Tab7
+		  </div>
+
+		  <div id="chat19z">
+			<label accesskey="w" title="Chat">End<u>w</u></label>
+
+			End Tab8
+		  </div>
+
+		  <div id="photox">
+			<label accesskey="h" title="Photo">P<u>h</u>oto</label>
+
+			Photo Tab9
+		  </div>
+
+		  <div id="musicx">
+			<label accesskey="m" title="Music"><u>M</u>usic</label>
+
+			Music Tab10
+		  </div>
+
+		  <div id="chat8x">
+			<label accesskey="c" title="Chat"><u>C</u>hat99</label>
+
+			Chat Tab11
+		  </div>
+
+		  <div id="chat19x">
+			<label accesskey="w" title="Chat">End<u>w</u></label>
+
+			End Tab12
+		  </div>
+
+		  <div id="photoc">
+			<label accesskey="h" title="Photo">P<u>h</u>oto</label>
+
+			Photo Tab13
+		  </div>
+
+		  <div id="musicc">
+			<label accesskey="m" title="Music"><u>M</u>usic</label>
+
+			Music Tab14
+		  </div>
+
+		  <div id="chat8c">
+			<label accesskey="c" title="Chat"><u>C</u>hat99</label>
+
+			Chat Tab15
+		  </div>
+
+		  <div id="chat19c">
+			<label accesskey="w" title="Chat">End<u>w</u></label>
+
+			End Tab16
+		  </div>
+		</div>
+<div id="tabBar" style="width:400px;"></div>
+		<div style="padding: 10px; text-align: right">
+			<button onclick="objiTabs.prevTab()" accesskey="p">&laquo; <u>P</u>rev.</button>
+			<button onclick="objiTabs.nextTab()" accesskey="n"><u>N</u>ext &raquo;</button>
+		</div>
+
+		<script type="text/javascript">
+
+		var objiTabs = new Zapatec.Tabs({
+		  tabBar: 'tabBar',
+		  /*
+		  ID to get the LABEL contents to create the tabBar tabs
+		  Also, each DIV in this ID will contain the contents for each tab
+		  */
+		  tabs: 'tabs',
+		  // Theme to use for the tabs
+		  theme: 'rounded',
+		  scrollMultiple: false
+		});
+
+
+		</script>
+
+	<noscript>
+		<br/>
+		This page uses an <a href='http://www.zapatec.com/website/main/products/suite/'>
+		AJAX Component</a> - Zapatec DHTML Tabs Widget, but your browser does not support Javascript.
+		<br/>
+		<br/>
+	</noscript>      
+		<br/><br/><br/>
+		<div class="footer" style='width: 778px; text-align:center; margin-top:2em'>
+		&copy; 2004-2007 <strong> <a href='http://www.zapatec.com/'>Zapatec, Inc.</a> </strong>
+		</div>
+</body>
+</html>

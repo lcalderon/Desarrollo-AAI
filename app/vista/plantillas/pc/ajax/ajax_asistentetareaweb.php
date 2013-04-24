@@ -1,0 +1,26 @@
+<?
+include_once('../../../../modelo/clase_mysqli.inc.php');
+include_once('../../../../modelo/clase_poligono.inc.php');
+
+$con = new DB_mysqli();
+
+$reg[IDASISTENCIA]=$_GET[idasistencia];
+$reg[DESCRIPCIONSERVICIO] = $_POST[DESCRIPCIONSERVICIO];
+$reg[DIAGNOSTICO] = $_POST[DIAGNOSTICO];
+$reg[SOLUCIONFALLA] = $_POST[SOLUCIONFALLA];
+$reg[RECOMENDACION] = $_POST[RECOMENDACION];
+$reg[OTROS] = $_POST[OTROS];
+$reg[IDUSUARIOMOD]=$_POST[IDUSUARIOMOD];
+
+if ($con->exist($con->temporal.'.asistencia_pc_asistentetareaweb','IDASISTENCIA'," where IDASISTENCIA = '$_GET[idasistencia]'"))
+{
+	$con->update($con->temporal.'.asistencia_pc_asistentetareaweb',$reg," WHERE IDASISTENCIA ='$_GET[idasistencia]'");	
+}
+else 
+{
+	$con->insert_reg($con->temporal.'.asistencia_pc_asistentetareaweb',$reg);	
+}
+
+//print_r($_POST);
+
+?>

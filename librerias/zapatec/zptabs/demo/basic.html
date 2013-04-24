@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+
+	<meta name="description" content=" Basic Tabs demo with four Tabs: Game, Photo, Music, and Chat The tab access key is underlined. For example, G is the accesskey for the tab Game tab, so press ALT+g to access that tab using the keyboard. This doesn't work in Opera and Safari because they utilize some key combinations for internal purposes. The Prev and Next buttons provide an alternative method of navigating among the tabs. Buttons can facilitate a nice wizard-style flow. When your Zapatec Tabs appication prompts for information, the user can easily enter the data or accept the defaults and then click Next. When you are on the last tab and click Next, the focus moves to the first tab. Similarly, when you are on the first tab and you click Prev, the focus moves to the last tab. ">
+	<meta name="keywords" content="dhtml tools,javascript,DHTML Tools,Javascript,ajax,AJAX,Ajax,ajax tools,AJAX Tools,tools controls,simple javascript tools">
+	<title>Zapatec DHTML Tabs Widget - Basic Demo</title>
+
+	<!-- Common JS files -->
+	<script type='text/javascript' src='../../utils/zapatec.js'></script>
+
+	<!-- Custom includes -->	
+	<script type="text/javascript" src="../src/zptabs.js"></script>
+
+	<!-- ALL demos need these css -->
+	<link href="../../website/css/zpcal.css" rel="stylesheet" type="text/css">
+	<link href="../../website/css/template.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+		body {
+			width: 778px;
+		}
+	</style>
+	<link rel="SHORTCUT ICON" href="http://www.zapatec.com/website/main/favicon.ico">
+	
+
+
+</head>
+<body>	<div class='zpCalSubHeader' style='text-align:center;'>Basic Demo</div>
+
+		<div class='zpCalDemoText'>
+		<ul>
+		
+		
+<li>Basic Tabs demo with four Tabs: Game, Photo, Music, and Chat</li>
+<li>The tab access key is underlined.  For example, G is the accesskey for the tab <u>G</u>ame tab, so press ALT+g to access that tab using the keyboard. This doesn't work in Opera and Safari because they utilize some key combinations for internal purposes.</li>
+<li>The Prev and Next buttons provide an alternative method of navigating among the tabs. Buttons can facilitate a nice wizard-style flow. When your Zapatec Tabs appication prompts for information,  the user can easily enter the data or accept the defaults and then click Next.</li>
+<li>When you are on the last tab and click Next, the focus moves to the first tab.  Similarly, when you are on the first tab and you click Prev, the focus moves to the last tab.</li>
+
+		</ul>
+		</div>
+
+
+
+<div id="tabBar" style="width: 400px"></div>
+
+<div id="tabs" style="height: 200px">
+  <div id="game">
+    <label accesskey="g" title="Game"><u>G</u>ame</label>
+    Game Information<br><br>
+	 Which is your favorite platform?<br>
+	 PS2      <input type=radio name=platform value='ps2'>
+	 XBox     <input type=radio name=platform value='xbox'>
+	 Nintendo <input type=radio name=platform value='nintendo'>
+  </div>
+  <div id="photo">
+    <label accesskey="h" title="Photo">P<u>h</u>oto</label>
+    Photo Tab
+  </div>
+  <div id="music">
+    <label accesskey="m" title="Music"><u>M</u>usic</label>
+    Music Tab
+  </div>
+  <div id="chat">
+    <label accesskey="c" title="Chat"><u>C</u>hat</label>
+    Chat Tab
+  </div>
+</div>
+
+<div style="padding: 10px; text-align: right">
+<button onclick="objTabs.prevTab()" accesskey="p">&laquo; <u>P</u>rev.</button>
+<button onclick="objTabs.nextTab()" accesskey="n"><u>N</u>ext &raquo;</button>
+</div>
+
+<script type="text/javascript">
+
+var objTabs = new Zapatec.Tabs({
+  // ID of Top bar to show the Tabs: Game, Photo, Music, Chat
+  tabBar: 'tabBar',
+  /* 
+  ID to get the LABEL contents to create the tabBar tabs
+  Also, each DIV in this ID will contain the contents for each tab 
+  */
+  tabs: 'tabs',
+  // Theme to use for the tabs
+  theme: 'default',
+  themePath: '../themes/'
+});
+
+</script>
+
+
+	<noscript>
+		<br/>
+		This page uses an <a href='http://www.zapatec.com/website/main/products/suite/'>
+		AJAX Component</a> - Zapatec DHTML Tabs Widget, but your browser does not support Javascript.
+		<br/>
+		<br/>
+	</noscript>      
+		<br/><br/><br/>
+		<div class="footer" style='width: 778px; text-align:center; margin-top:2em'>
+		&copy; 2004-2007 <strong> <a href='http://www.zapatec.com/'>Zapatec, Inc.</a> </strong>
+		</div>
+</body>
+</html>

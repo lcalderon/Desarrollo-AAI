@@ -1,0 +1,32 @@
+a:17:{s:8:"provides";a:0:{}s:8:"filelist";a:1:{s:7:"ssh2.so";a:6:{s:4:"role";s:3:"src";s:4:"name";s:7:"ssh2.so";s:12:"installed_as";s:34:"/usr/lib/php5/20060613+lfs/ssh2.so";s:7:"php_api";i:0;s:12:"zend_mod_api";i:0;s:12:"zend_ext_api";i:0;}}s:10:"xsdversion";s:3:"1.0";s:15:"packagerversion";s:5:"1.6.1";s:7:"package";s:4:"ssh2";s:7:"summary";s:32:"Bindings for the libssh2 library";s:11:"description";s:154:"Provides bindings to the functions of libssh2 which implements the SSH2 protocol.
+libssh2 is available from http://www.sourceforge.net/projects/libssh2
+ 
+";s:11:"maintainers";a:2:{i:0;a:4:{s:6:"handle";s:7:"mikesul";s:4:"name";s:13:"Mike Sullivan";s:5:"email";s:15:"mikesul@php.net";s:4:"role";s:4:"lead";}i:1;a:4:{s:6:"handle";s:7:"pollita";s:4:"name";s:12:"Sara Golemon";s:5:"email";s:15:"pollita@php.net";s:4:"role";s:4:"lead";}}s:7:"version";s:6:"0.11.0";s:12:"release_date";s:10:"2008-12-08";s:15:"release_license";s:3:"PHP";s:13:"release_state";s:4:"beta";s:13:"release_notes";s:198:"- Support for latest libssh2 release
+- Fix build with PHP 5.3
+- Fixed incorrect return values for rename/unlink/mkdir/rmdir with sftp functions/streams
+- Fixed various memory leaks and segfaults
+  
+";s:17:"configure_options";a:1:{i:0;a:3:{s:4:"name";s:9:"with-ssh2";s:7:"default";s:4:"/usr";s:6:"prompt";s:15:"libssh2 prefix?";}}s:9:"changelog";a:7:{i:0;a:4:{s:7:"version";s:4:"0.10";s:12:"release_date";s:10:"2005-11-01";s:13:"release_state";s:4:"beta";s:13:"release_notes";s:44:"Added support for publickey subsystem.
+    
+";}i:1;a:4:{s:7:"version";s:3:"0.9";s:12:"release_date";s:10:"2005-07-04";s:13:"release_state";s:4:"beta";s:13:"release_notes";s:81:"Fix version check bugs found in release 0.8.
+Add pty option to ssh2_exec().
+    
+";}i:2;a:4:{s:7:"version";s:3:"0.8";s:12:"release_date";s:10:"2005-05-17";s:13:"release_state";s:4:"beta";s:13:"release_notes";s:235:"Fixed feof() detection, removed unnecessary sleep() in channel shutdown, and simplified session detection.
+Note: All users are recommended to use libssh2 >= 0.10 as it contains important bugfixes (particularly in the SFTP layer).
+    
+";}i:3;a:4:{s:7:"version";s:3:"0.7";s:12:"release_date";s:10:"2005-02-24";s:13:"release_state";s:4:"beta";s:13:"release_notes";s:148:"Fixed socket leak bug.  Connections wern't being closed like they were supposed to.
+Add ssh2_auth_hostbased_file() for hostkey authentication.
+    
+";}i:4;a:4:{s:7:"version";s:3:"0.6";s:12:"release_date";s:10:"2005-02-09";s:13:"release_state";s:4:"beta";s:13:"release_notes";s:234:"Minor fixes including some added error handling and more discriptive ./configure message.
+Users of PHP/SSH2 are recommended to upgrade their installation of libssh2 to version 0.6
+whether or not upgrading the PHP/SSH2 extension.
+    
+";}i:5;a:4:{s:7:"version";s:3:"0.5";s:12:"release_date";s:10:"2005-01-10";s:13:"release_state";s:4:"beta";s:13:"release_notes";s:290:"Added port forwarding support (requires libssh2-0.5) and
+modified ssh2_methods_negotiated() to work with modified libssh2 prototype.
+Note: Version PECL/ssh2 0.4.1 is incompatable with libssh2 >= 0.5
+Both should be upgraded in tandem, though PECL/ssh2 0.5 will work with libssh2 >= 0.4
+    
+";}i:6;a:4:{s:7:"version";s:5:"0.4.1";s:12:"release_date";s:10:"2004-12-24";s:13:"release_state";s:4:"beta";s:13:"release_notes";s:94:"Happy Holidays!
+Version 0.4 of the ssh2 extension requires libssh2 version 0.4 or higher
+    
+";}}s:12:"_lastversion";N;s:13:"_lastmodified";i:1252529203;}

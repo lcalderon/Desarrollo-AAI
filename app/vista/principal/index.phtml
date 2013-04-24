@@ -1,0 +1,173 @@
+<?
+session_start();
+
+include_once('../../modelo/clase_mysqli.inc.php');
+
+include_once("../login/Auth.class.php");
+Auth::required();
+$con = new DB_mysqli();
+
+$alto = 768;
+$altomonitor = 25*$alto/100;
+$altoprincipal = 75*$alto/100;
+
+
+$idextension = isset($_SESSION['extension'])?$_SESSION['extension']:'';
+
+if ($idextension!='') {
+	/* obtenemos el IP del server */
+	$idserver = $con->lee_parametro('IPSERVIDOR_ASTERISK');
+
+	/* obtenemos la contraseña de la extension */
+	$sql ="select SECRET,PROTOCOLO from $con->catalogo.catalogo_extensiones_asterisk where IDEXTENSION =$idextension";
+	$result = $con->query($sql);
+	while($reg=$result->fetch_object()){
+		$secret = $reg->SECRET;
+		$protocolo = $reg->PROTOCOLO;
+	}
+
+}
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+   "http://www.w3.org/TR/html4/frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title><?=_('EXP. TEMPORALES')?></title>
+
+	
+<script type="text/javascript">
+    var Zoiper;
+    var ActiveCall;
+
+
+    function initr(){
+      
+        var pluginInstalled = false;
+        //every time the plugin is updated this should be updated too to the newest version
+        if(navigator.plugins && navigator.plugins["Zoiper Plugin 2.07 for Windows"]){
+              pluginInstalled = true;
+        } else if(window.ActiveXObject){
+              if(document.ZoiperA){
+                 pluginInstalled = true;
+              }
+        }
+
+        <? if ($idextension!=''):?>
+        var browser = navigator.userAgent.toLowerCase();
+        if( (browser.indexOf('chrome') >= 0) && !pluginInstalled) {
+        	document.getElementById('ZoiperInstructions').style.display = 'block';
+        	document.getElementById('ZoiperA').style.display = 'none';
+            }
+        else if(!pluginInstalled){
+        	document.getElementById('ZoiperInstructions').style.display = 'block';
+        	document.getElementById('ZoiperA').style.display = 'none';
+               }
+		<?endif;?>
+
+        
+    }    
+    function Quit()
+    {
+      Status("Quit() called");
+      if (Zoiper != null)
+      {
+        Zoiper.DelAccount("9005");
+      }
+      document.getElementById('ZoiperA').innerHTML = "";
+    }
+
+          
+    function OnZoiperReady(phone)
+    {
+      Zoiper = phone;
+      Zoiper.AllowMultipleInstances();
+      var Config = Zoiper.GetConfig();
+      Config.SetSIPIAXPorts("4566","5061");
+      Config.NumberOfCallsLimit("2");
+      Config.PopupMenuOnIncomingCall = "true";
+      Config.DebugLogPath = "c:\\";
+      Config.EnableDebugLog = "true";
+      Config.RingWhenTalking = "false";
+      
+      Account = Zoiper.AddAccount("<?=$idextension?>", "<?=$protocolo?>");
+      Account.Domain   = "<?=$idserver?>";
+      Account.CallerID = "<?=$idextension?>";
+      Account.UserName = "<?=$idextension?>";
+      Account.Password = "<?=$secret?>";
+	  Account.AddCodec("GSM");
+      Account.DTMFType = "media_inband";
+      Account.Apply();
+      Account.Register();
+      Zoiper.UseAccount("<?= $idextension?>"); 
+     
+    }
+    
+    function OnZoiperCallAccept(call)
+    {
+
+                  
+	if (call.IsIncoming=='true')
+	{ 
+		var height = screen.availHeight-30;
+		var width = screen.availWidth-10;
+
+		var left = 0;
+		var top = 0;
+
+		settings = 'resizable=yes,location=no,toolbar=no,menubar=no';
+		settings = settings + ',status=no,directories=no,scrollbars=yes';
+		settings = settings + ',width=' + width +',height=' + height;
+		settings = settings + ',top=' + top +',left=' + left;
+		settings = settings + ',charset=iso-8859-1';
+	
+		
+	window.open('/app/vista/expediente/entrada/expediente_frmexpediente.php',"Expediente",settings) ;
+	} 
+    }
+   
+    function OnZoiperCallIncoming(call)
+    {
+    }
+  </script>
+
+</head>
+
+<body onload="initr()" onunload="Quit()" >
+<table width="100%" border="0">
+	<tr>
+		<td width="70%"><iframe id="ifr_alerta" name="ifr_alerta"
+			framespacing="0" width="100%" height="236" align="center"
+			src="monitor_tarea/"> </iframe></td>
+		<!-- <td>
+		<div id="monitorpbx" height="<?=$altomonitor?>">
+		<iframe id="ifr_monitor" framespacing="0" width="434" height="236" name="ifr_monitor"  height="<?=$altomonitor?>"  align="center"  src="monitor_pbx/">
+		</iframe>
+		</div>
+	</td> -->
+		<td>
+		<? if ($idextension!=''):?> 
+		
+	 	<object id="ZoiperA" classid="clsid:BCCA9B64-41B3-4A20-8D8B-E69FE61F1F8B" CODEBASE="http://www.zoiper.com/webphone/InstallerWeb.cab#Version=2,5,0,11285" align="left" width="434" height="236">
+		<embed id="ZoiperN" type="application/x-zoiper-plugin" align="center" width="434" height="236" /> </object>  
+		<? else:?>
+		<img src="/imagenes/logos/AAINTE09.png" width="434" height="236" />
+		<? endif;?>
+		<div id="ZoiperInstructions"  style="display:none;clear:left;width:434px;height:236px; background-color:#F0F4F7;">
+		<a href='https://192.168.11.114:5000/plugins/Zoiper_Web_2.7.15598_Installer.exe'>pulse aqui para instalar Zoiper </a><img  alt="" src="/imagenes/logos/zoiper.png" width="50" height="50" ></a>
+		</div>
+		
+        
+		</td>
+	</tr>
+	<tr height="<?=$altoprincipal?>">
+		<td colspan="2">
+			<iframe id="ifr_principal" name="ifr_principal"
+			width="100%" framespacing="0" frameborder="0"
+			height="<?=$altoprincipal?>" align="center" src="monitor_expediente"
+			scrolling="yes"> </iframe>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

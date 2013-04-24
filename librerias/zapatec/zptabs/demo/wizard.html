@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+
+	<meta name="description" content=" The contents of each tab are contained in a separate file, which is fetched when the user clicks the tab. Users navigate either by clicking the next/previous buttons or the tab headers. The forms inside the tabs are full-featured Zapatec Forms. When a user moves from one tab to the next, the wizard validates the form. If the validation fails, the wizard displays a message and users cannot move forward until they have fixed the error. They can, however, move back. ">
+	<meta name="keywords" content="dhtml tools,javascript,DHTML Tools,Javascript,ajax,AJAX,Ajax,ajax tools,AJAX Tools,tools controls,simple javascript tools">
+	<title>Zapatec DHTML Tabs Widget - Simple Wizard Example</title>
+
+	<!-- Common JS files -->
+	<script type='text/javascript' src='../../utils/zapatec.js'></script>
+
+	<!-- Custom includes -->	
+	<script type="text/javascript" src="../src/zptabs.js"></script>
+
+	<!-- ALL demos need these css -->
+	<link href="../../website/css/zpcal.css" rel="stylesheet" type="text/css">
+	<link href="../../website/css/template.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+		body {
+			width: 778px;
+		}
+	</style>
+	<link rel="SHORTCUT ICON" href="http://www.zapatec.com/website/main/favicon.ico">
+	
+
+	<script type="text/javascript" src="../src/zptabs-wizard.js"></script>
+	<script type="text/javascript" src="../../zpform/src/form.js"></script>
+
+
+</head>
+<body>	<div class='zpCalSubHeader' style='text-align:center;'>Simple Wizard Example</div>
+
+		<div class='zpCalDemoText'>
+		<ul>
+		
+		
+	<li>The contents of each tab are contained in a separate file, which is fetched when the user clicks the tab.</li>
+	<li>Users navigate either by clicking the next/previous buttons or the tab headers.</li>
+	<li>The forms inside the tabs are full-featured Zapatec Forms.</li>
+	<li>When a user moves from one tab to the next, the wizard validates the form. If the validation fails, the wizard
+		displays a message and users cannot move forward until they have fixed the error. They can, however, move back.</li>
+
+		</ul>
+		</div>
+
+
+<div style="width: 600px">
+  <center><div id="tabBar"></div></center>
+  <div id="tabs" style="padding: 10px; min-height: 380px; height: auto !important; height: 380px">
+  </div>
+</div>
+
+<div style="padding: 10px; text-align: right">
+<button onclick="objWizard.prevTab();return false" accesskey="p" id="buttonPrev" style="display: none">&laquo; <u>P</u>rev.</button>
+<button onclick="objWizard.nextTab();return false" accesskey="n" id="buttonNext"><u>N</u>ext &raquo;</button>
+</div>
+
+<script type="text/javascript">
+
+// Shortcut
+var _el = function(strId) {
+  return document.getElementById(strId);
+};
+
+// Forms error message
+function formErrorMessage(objArgs) {
+  var strMessage = objArgs.generalError + '<br />';
+  if (objArgs.fieldErrors) {
+    for (var iField = 0; iField < objArgs.fieldErrors.length; iField++) {
+      var strFieldName = objArgs.fieldErrors[iField].field.name;
+      var objLabel = _el(objArgs.fieldErrors[iField].field.name + 'Label');
+      if (objLabel) {
+        strFieldName = objLabel.innerHTML;
+      }
+      strMessage += strFieldName + ': ' +
+       objArgs.fieldErrors[iField].errorMessage + '<br />';
+    }
+  }
+  return strMessage;
+}
+
+// Error handler
+var funcError = function(objArgs) {
+  var objErrorDiv = _el(objArgs.tabId + 'Error');
+  if (!objErrorDiv) {
+    return;
+  }
+  objErrorDiv.innerHTML = formErrorMessage(objArgs);
+  objErrorDiv.style.display = 'block';
+};
+
+// Valid handler
+var funcValid = function(objArgs) {
+  var objErrorDiv = _el(objArgs.tabId + 'Error');
+  if (!objErrorDiv) {
+    return;
+  }
+  objErrorDiv.style.display = 'none';
+};
+
+// After tab change event handler
+var funcOnTabChange = function(objArgs) {
+
+  // Show "Prev" button
+  if (objArgs.newTabId != 'productTab') {
+    _el('buttonPrev').style.display = 'inline';
+  } else {
+    _el('buttonPrev').style.display = 'none';
+  }
+
+  // Show "Next" button
+  if (objArgs.newTabId != 'orderTab') {
+    _el('buttonNext').style.display = 'inline';
+  } else {
+    _el('buttonNext').style.display = 'none';
+  }
+
+  // Populate result table
+  if (objArgs.newTabId == 'orderTab') {
+    var objProductInfo = document.forms.productForm;
+    _el('tProduct').innerHTML =
+     objProductInfo.pNumberLicenses.value + ' X ' +
+     objProductInfo.pLicenseType.value + ' for: ' +
+     objProductInfo.pWebsite.value;
+    _el('tComments').innerHTML = objProductInfo.pComments.value;
+    var objUserInfo = document.forms.userForm;
+    _el('tFirstName').innerHTML = objUserInfo.uFirstName.value;
+    _el('tLastName').innerHTML = objUserInfo.uLastName.value;
+    _el('tEmail').innerHTML = objUserInfo.uEmail.value;
+    _el('tAddress1').innerHTML = objUserInfo.uAddress1.value;
+    _el('tAddress2').innerHTML = objUserInfo.uAddress2.value;
+    _el('tCity').innerHTML = objUserInfo.uCity.value;
+    _el('tState').innerHTML = objUserInfo.uState.value;
+    _el('tZip').innerHTML = objUserInfo.uZip.value;
+    _el('tCountry').innerHTML = objUserInfo.uCountry.value;
+  }
+
+};
+
+// Tabs source object
+var objSource = {
+  tabs: [
+    {
+      id: 'productTab',
+      linkInnerHTML: 'Product Info',
+      url: 'wizard_tab_product.html'
+    },
+    {
+      id: 'userTab',
+      linkInnerHTML: 'User Info',
+      url: 'wizard_tab_user.html'
+    },
+    {
+      id: 'orderTab',
+      linkInnerHTML: 'Place Order',
+      url: 'wizard_tab_order.html'
+    }
+  ]
+};
+
+// Initialize Wizard
+var objWizard = new Zapatec.TabsWizard({
+
+  // Tab bar div id
+  tabBar: 'tabBar',
+
+  // Tabs container div id
+  tabs: 'tabs',
+
+  // Tabs source
+  source: objSource,
+
+  // Tabs source type
+  sourceType: 'json',
+
+  // Theme path
+  theme: '../themes/red.css',
+
+  // After tab change event handler
+  onTabChange: funcOnTabChange,
+
+  // Ignore "#tabId" part of URL to prevent opening other tab than
+  // "Product Info" after initialization
+  ignoreUrl: true,
+
+  // Id of tab which submits data to the server
+  submitTabId: 'orderTab',
+
+  // Form theme
+  formTheme: '../../zpform/themes/winxp.css',
+
+  // Show error message after the field
+  showErrors: 'afterField',
+
+  // Error handler
+  onError: funcError,
+
+  // Valid handler
+  onValid: funcValid
+
+});
+
+</script>
+
+
+	<noscript>
+		<br/>
+		This page uses an <a href='http://www.zapatec.com/website/main/products/suite/'>
+		AJAX Component</a> - Zapatec DHTML Tabs Widget, but your browser does not support Javascript.
+		<br/>
+		<br/>
+	</noscript>      
+		<br/><br/><br/>
+		<div class="footer" style='width: 778px; text-align:center; margin-top:2em'>
+		&copy; 2004-2007 <strong> <a href='http://www.zapatec.com/'>Zapatec, Inc.</a> </strong>
+		</div>
+</body>
+</html>

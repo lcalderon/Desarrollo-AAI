@@ -1,0 +1,44 @@
+<?php
+	session_start();
+	
+	include_once("../../../modelo/clase_mysqli.inc.php");
+	include_once("../../../modelo/clase_lang.inc.php");
+	include_once("../../includes/arreglos.php");
+	
+	$con= new DB_mysqli();	
+	if($con->Errno){
+		printf("Fallo de conexion: %s\n", $con->Error);
+		exit();
+	}
+		if(preg_match('/Firefox/i',$_SERVER['HTTP_USER_AGENT'])) $altura="161"; else $altura="145";
+?>
+	<table height="<?=$altura?>" bgcolor="#F1F4F5" width="100%" border="0" cellpadding="1" cellspacing="1" style="border:1px solid #002f5e"> 
+		<tr>
+			<td width="26%"><?=_('MEDIO AUTORIZACION')?> <span class="style2">*</span></td> 
+			<td width="74%">
+				<?							
+					$con->cmb_array("cmbautorizacion",$desc_autorizacion,($_POST["idcodigo"])?"BD":$row_info->ARRTIPOAUTORIZACION,"class='classtexto' onFocus='coloronFocus(this);' onBlur='colorOffFocus(this);'",($_POST["idcodigo"] or $row->IDAFILIADO >0 or $row_info->ARRSTATUSEXPEDIENTE =="CER")?"2":"",_("SELECCIONE"),"",($_POST["idcodigo"])?"":"BD");
+				?>			
+			</td>
+		</tr>
+		<tr>
+			<td><?=_('NOMBRE AUTORIZANTE')?><span class="style2">*</span></td>
+			<td><input name="txtnomautoriza" id="txtnomautoriza" type="text" value="<?=$row_info->NOMAUTORIZACION;?>" style="text-transform:uppercase;" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" class='classtexto'  size="65"/></td>
+		</tr>
+		<tr>
+			<td><?=_('NUMERO AUTORIZACION')?></td>
+			<td><input name="txtnumautoriza" type="text" class='classtexto' id="txtnumautoriza" style="text-transform:uppercase;" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" value="<?=$row_info->NUMAUTORIZACION;?>" size="20" maxlength="18"/></td>
+		</tr>
+		<tr>
+			<td colspan="2"><strong><?=_('OBSERVACIONES')?></strong></td>
+		</tr>
+		<tr>
+			<td colspan="2"><textarea name="txtobservacion" id="txtobservacion" style="text-transform:uppercase;" onFocus="coloronFocus(this);" onBlur="colorOffFocus(this);" class='classtexto' cols="80" rows="2" ><?=$row_info->OBSERVACIONES?></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>	
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+	</table>

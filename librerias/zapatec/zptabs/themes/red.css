@@ -1,0 +1,235 @@
+/* $Id: red.css 7112 2007-05-10 19:37:05Z vkulov $ */
+/*
+ * Tabs theme.
+ *
+ * Copyright (c) 2004-2006 by Zapatec, Inc.
+ * http://www.zapatec.com
+ * 1700 MLK Way, Berkeley, California,
+ * 94709, U.S.A.
+ * All rights reserved.
+ */
+
+/*
+ * CSS Theme for "red" theme. Notice the name zpTabsRed needs to be
+ * used as the start of all definitions.
+ * If the themes was named "blue" you would need to start with zpTabsBlue
+ */
+
+
+/*
+ * Base definition for tabs headers container
+ */
+
+.zpTabsRed {
+  border-spacing: 0px; /* for Mozilla */
+  font: 12px tahoma, verdana, sans-serif;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+/*
+ * Definition of links in tabs in the header
+ */
+
+.zpTabsRed a,
+.zpTabsRed a:visited,
+.zpTabsRed a:link {
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/*
+ * Left part of the tab header (or footer)
+ * In red theme, for example, pictures are done only for header
+ */
+
+.zpTabsRed .zpTabLinkOuter {
+  background: url(red/tab_bg1_left.gif) top left no-repeat;
+  line-height: 20px;
+  cursor: pointer;
+  float: left;
+  padding-left: 16px;
+}
+
+
+/*
+ * Right part of the tab header (or footer)
+ * In red theme, for example, pictures are done only for header
+ */
+ 
+.zpTabsRed .zpTabLinkInner {
+  background: url(red/tab_bg1_right.gif) top right no-repeat;
+  padding-right: 16px;
+  color: #767696;
+  font-weight: bold;
+  line-height: 20px;
+  cursor: pointer;
+  float: left;
+}
+
+/*
+ * Left part of the active tab header (or footer)
+ * In red theme, for example, pictures are done only for header
+ */
+
+.zpTabsRed .zpTabsActive .zpTabLinkOuter {
+  background: url(red/tab_bg2_left.gif) top left no-repeat;
+}
+
+
+/*
+ * Right part of the active tab header (or footer)
+ * In red theme, for example, pictures are done only for header
+ */
+
+.zpTabsRed .zpTabsActive .zpTabLinkInner {
+  color: #eeeeee;
+  background: url(red/tab_bg2_right.gif) top right no-repeat;
+}
+
+.zpTabsRed .zpTab,
+.zpTabsRed .zpTabLinkInner .zpTabAnchorHolder {
+  float: left;
+}
+
+/*
+ * Definition of access key in inactive tab header when tab header is hovered
+ */
+
+.zpTabsRed .zpTabsHover .zpTabLinkInner u {
+  color: #dd0000;
+}
+
+/*
+ * Definition of access key in active tab header when it's hovered over
+ */
+
+.zpTabsRed .zpTabsActive .zpTabsHover u {
+  color: #eeeeee;
+}
+
+/*
+ * Definition of access key in inactive tab header
+ */
+.zpTabsRed .zpTabLinkInner u {
+  color: #060339;
+}
+
+/*
+ * Definition of access key in active tab header
+ */
+.zpTabsRed .zpTabsActive u {
+  color: #eeeeee;
+}
+
+.zpTabsRed .zpTabClose {
+  margin: 4px 0 0 5px;
+  float: left;
+  cursor: default;
+}
+
+.zpTabsRed .zpTabsClearer {
+  clear: both;
+}
+
+/*
+ * Base definition for the content area (where tab content is displayed)
+ */
+
+.zpTabsRedContent {
+  border: 1px solid #07030f;
+  border-top: solid 5px #CC3333;
+  background: url(red/bg.gif);
+  font: 11px tahoma, verdana, sans-serif;
+  clear: both;
+}
+
+
+/*
+ * Definition for container where scroll buttons are located
+ */
+
+.zpTabsScrolly
+	{
+	color: #aaa;
+	cursor: pointer;
+	width: 30px;
+	float: left;
+	border: #CC3333 solid;
+	border-width: 1px 1px 0 1px;
+	background: url(red/bg.gif);
+	}
+
+
+/*
+ * Style for left/right scroll arrows (arrows to scroll tab headers)
+ */
+
+.zpTabsScrolly div
+	{
+	padding: 0 3px;
+	}
+
+.zpTabsRedContent .zpTab,
+.zpTabsRedAccordionContent .zpTab {
+  overflow: hidden;
+}
+
+.zpTabsRedContent .zpTabsNoOverflow,
+.zpTabsRedAccordionContent .zpTabsNoOverflow {
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+/*
+ * Base definition for tabs container if tabs are using Accordion style
+ */
+
+.zpTabsRedAccordionContent
+	{
+	border: 1px solid #07030f;
+	border-top: solid 5px #CC3333;
+	background: url(red/bg.gif);
+	font: 11px tahoma, verdana, sans-serif;
+	}
+
+
+/*
+ * Style for tab container
+ * if tabs use Accordion style
+ */
+
+.zpTabsRedAccordionContent div
+	{
+	background-image: url(red/bg.gif);
+	}
+
+
+/*
+ * Definition for tabs headers
+ * if tabs use Accordion style
+ */
+
+.zpTabsRedAccordionContent div.tabChooser
+	{
+	color: white;
+	background: #cc3333;
+	cursor: pointer;
+	font-weight: bold;
+	}
+
+
+/*
+ * Definition for links in tab header
+ * if tabs use Accordion style
+ */
+
+.zpTabsRedAccordionContent div.tabChooser a
+	{
+	color: white;
+	text-decoration: none;
+	margin: 0 3px;
+	line-height: 23px;
+	}

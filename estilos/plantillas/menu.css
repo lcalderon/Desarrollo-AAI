@@ -1,0 +1,21 @@
+#menu1 a {color:black;background-color:white;text-decoration:none;text-indent:1ex;}
+#menu1 a:active {color:black;text-decoration:none;}
+#menu1 a:hover {color:black;background-color:#FFFF99}
+#menu1 a:visited {color:black;text-decoration:none;}
+
+#menu2 a {color:navy;background-color:white;text-decoration:none;text-indent:1ex;}
+#menu2 a:active	{color:red;text-decoration:none;}
+#menu2 a:visited {color:blue;text-decoration:none;}
+#menu2 a:hover {color:navy;background-color:#f0fea8}
+
+#menu3 a { /*Menu3 Links*/
+color:black;
+background-color:white;
+text-decoration:none;
+text-indent:1ex;
+}
+#menu3 a:hover {
+color:black;background-color:#FFFF99;
+}
+#menu3 a:active	{color:black;text-decoration:none;}
+#menu3 a:visited	{color:black;text-decoration:none;}

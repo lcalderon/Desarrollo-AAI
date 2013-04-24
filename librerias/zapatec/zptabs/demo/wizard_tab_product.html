@@ -1,0 +1,32 @@
+<div style="margin-bottom: 10px">
+  <strong> In the Website field</strong><br />
+  For a Single Server license enter the full url of the server.<br />
+  For a Domain Wide license enter the domain name.<br />
+  For an Unlimted license enter the primary domain name.
+</div>
+<form id="productForm" name="productForm" class="zpForm" style="margin: 0px">
+  <div id="productTabError" style="display: none; padding: 5px; font: bold 14px arial, sans-serif; color: #f00"></div>
+  <table>
+    <tr>
+      <td><label class="zpFormLabel" id="pWebsiteLabel" for="pWebsite">Website</label></td>
+      <td><input class="zpFormRequired" size="40" maxlength="1024" id="pWebsite" name="pWebsite" type="text" /></td>
+    </tr>
+    <tr>
+      <td><label class="zpFormLabel" id="pNumberLicensesLabel" for="pNumberLicenses">Number of Licenses</label></td>
+      <td><input class="zpFormRequired zpFormInt" value="1" size="10" maxlength="11" id="pNumberLicenses" name="pNumberLicenses" type="text" /></td>
+    </tr>
+    <tr>
+      <td><label class="zpFormLabel" id="pLicenseTypeLabel" for="pLicenseType">License Type</label></td>
+      <td><select class="zpFormRequired" id="pLicenseType" name="pLicenseType">
+        <option value="Single Server">Single Server ($399) </option>
+        <option value="Domain Wide">Domain Wide ($2400) </option>
+        <option value="Unlimited">Unlimited ($3700) </option>
+        <option value="Library">Library ($4800) </option>
+      </select></td>
+    </tr>
+    <tr>
+      <td><label class="zpFormLabel" id="pCommentsLabel" for="pComments">Comments</label></td>
+      <td><textarea id="pComments" name="pComments" cols="40" rows="3"></textarea></td>
+    </tr>
+  </table>
+</form>

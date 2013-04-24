@@ -1,0 +1,69 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-03-18 17:10-0500\n"
+"PO-Revision-Date: 2009-03-18 17:08-0500\n"
+"Last-Translator: frank <fsanchez@americanassist.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../consulta2.php:22
+msgid "Catalogo de proveedores"
+msgstr "Catalog proveedor"
+
+#: ../../../consulta2.php:33
+msgid "ID"
+msgstr "IDEM"
+
+#: ../../../consulta2.php:33
+msgid "RAZONSOCIAL"
+msgstr "NAME"
+
+#: ../../../consulta2.php:33
+msgid "DIRECCION"
+msgstr "ADDRESS"
+
+#: ../../../consulta2.php:33
+msgid "STATUS"
+msgstr "STATUS"
+
+#: ../../../consulta2.php:37
+msgid "Editar"
+msgstr "EDIT"
+
+#: ../../../consulta2.php:112
+msgid "Anterior"
+msgstr "BACK"
+
+#: ../../../consulta2.php:114
+msgid "Siguiente"
+msgstr "NEXT"
+
+#: ../../../consulta2.php:115
+msgid "Ultimo"
+msgstr "LAST"
+
+#: ../../../consulta2.php:116
+msgid "Pagina"
+msgstr "PAGE"
+
+#: ../../../consulta2.php:122
+msgid "Buscar"
+msgstr "SEARCH"
+
+#: ../../../consulta2.php:131
+msgid "Agregar Nuevo Proveedor"
+msgstr "Add new proveedor"
+
+#: ../../../consulta2.php:131
+msgid "Agregar Proveedor"
+msgstr "Add proveedor"
+
